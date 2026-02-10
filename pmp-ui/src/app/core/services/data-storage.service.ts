@@ -458,4 +458,37 @@ export class DataStorageService {
       data
     );
   }
+
+  getWalletBalance(partnerId: string): Observable<any> {
+    return this.http.get(
+      this.BASE_URL + 'v1/partnermanager/partners/' + partnerId + '/wallet/balance'
+    );
+  }
+
+  generatePRN(request: RequestModel): Observable<any> {
+    return this.http.post(
+      this.BASE_URL + 'v1/payments/generate-prn',
+      request
+    );
+  }
+
+  getPendingPRNs(partnerId: string): Observable<any> {
+    return this.http.get(
+      this.BASE_URL + 'v1/payments/pending-prns/' + partnerId
+    );
+  }
+
+  validatePRN(request: RequestModel): Observable<any> {
+    return this.http.post(
+      this.BASE_URL + 'v1/payments/validate-prn',
+      request
+    );
+  }
+
+  searchPayments(request: RequestModel): Observable<any> {
+    return this.http.post(
+      this.BASE_URL + 'v1/payments/search',
+      request
+    );
+  }
 }

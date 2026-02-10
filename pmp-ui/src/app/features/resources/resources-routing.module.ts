@@ -3,12 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListViewComponent } from './list-view/list-view.component';
 import { SingleViewComponent } from './single-view/single-view.component';
 import { CertUploadComponent } from './cert-upload/cert-upload.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { GeneratePrnComponent } from './generate-prn/generate-prn.component';
+import { ValidatePrnComponent } from './validate-prn/validate-prn.component';
+import { SearchPaymentsComponent } from './search-payments/search-payments.component';
 import { SubListViewComponent } from './sub-list-view/sub-list-view.component';
 import { SubSingleViewComponent } from './sub-single-view/sub-single-view.component';
 import { RolesGuard } from 'src/app/core/services/roles.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'misp', pathMatch: 'full' },  
+  { path: 'payments/wallet', component: WalletComponent, canActivate: [RolesGuard] },
+  { path: 'payments/generate-prn', component: GeneratePrnComponent, canActivate: [RolesGuard] },
+  { path: 'payments/validate-prn', component: ValidatePrnComponent, canActivate: [RolesGuard] },
+  { path: 'payments/search', component: SearchPaymentsComponent, canActivate: [RolesGuard] },
   { path: ':type/view', component: ListViewComponent, canActivate: [RolesGuard] },
   { path: ':type/create', component: SingleViewComponent, canActivate: [RolesGuard] },
   { path: ':type/single-view/:id', component: SingleViewComponent, canActivate: [RolesGuard] },

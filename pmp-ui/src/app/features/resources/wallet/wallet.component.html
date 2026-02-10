@@ -1,0 +1,32 @@
+<div class="wallet-container">
+  <div class="wallet-header">
+    <h2>{{ labels.walletTitle || 'Wallet Balance' }}</h2>
+  </div>
+
+  <div class="wallet-card" *ngIf="!isLoading">
+    <div class="wallet-content">
+      <div class="balance-section">
+        <h3>{{ labels.walletBalanceLabel || 'Wallet Balance' }}</h3>
+        <div class="balance-amount">
+          <span class="currency">UGX</span>
+          <span class="amount">{{ walletBalance }}</span>
+        </div>
+      </div>
+
+      <div class="refresh-section">
+        <button (click)="refreshBalance()" class="refresh-btn" title="Refresh Balance">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="wallet-footer">
+      <small>{{ labels.lastUpdatedLabel || 'Last Updated Date and Time' }}: {{ lastUpdatedDateTime }}</small>
+    </div>
+  </div>
+
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>{{ labels.loadingLabel || 'Loading wallet balance...' }}</p>
+  </div>
+</div>

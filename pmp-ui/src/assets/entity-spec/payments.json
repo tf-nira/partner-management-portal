@@ -1,0 +1,120 @@
+{
+  "auditEventIds": ["ADM-013", "ADM-014"],
+  "actionButtons": [
+    {
+      "buttonName": {
+        "eng": "View",
+        "ara": "View_ara",
+        "fra": "View_fra"
+      },
+      "actionURL": "",
+      "redirectURL": "",
+      "showIn": "Ellipsis",
+      "validations": "",
+      "callBackFunction": "viewPayment"
+    },
+    {
+      "buttonName": {
+        "eng": "Edit",
+        "ara": "Edit_ara",
+        "fra": "Edit_fra"
+      },
+      "actionURL": "",
+      "redirectURL": "",
+      "showIn": "Ellipsis",
+      "validations": "",
+      "callBackFunction": "editPayment"
+    }
+  ],
+  "columnsToDisplay": [
+    {
+      "name": "id",
+      "showInListView": "true",
+      "label": {
+        "eng": "ID",
+        "ara": "ID_ara",
+        "fra": "ID_fra"
+      },
+      "sortOrder": "",
+      "showAsLink": "false",
+      "linkType": "",
+      "LinkURL": ""
+    },
+    {
+      "name": "amount",
+      "showInListView": "true",
+      "label": {
+        "eng": "Amount",
+        "ara": "Amount_ara",
+        "fra": "Amount_fra"
+      },
+      "sortOrder": "",
+      "showAsLink": "false",
+      "linkType": "",
+      "LinkURL": ""
+    },
+    {
+      "name": "date",
+      "showInListView": "true",
+      "label": {
+        "eng": "Date",
+        "ara": "Date_ara",
+        "fra": "Date_fra"
+      },
+      "sortOrder": "",
+      "showAsLink": "false",
+      "linkType": "",
+      "LinkURL": ""
+    },
+    {
+      "name": "status",
+      "showInListView": "true",
+      "label": {
+        "eng": "Status",
+        "ara": "Status_ara",
+        "fra": "Status_fra"
+      },
+      "sortOrder": "",
+      "showAsLink": "false",
+      "linkType": "",
+      "LinkURL": ""
+    }
+  ],
+  "paginator": {
+    "totalEntries": null,
+    "pageSize": 10,
+    "pageSizeList": [10, 20, 50, 100]
+  },
+  "filterColumns": [
+    {
+      "filtername": "status",
+      "filterType": "drop_down",
+      "fieldType": "string",
+      "autocomplete": "false",
+      "dropdownData": [
+        {
+          "value": "pending",
+          "label": "Pending"
+        },
+        {
+          "value": "completed",
+          "label": "Completed"
+        },
+        {
+          "value": "failed",
+          "label": "Failed"
+        }
+      ],
+      "apiName": "",
+      "methodCallName": "",
+      "label": {
+        "eng": "Status",
+        "ara": "Status_ara",
+        "fra": "Status_fra"
+      }
+    }
+  ],
+  "primaryLang": "eng",
+  "secondaryLang": "ara",
+  "showLanguageDirection": "false"
+}

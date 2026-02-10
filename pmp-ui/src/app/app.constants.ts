@@ -98,6 +98,43 @@ export const navItems = [
     children: null,
     auditEventId: 'ADM-011',
     roles: ['PARTNER_ADMIN']
+  },
+  {
+    displayName: 'menuItems.item9.title',
+    icon: 'assets/images/payments.png',
+    route: '',
+    children: [
+      {
+        displayName: 'menuItems.item9.subItem1',
+        icon: null,
+        route: '/pmp/resources/payments/wallet',
+        auditEventId: 'ADM-013',
+        roles: ['PARTNER_ADMIN']
+      },
+      {
+        displayName: 'menuItems.item9.subItem2',
+        icon: null,
+        route: '/pmp/resources/payments/generate-prn',
+        auditEventId: 'ADM-014',
+        roles: ['PARTNER_ADMIN']
+      },
+      {
+        displayName: 'menuItems.item9.subItem3',
+        icon: null,
+        route: '/pmp/resources/payments/validate-prn',
+        auditEventId: 'ADM-015',
+        roles: ['PARTNER_ADMIN']
+      },
+      {
+        displayName: 'menuItems.item9.subItem4',
+        icon: null,
+        route: '/pmp/resources/payments/search',
+        auditEventId: 'ADM-016',
+        roles: ['PARTNER_ADMIN']
+      }
+    ],
+    auditEventId: 'ADM-012',
+    roles: ['PARTNER_ADMIN']
   }
 ];
 
@@ -175,6 +212,14 @@ export const masterdataMapping = {
     nameKey: 'titleName',
     idKey: 'id',
     headerName: 'Policy Mapping'
+  },
+  payments: {
+    apiName: 'payments/api',
+    specFileName: 'payments',
+    name: 'Payments',
+    nameKey: 'titleName',
+    idKey: 'id',
+    headerName: 'Payments'
   }
 };
 
@@ -187,6 +232,7 @@ export const ListViewIdKeyMapping = {
   ftmdetails: { idKey: 'ftpChipDetailId', auditEventId: 'ADM-069' },
   sbidetails: { idKey: 'id', auditEventId: 'ADM-069' },
   policymapping: { idKey: 'apikeyRequestId', auditEventId: 'ADM-069' },
+  payments: { idKey: 'id', auditEventId: 'ADM-069' },
 };
 
 export const keyboardMapping = {

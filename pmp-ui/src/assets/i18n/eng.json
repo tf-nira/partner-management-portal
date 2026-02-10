@@ -26,11 +26,57 @@
     },
     "item8": {
       "title": "Upload CA Certificate"
+    },
+    "item9": {
+      "title": "Payments",
+      "subItem1": "Wallet",
+      "subItem2": "Generate PRN",
+      "subItem3": "Validate PRN",
+      "subItem4": "Search Payments"
     }
   },
   "dashboard": {
     "welcomeMessage":"Welcome to Mosip Partner portal !",
     "Logout":"Logout"
+  },
+  "payments": {
+    "walletTitle": "Wallet Balance",
+    "walletBalanceLabel": "Wallet Balance",
+    "lastUpdatedLabel": "Last Updated Date and Time",
+    "loadingLabel": "Loading wallet balance...",
+    "generatePrnTitle": "Generate PRN",
+    "selectServiceCategory": "Select the Service Category",
+    "generateBtn": "Generate",
+    "generatingLabel": "Generating...",
+    "prnGeneratedLabel": "PRN Generated Successfully",
+    "savePrnNote": "Please save this PRN for future reference",
+    "closeBtn": "Close",
+    "pendingPrnsLabel": "Pending PRN validations",
+    "prnHeader": "PRN",
+    "generatedDateHeader": "Generated Date",
+    "amountHeader": "Amount",
+    "statusHeader": "Status",
+    "noPendingPrns": "No pending PRNs",
+    "validatePrnTitle": "Validate PRN",
+    "enterPrnLabel": "Enter the PRN code",
+    "validateBtn": "Validate",
+    "validatingLabel": "Validating...",
+    "prnValidLabel": "PRN is Valid",
+    "prnInvalidLabel": "PRN Validation Failed",
+    "searchPaymentsTitle": "Search Payments",
+    "dateRangeLabel": "Date Range",
+    "partnerLabel": "Partner",
+    "categoryLabel": "Category",
+    "searchBtn": "Search",
+    "searchingLabel": "Searching...",
+    "resetBtn": "Reset",
+    "resultsLabel": "Results",
+    "exportBtn": "Export",
+    "transactionIdHeader": "Transaction ID",
+    "partnerNameHeader": "Partner Name",
+    "paymentCategoryHeader": "Payment Category",
+    "transactionDateHeader": "Transaction Date",
+    "noResultsLabel": "No payments found matching your criteria"
   },
   "singleView": {
     "errorMessages": ["No record found", "A technical error has occurred"],

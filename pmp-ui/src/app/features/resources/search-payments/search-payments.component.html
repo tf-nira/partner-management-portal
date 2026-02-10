@@ -1,0 +1,107 @@
+<div class="search-payments-container">
+  <div class="header">
+    <h2>{{ labels.searchPaymentsTitle || 'Search Payments' }}</h2>
+  </div>
+
+  <div class="search-section">
+    <div class="search-card">
+      <form [formGroup]="searchForm" (ngSubmit)="searchPayments()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dateRange">{{ labels.dateRangeLabel || 'Date Range' }}</label>
+            <input 
+              type="text" 
+              id="dateRange" 
+              formControlName="dateRange" 
+              class="form-control"
+              placeholder="Select date range">
+          </div>
+
+          <div class="form-group">
+            <label for="partner">{{ labels.partnerLabel || 'Partner' }}</label>
+            <select id="partner" formControlName="partner" class="form-control">
+              <option value="">--Select--</option>
+              <option value="partner1">Partner 1</option>
+              <option value="partner2">Partner 2</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prn">{{ labels.prnHeader || 'PRN' }}</label>
+            <input 
+              type="text" 
+              id="prn" 
+              formControlName="prn" 
+              class="form-control"
+              placeholder="Enter PRN">
+          </div>
+
+          <div class="form-group">
+            <label for="category">{{ labels.categoryLabel || 'Category' }}</label>
+            <select id="category" formControlName="category" class="form-control">
+              <option value="">--Select--</option>
+              <option value="cat1">Category 1</option>
+              <option value="cat2">Category 2</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+            <span *ngIf="!isLoading">{{ labels.searchBtn || 'Search' }}</span>
+            <span *ngIf="isLoading">{{ labels.searchingLabel || 'Searching...' }}</span>
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="reset()">
+            {{ labels.resetBtn || 'Reset' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="results-section" *ngIf="showResults">
+    <div class="results-card">
+      <div class="results-header">
+        <h3>{{ labels.resultsLabel || 'Results' }}</h3>
+        <button class="btn btn-export" (click)="exportResults()" *ngIf="searchResults.length > 0">
+          {{ labels.exportBtn || 'Export' }}
+        </button>
+      </div>
+
+      <table class="results-table" *ngIf="searchResults.length > 0">
+        <thead>
+          <tr>
+            <th>{{ labels.transactionIdHeader || 'Transaction ID' }}</th>
+            <th>{{ labels.partnerNameHeader || 'Partner Name' }}</th>
+            <th>{{ labels.paymentCategoryHeader || 'Payment Category' }}</th>
+            <th>{{ labels.prnHeader || 'PRN' }}</th>
+            <th>{{ labels.amountHeader || 'Amount' }}</th>
+            <th>{{ labels.transactionDateHeader || 'Transaction Date' }}</th>
+            <th>{{ labels.statusHeader || 'Status' }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of searchResults">
+            <td>{{ payment.transactionId }}</td>
+            <td>{{ payment.partnerName }}</td>
+            <td>{{ payment.category }}</td>
+            <td>{{ payment.prn }}</td>
+            <td>{{ payment.amount }}</td>
+            <td>{{ payment.transactionDate }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="'status-' + payment.status">
+                {{ payment.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="no-results" *ngIf="searchResults.length === 0">
+        {{ labels.noResultsLabel || 'No payments found matching your criteria' }}
+      </div>
+    </div>
+  </div>
+</div>

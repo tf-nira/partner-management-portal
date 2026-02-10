@@ -26,11 +26,57 @@
     },
     "item8": {
       "title": "Upload CA Certificate_ara"
+    },
+    "item9": {
+      "title": "Payments_ara",
+      "subItem1": "Wallet_ara",
+      "subItem2": "Generate PRN_ara",
+      "subItem3": "Validate PRN_ara",
+      "subItem4": "Search Payments_ara"
     }
   },
   "dashboard": {
     "welcomeMessage":"Welcome to Mosip Partner portal ara !",
     "Logout":"Logout_ara"
+  },
+  "payments": {
+    "walletTitle": "Wallet Balance_ara",
+    "walletBalanceLabel": "Wallet Balance_ara",
+    "lastUpdatedLabel": "Last Updated Date and Time_ara",
+    "loadingLabel": "Loading wallet balance..._ara",
+    "generatePrnTitle": "Generate PRN_ara",
+    "selectServiceCategory": "Select the Service Category_ara",
+    "generateBtn": "Generate_ara",
+    "generatingLabel": "Generating..._ara",
+    "prnGeneratedLabel": "PRN Generated Successfully_ara",
+    "savePrnNote": "Please save this PRN for future reference_ara",
+    "closeBtn": "Close_ara",
+    "pendingPrnsLabel": "Pending PRN validations_ara",
+    "prnHeader": "PRN_ara",
+    "generatedDateHeader": "Generated Date_ara",
+    "amountHeader": "Amount_ara",
+    "statusHeader": "Status_ara",
+    "noPendingPrns": "No pending PRNs_ara",
+    "validatePrnTitle": "Validate PRN_ara",
+    "enterPrnLabel": "Enter the PRN code_ara",
+    "validateBtn": "Validate_ara",
+    "validatingLabel": "Validating..._ara",
+    "prnValidLabel": "PRN is Valid_ara",
+    "prnInvalidLabel": "PRN Validation Failed_ara",
+    "searchPaymentsTitle": "Search Payments_ara",
+    "dateRangeLabel": "Date Range_ara",
+    "partnerLabel": "Partner_ara",
+    "categoryLabel": "Category_ara",
+    "searchBtn": "Search_ara",
+    "searchingLabel": "Searching..._ara",
+    "resetBtn": "Reset_ara",
+    "resultsLabel": "Results_ara",
+    "exportBtn": "Export_ara",
+    "transactionIdHeader": "Transaction ID_ara",
+    "partnerNameHeader": "Partner Name_ara",
+    "paymentCategoryHeader": "Payment Category_ara",
+    "transactionDateHeader": "Transaction Date_ara",
+    "noResultsLabel": "No payments found matching your criteria_ara"
   },
   "singleView": {
     "errorMessages": [
