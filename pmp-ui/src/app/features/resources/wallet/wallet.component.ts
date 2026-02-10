@@ -3,7 +3,6 @@ import { DataStorageService } from 'src/app/core/services/data-storage.service';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { TranslateService } from '@ngx-translate/core';
-import { RequestModel } from 'src/app/core/models/request.model';
 
 @Component({
   selector: 'app-wallet',
