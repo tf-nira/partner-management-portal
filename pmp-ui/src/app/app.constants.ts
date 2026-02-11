@@ -101,7 +101,7 @@ export const navItems = [
   },
   {
     displayName: 'menuItems.item9.title',
-    icon: 'assets/images/payments.png',
+    icon: 'assets/images/payments.svg',
     route: '',
     children: [
       {
