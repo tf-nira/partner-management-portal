@@ -62,20 +62,26 @@ export class ValidatePrnComponent implements OnInit {
     }
 
     this.isLoading = true;
-    const partnerName = this.validatePrnForm.get('partnerName').value;
+    const partnerId = this.validatePrnForm.get('partnerName').value;
     const prn = this.validatePrnForm.get('prn').value;
 
     const request = new RequestModel(
-      '',
+      'mosip.registration.processor.prn.validate.1.0',
       null,
-      { 'partnerName': partnerName, 'prn': prn }
+      {
+        'prn': prn,
+        'partnerId': partnerId,
+        'serviceCode': '',
+        'amount': ''
+      }
     );
 
     this.dataService.validatePRN(request).subscribe(
       (response: any) => {
         if (response && response.response) {
           this.validationResult = response.response;
-          this.isValid = response.response.isValid || false;
+          // Check if validation was successful based on statusCode
+          this.isValid = response.response.statusCode === 'PAYMENT_SUCCESS';
           this.showValidationResult = true;
         }
         this.isLoading = false;
@@ -84,8 +90,10 @@ export class ValidatePrnComponent implements OnInit {
       (error: any) => {
         console.error('Error validating PRN:', error);
         this.isValid = false;
-        const errorMessage = (error && error.error && error.error.message) ? error.error.message : 'Validation failed';
-        this.validationResult = { message: errorMessage };
+        const errorMessage = (error && error.error && error.error.response && error.error.response.statusDesc) 
+          ? error.error.response.statusDesc 
+          : 'PRN validation failed';
+        this.validationResult = { statusDesc: errorMessage };
         this.showValidationResult = true;
         this.isLoading = false;
       }
@@ -95,5 +103,6 @@ export class ValidatePrnComponent implements OnInit {
   closeValidationResult() {
     this.showValidationResult = false;
     this.validationResult = null;
+    this.validatePrnForm.reset();
   }
 }

@@ -64,25 +64,35 @@ export class GeneratePrnComponent implements OnInit {
     }
 
     this.isLoading = true;
-    const partnerId = this.headerService.getUsername();
-    const partnerName = this.generatePrnForm.get('partnerName').value;
+    const partnerID = this.generatePrnForm.get('partnerName').value;
     const amount = this.generatePrnForm.get('amount').value;
 
     const request = new RequestModel(
-      '',
+      'mosip.registration.processor.prn.gen.1.0',
       null,
-      { 'partnerId': partnerId, 'partnerName': partnerName, 'amount': amount }
+      {
+        'service': '',
+        'nin': '',
+        'fullName': '',
+        'remarks': 'PRN generated from partner management portal',
+        'amount': amount,
+        'partnerId': partnerID,
+        'serviceCode': ''
+      }
     );
 
     this.dataService.generatePRN(request).subscribe(
       (response: any) => {
-        if (response && response.response && response.response.prn) {
-          this.generatedPRN = response.response.prn;
+        if (response && response.response && response.response.data && response.response.data.prn) {
+          this.generatedPRN = response.response.data.prn;
           this.isSuccess = true;
           this.errorMessage = '';
         } else {
           this.isSuccess = false;
-          this.errorMessage = 'PRN generation failed, please try again';
+          const errorMsg = (response && response.response && response.response.message) 
+            ? response.response.message 
+            : 'PRN generation failed, please try again';
+          this.errorMessage = errorMsg;
         }
         this.showPRNResult = true;
         this.isLoading = false;
@@ -91,7 +101,10 @@ export class GeneratePrnComponent implements OnInit {
       (error: any) => {
         console.error('Error generating PRN:', error);
         this.isSuccess = false;
-        this.errorMessage = 'PRN generation failed, please try again';
+        const errorMsg = (error && error.error && error.error.response && error.error.response.message) 
+          ? error.error.response.message 
+          : 'PRN generation failed, please try again';
+        this.errorMessage = errorMsg;
         this.showPRNResult = true;
         this.isLoading = false;
       }
