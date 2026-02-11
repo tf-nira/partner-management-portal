@@ -86,7 +86,7 @@ export class GeneratePrnComponent implements OnInit {
         }
         this.showPRNResult = true;
         this.isLoading = false;
-        this.auditService.audit('ADM-014');
+        // this.auditService.audit('ADM-014');
       },
       (error: any) => {
         console.error('Error generating PRN:', error);
