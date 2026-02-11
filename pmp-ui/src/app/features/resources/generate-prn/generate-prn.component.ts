@@ -48,8 +48,8 @@ export class GeneratePrnComponent implements OnInit {
     // Load list of partners for dropdown
     this.dataService.getPartners().subscribe(
       (response: any) => {
-        if (response && response.response) {
-          this.partners = response.response.partners || [];
+        if (response && response.response && response.response.partners) {
+          this.partners = response.response.partners;
         }
       },
       (error: any) => {

@@ -45,8 +45,8 @@ export class ValidatePrnComponent implements OnInit {
   loadPartners() {
     this.dataService.getPartners().subscribe(
       (response: any) => {
-        if (response && response.response) {
-          this.partners = response.response;
+        if (response && response.response && response.response.partners) {
+          this.partners = response.response.partners;
         }
       },
       (error: any) => {
