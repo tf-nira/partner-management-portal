@@ -271,39 +271,6 @@
   }
 }
 
-  &.btn-primary {
-    background-color: #0066cc;
-    color: white;
-
-    &:hover:not(:disabled) {
-      background-color: #0052a3;
-    }
-
-    &:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-  }
-
-  &.btn-secondary {
-    background-color: #f0f0f0;
-    color: #333;
-
-    &:hover {
-      background-color: #e0e0e0;
-    }
-  }
-
-  &.btn-export {
-    background-color: #28a745;
-    color: white;
-
-    &:hover {
-      background-color: #218838;
-    }
-  }
-}
-
 .results-section {
   margin-top: 20px;
 }
