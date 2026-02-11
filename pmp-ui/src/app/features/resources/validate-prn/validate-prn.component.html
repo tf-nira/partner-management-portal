@@ -8,6 +8,14 @@
       <div class="form-card">
         <form [formGroup]="validatePrnForm" (ngSubmit)="validatePRN()">
           <div class="form-group">
+            <label for="partnerName">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
+            <select id="partnerName" formControlName="partnerName" class="form-control">
+              <option value="" disabled selected>{{ labels.selectPartnerLabel || 'Select Partner' }}</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="prn">{{ labels.enterPrnLabel || 'Enter the PRN code' }}</label>
             <input 
               type="text" 

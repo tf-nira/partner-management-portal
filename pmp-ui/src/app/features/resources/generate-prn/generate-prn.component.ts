@@ -17,7 +17,9 @@ export class GeneratePrnComponent implements OnInit {
   isLoading: boolean = false;
   generatedPRN: string = '';
   showPRNResult: boolean = false;
-  pendingPRNs: any[] = [];
+  isSuccess: boolean = false;
+  errorMessage: string = '';
+  partners: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +29,8 @@ export class GeneratePrnComponent implements OnInit {
     public translateService: TranslateService
   ) {
     this.generatePrnForm = this.formBuilder.group({
-      category: ['', Validators.required]
+      partnerName: ['', Validators.required],
+      amount: ['', Validators.required]
     });
   }
 
@@ -38,7 +41,21 @@ export class GeneratePrnComponent implements OnInit {
         this.labels = response['payments'] || {};
       });
 
-    this.loadPendingPRNs();
+    this.loadPartners();
+  }
+
+  loadPartners() {
+    // Load list of partners for dropdown
+    this.dataService.getPartners().subscribe(
+      (response: any) => {
+        if (response && response.response) {
+          this.partners = response.response.partners || [];
+        }
+      },
+      (error: any) => {
+        console.error('Error loading partners:', error);
+      }
+    );
   }
 
   generatePRN() {
@@ -48,41 +65,35 @@ export class GeneratePrnComponent implements OnInit {
 
     this.isLoading = true;
     const partnerId = this.headerService.getUsername();
-    const category = this.generatePrnForm.get('category').value;
+    const partnerName = this.generatePrnForm.get('partnerName').value;
+    const amount = this.generatePrnForm.get('amount').value;
 
     const request = new RequestModel(
       '',
       null,
-      { 'partnerId': partnerId, 'category': category }
+      { 'partnerId': partnerId, 'partnerName': partnerName, 'amount': amount }
     );
 
     this.dataService.generatePRN(request).subscribe(
       (response: any) => {
-        if (response && response.response) {
-          this.generatedPRN = response.response.prn || 'N/A';
-          this.showPRNResult = true;
+        if (response && response.response && response.response.prn) {
+          this.generatedPRN = response.response.prn;
+          this.isSuccess = true;
+          this.errorMessage = '';
+        } else {
+          this.isSuccess = false;
+          this.errorMessage = 'PRN generation failed, please try again';
         }
+        this.showPRNResult = true;
         this.isLoading = false;
-        // this.auditService.audit('ADM-014');
-        this.loadPendingPRNs();
+        this.auditService.audit('ADM-014');
       },
       (error: any) => {
         console.error('Error generating PRN:', error);
+        this.isSuccess = false;
+        this.errorMessage = 'PRN generation failed, please try again';
+        this.showPRNResult = true;
         this.isLoading = false;
-      }
-    );
-  }
-
-  loadPendingPRNs() {
-    const partnerId = this.headerService.getUsername();
-    this.dataService.getPendingPRNs(partnerId).subscribe(
-      (response: any) => {
-        if (response && response.response) {
-          this.pendingPRNs = response.response.prns || [];
-        }
-      },
-      (error: any) => {
-        console.error('Error loading pending PRNs:', error);
       }
     );
   }
@@ -90,5 +101,7 @@ export class GeneratePrnComponent implements OnInit {
   closePRNResult() {
     this.showPRNResult = false;
     this.generatedPRN = '';
+    this.errorMessage = '';
+    this.generatePrnForm.reset();
   }
 }

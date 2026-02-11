@@ -8,21 +8,31 @@
       <div class="form-card">
         <form [formGroup]="generatePrnForm" (ngSubmit)="generatePRN()">
           <div class="form-group">
-            <label for="category">{{ labels.selectServiceCategory || 'Select the Service Category' }}</label>
+            <label for="partnerName">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
             <select 
-              id="category" 
-              formControlName="category" 
+              id="partnerName" 
+              formControlName="partnerName" 
               class="form-control">
               <option value="">--Select--</option>
-              <option value="service1">Service 1</option>
-              <option value="service2">Service 2</option>
-              <option value="service3">Service 3</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">
+                {{ partner.name }}
+              </option>
             </select>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">{{ labels.amountLabel || 'Amount' }}</label>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount" 
+              class="form-control"
+              placeholder="Enter amount">
           </div>
 
           <div class="button-group">
             <button type="submit" class="btn btn-primary" [disabled]="generatePrnForm.invalid || isLoading">
-              <span *ngIf="!isLoading">{{ labels.generateBtn || 'Generate' }}</span>
+              <span *ngIf="!isLoading">{{ labels.generateBtn || 'Generate PRN' }}</span>
               <span *ngIf="isLoading">{{ labels.generatingLabel || 'Generating...' }}</span>
             </button>
           </div>
@@ -30,42 +40,18 @@
       </div>
 
       <div class="result-card" *ngIf="showPRNResult && !isLoading">
-        <div class="success-message">
-          <div class="icon">✓</div>
+        <div [ngClass]="isSuccess ? 'success-message' : 'error-message'">
+          <div class="icon" [ngClass]="isSuccess ? 'success' : 'error'">
+            {{ isSuccess ? '✓' : '✗' }}
+          </div>
           <div class="message">
-            <p><strong>{{ labels.prnGeneratedLabel || 'PRN Generated Successfully' }}</strong></p>
-            <p class="prn-value">{{ generatedPRN }}</p>
-            <small>{{ labels.savePrnNote || 'Please save this PRN for future reference' }}</small>
+            <p *ngIf="isSuccess"><strong>{{ labels.prnGeneratedLabel || 'PRN Generated Successfully' }}</strong></p>
+            <p *ngIf="!isSuccess"><strong>{{ labels.prnFailedLabel || 'PRN generation failed, please try again' }}</strong></p>
+            <p *ngIf="isSuccess" class="prn-value">{{ generatedPRN }}</p>
+            <p *ngIf="!isSuccess" class="error-text">{{ errorMessage }}</p>
           </div>
         </div>
         <button class="btn btn-secondary" (click)="closePRNResult()">{{ labels.closeBtn || 'Close' }}</button>
-      </div>
-    </div>
-
-    <div class="pending-section">
-      <div class="pending-card">
-        <h3>{{ labels.pendingPrnsLabel || 'Pending PRN validations' }}</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>{{ labels.prnHeader || 'PRN' }}</th>
-              <th>{{ labels.generatedDateHeader || 'Generated Date' }}</th>
-              <th>{{ labels.amountHeader || 'Amount' }}</th>
-              <th>{{ labels.statusHeader || 'Status' }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let prn of pendingPRNs">
-              <td>{{ prn.prn }}</td>
-              <td>{{ prn.generatedDate }}</td>
-              <td>{{ prn.amount }}</td>
-              <td>{{ prn.status }}</td>
-            </tr>
-            <tr *ngIf="pendingPRNs.length === 0">
-              <td colspan="4" class="no-data">{{ labels.noPendingPrns || 'No pending PRNs' }}</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

@@ -491,4 +491,10 @@ export class DataStorageService {
       request
     );
   }
+
+  getPartners(): Observable<any> {
+    return this.http.get(
+      this.BASE_URL + 'v1/partnermanager/partners'
+    );
+  }
 }

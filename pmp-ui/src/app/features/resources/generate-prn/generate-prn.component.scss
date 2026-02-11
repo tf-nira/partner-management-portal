@@ -16,23 +16,19 @@
 }
 
 .content-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  
-  @media (max-width: 1200px) {
-    grid-template-columns: 1fr;
-  }
+  display: flex;
+  justify-content: center;
 }
 
 .form-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 500px;
+  width: 100%;
 }
 
-.form-card,
-.pending-card {
+.form-card {
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -50,7 +46,8 @@
     font-size: 14px;
   }
 
-  select {
+  select,
+  input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -113,20 +110,26 @@
   animation: slideIn 0.3s ease-in-out;
 }
 
-.success-message {
+.success-message,
+.error-message {
   display: flex;
   gap: 15px;
   padding: 20px;
-  background-color: #d4edda;
-  border-left: 4px solid #28a745;
   border-radius: 4px;
   margin-bottom: 15px;
 
   .icon {
     font-size: 24px;
-    color: #28a745;
     font-weight: bold;
     min-width: 30px;
+
+    &.success {
+      color: #28a745;
+    }
+
+    &.error {
+      color: #dc3545;
+    }
   }
 
   .message {
@@ -134,7 +137,10 @@
 
     p {
       margin: 5px 0;
-      color: #155724;
+
+      &:first-child {
+        font-weight: 600;
+      }
 
       &.prn-value {
         font-size: 18px;
@@ -144,64 +150,41 @@
         margin: 10px 0;
       }
 
-      small {
-        color: #666;
-        font-size: 12px;
+      &.error-text {
+        color: #721c24;
       }
+    }
+
+    small {
+      color: #666;
+      font-size: 12px;
     }
   }
 }
 
-.pending-section {
-  grid-column: 1 / -1;
-}
+.success-message {
+  background-color: #d4edda;
+  border-left: 4px solid #28a745;
 
-.pending-card {
-  h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 15px;
+  .message p {
+    color: #155724;
   }
 
-  .table {
-    width: 100%;
-    border-collapse: collapse;
+  small {
+    color: #155724;
+  }
+}
 
-    thead {
-      background-color: #f9f9f9;
+.error-message {
+  background-color: #f8d7da;
+  border-left: 4px solid #dc3545;
 
-      th {
-        padding: 12px;
-        text-align: left;
-        font-weight: 600;
-        color: #333;
-        border-bottom: 2px solid #ddd;
-        font-size: 13px;
-      }
-    }
+  .message p {
+    color: #721c24;
+  }
 
-    tbody {
-      tr {
-        border-bottom: 1px solid #eee;
-
-        &:hover {
-          background-color: #f9f9f9;
-        }
-
-        td {
-          padding: 12px;
-          color: #666;
-          font-size: 13px;
-
-          &.no-data {
-            text-align: center;
-            color: #999;
-            padding: 20px;
-          }
-        }
-      }
-    }
+  small {
+    color: #721c24;
   }
 }
 
@@ -213,5 +196,19 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .generate-prn-container {
+    padding: 15px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .result-card {
+    padding: 20px;
   }
 }

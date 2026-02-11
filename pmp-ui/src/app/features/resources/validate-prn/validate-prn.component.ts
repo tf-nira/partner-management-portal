@@ -18,6 +18,7 @@ export class ValidatePrnComponent implements OnInit {
   validationResult: any = null;
   showValidationResult: boolean = false;
   isValid: boolean = false;
+  partners: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +28,7 @@ export class ValidatePrnComponent implements OnInit {
     public translateService: TranslateService
   ) {
     this.validatePrnForm = this.formBuilder.group({
+      partnerName: ['', Validators.required],
       prn: ['', Validators.required]
     });
   }
@@ -37,6 +39,21 @@ export class ValidatePrnComponent implements OnInit {
       .subscribe(response => {
         this.labels = response['payments'] || {};
       });
+    this.loadPartners();
+  }
+
+  loadPartners() {
+    this.dataService.getPartners().subscribe(
+      (response: any) => {
+        if (response && response.response) {
+          this.partners = response.response;
+        }
+      },
+      (error: any) => {
+        console.error('Error loading partners:', error);
+        this.partners = [];
+      }
+    );
   }
 
   validatePRN() {
@@ -45,13 +62,13 @@ export class ValidatePrnComponent implements OnInit {
     }
 
     this.isLoading = true;
-    const partnerId = this.headerService.getUsername();
+    const partnerName = this.validatePrnForm.get('partnerName').value;
     const prn = this.validatePrnForm.get('prn').value;
 
     const request = new RequestModel(
       '',
       null,
-      { 'partnerId': partnerId, 'prn': prn }
+      { 'partnerName': partnerName, 'prn': prn }
     );
 
     this.dataService.validatePRN(request).subscribe(
