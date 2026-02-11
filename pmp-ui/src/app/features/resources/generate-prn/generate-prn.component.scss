@@ -1,80 +1,64 @@
-.breadcrumb {
-  font-size: 12.5px;
-  position: absolute;
-  margin-top: 20px;
-}
-
-.breadcrumb > a {
-  text-decoration: none;
-  cursor: pointer;
+.generate-prn-container {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
 }
 
 .header {
-  margin: 0px 10px 5px;
-  display: flex;
-  justify-content: space-between;
-  overflow: hidden;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
-  @media (max-width: 768px) {
-    margin-right: 0px !important;
-    margin-left: 0px !important;
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
   }
 }
 
-.mat-card {
-  border-radius: 0;
-  border: 1px solid rgb(155, 154, 154);
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  margin-bottom: 2rem;
+.content-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.mat-card-content {
-  margin-top: 5px !important;
-  margin-bottom: 5px !important;
-  padding: 20px;
-  font-family: "Roboto", sans-serif;
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
 }
 
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
     color: #333;
-    font-size: 13px;
-    font-family: "Roboto", sans-serif;
+    font-size: 14px;
   }
 
   select,
-  input,
-  textarea {
+  input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 2px;
-    font-size: 13px;
+    border-radius: 4px;
+    font-size: 14px;
     background-color: white;
-    font-family: "Roboto", sans-serif;
-    box-sizing: border-box;
 
     &:focus {
       outline: none;
-      border-color: #1976d2;
-      box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
-    }
-
-    &:disabled {
-      background-color: #f5f5f5;
-      color: #999;
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
     }
   }
 }
@@ -82,162 +66,149 @@
 .button-group {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .btn {
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 2px;
-  font-size: 13px;
+  border-radius: 4px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 
   &.btn-primary {
-    background-color: #1976d2;
+    background-color: #0066cc;
     color: white;
 
     &:hover:not(:disabled) {
-      background-color: #1565c0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      background-color: #0052a3;
     }
 
     &:disabled {
       background-color: #ccc;
       cursor: not-allowed;
-      color: #999;
     }
   }
 
   &.btn-secondary {
-    background-color: #f5f5f5;
+    background-color: #f0f0f0;
     color: #333;
-    border: 1px solid #ddd;
 
     &:hover {
-      background-color: #eeeeee;
+      background-color: #e0e0e0;
     }
   }
 }
 
 .result-card {
-  border: 1px solid rgb(155, 154, 154);
-  border-radius: 0;
-  margin-top: 2rem;
-  padding: 20px;
   background: white;
-  font-family: "Roboto", sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  animation: slideIn 0.3s ease-in-out;
 }
 
 .success-message,
 .error-message {
   display: flex;
   gap: 15px;
-  padding: 16px;
-  border-radius: 2px;
+  padding: 20px;
+  border-radius: 4px;
   margin-bottom: 15px;
-  border-left: 4px solid;
 
   .icon {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
-    min-width: 24px;
-    text-align: center;
+    min-width: 30px;
+
+    &.success {
+      color: #28a745;
+    }
+
+    &.error {
+      color: #dc3545;
+    }
   }
 
   .message {
     flex: 1;
-    font-size: 13px;
-    font-family: "Roboto", sans-serif;
 
     p {
       margin: 5px 0;
-      line-height: 1.4;
 
       &:first-child {
-        font-weight: 500;
+        font-weight: 600;
       }
 
       &.prn-value {
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 700;
         color: #000;
         font-family: 'Courier New', monospace;
-        margin: 8px 0;
-        padding: 8px;
-        background-color: #f9f9f9;
-        border-radius: 2px;
+        margin: 10px 0;
       }
 
-      &.amount-info,
-      &.instrument-info {
-        font-size: 12px;
-        margin: 5px 0;
+      &.error-text {
+        color: #721c24;
       }
     }
 
     small {
       color: #666;
       font-size: 12px;
-      display: block;
-      margin-top: 5px;
     }
   }
 }
 
 .success-message {
-  background-color: #e8f5e9;
-  border-left-color: #4caf50;
-
-  .icon {
-    color: #4caf50;
-  }
+  background-color: #d4edda;
+  border-left: 4px solid #28a745;
 
   .message p {
-    color: #2e7d32;
+    color: #155724;
   }
 
   small {
-    color: #558b2f;
+    color: #155724;
   }
 }
 
 .error-message {
-  background-color: #ffebee;
-  border-left-color: #f44336;
-
-  .icon {
-    color: #f44336;
-  }
+  background-color: #f8d7da;
+  border-left: 4px solid #dc3545;
 
   .message p {
-    color: #c62828;
+    color: #721c24;
   }
 
   small {
-    color: #c62828;
+    color: #721c24;
   }
 }
 
-@media (max-width: 768px) {
-  .header {
-    margin-top: 50px;
-    font-size: 16px;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  .mat-card-content {
+@media (max-width: 600px) {
+  .generate-prn-container {
     padding: 15px;
   }
 
-  .button-group {
-    flex-direction: column;
+  .form-card {
+    padding: 20px;
   }
 
-  .btn {
-    width: 100%;
+  .result-card {
+    padding: 20px;
   }
 }
