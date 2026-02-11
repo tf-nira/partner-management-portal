@@ -1,65 +1,80 @@
-.validate-prn-container {
-  padding: 20px;
-  background-color: #f5f5f5;
-  min-height: 100vh;
+.breadcrumb {
+  font-size: 12.5px;
+  position: absolute;
+  margin-top: 20px;
+}
+
+.breadcrumb > a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .header {
-  margin-bottom: 30px;
+  margin: 0px 10px 5px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 60px;
+  margin-bottom: 20px;
 
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
+  @media (max-width: 768px) {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
   }
 }
 
-.content-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.form-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 500px;
+.mat-card {
+  border-radius: 0;
+  border: 1px solid rgb(155, 154, 154);
+  padding: 0;
+  margin: 0;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
-.form-card,
-.result-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+.mat-card-content {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 
   label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
     color: #333;
-    font-size: 14px;
+    font-size: 13px;
+    font-family: "Roboto", sans-serif;
   }
 
   select,
-  input {
+  input,
+  textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 2px;
+    font-size: 13px;
     background-color: white;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
 
     &:focus {
       outline: none;
-      border-color: #0066cc;
-      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+      border-color: #1976d2;
+      box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      color: #999;
     }
   }
 }
@@ -67,119 +82,151 @@
 .button-group {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 2px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   &.btn-primary {
-    background-color: #0066cc;
+    background-color: #1976d2;
     color: white;
 
     &:hover:not(:disabled) {
-      background-color: #0052a3;
+      background-color: #1565c0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     &:disabled {
       background-color: #ccc;
       cursor: not-allowed;
+      color: #999;
     }
   }
 
   &.btn-secondary {
-    background-color: #f0f0f0;
+    background-color: #f5f5f5;
     color: #333;
+    border: 1px solid #ddd;
 
     &:hover {
-      background-color: #e0e0e0;
+      background-color: #eeeeee;
     }
   }
 }
 
 .result-card {
-  animation: slideIn 0.3s ease-in-out;
+  border: 1px solid rgb(155, 154, 154);
+  border-radius: 0;
+  margin-top: 2rem;
+  padding: 20px;
+  background: white;
+  font-family: "Roboto", sans-serif;
 }
 
 .success-message,
 .error-message {
   display: flex;
   gap: 15px;
-  padding: 20px;
-  border-radius: 4px;
+  padding: 16px;
+  border-radius: 2px;
   margin-bottom: 15px;
+  border-left: 4px solid;
 
   .icon {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    min-width: 30px;
-
-    &.success {
-      color: #28a745;
-    }
-
-    &.error {
-      color: #dc3545;
-    }
+    min-width: 24px;
+    text-align: center;
   }
 
   .message {
     flex: 1;
+    font-size: 13px;
+    font-family: "Roboto", sans-serif;
 
     p {
       margin: 5px 0;
+      line-height: 1.4;
 
       &:first-child {
-        font-weight: 600;
+        font-weight: 500;
+      }
+
+      &.amount-info,
+      &.instrument-info {
+        font-size: 12px;
+        margin: 5px 0;
       }
     }
 
     small {
       color: #666;
       font-size: 12px;
+      display: block;
+      margin-top: 5px;
     }
   }
 }
 
 .success-message {
-  background-color: #d4edda;
-  border-left: 4px solid #28a745;
+  background-color: #e8f5e9;
+  border-left-color: #4caf50;
+
+  .icon {
+    color: #4caf50;
+  }
 
   .message p {
-    color: #155724;
+    color: #2e7d32;
   }
 
   small {
-    color: #155724;
+    color: #558b2f;
   }
 }
 
 .error-message {
-  background-color: #f8d7da;
-  border-left: 4px solid #dc3545;
+  background-color: #ffebee;
+  border-left-color: #f44336;
+
+  .icon {
+    color: #f44336;
+  }
 
   .message p {
-    color: #721c24;
+    color: #c62828;
   }
 
   small {
-    color: #721c24;
+    color: #c62828;
   }
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@media (max-width: 768px) {
+  .header {
+    margin-top: 50px;
+    font-size: 16px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .mat-card-content {
+    padding: 15px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
