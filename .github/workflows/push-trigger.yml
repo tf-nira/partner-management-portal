@@ -17,6 +17,8 @@ on:
       - 1.1.*
       - MOSIP*
       - 1.2.*
+      - tf_nira_dev
+      - tf_nira_dev_SR
 
 jobs:
   build-maven-pmp-ui:
