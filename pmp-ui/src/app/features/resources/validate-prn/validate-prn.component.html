@@ -11,7 +11,7 @@
             <label for="partnerName">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
             <select id="partnerName" formControlName="partnerName" class="form-control">
               <option value="" disabled selected>{{ labels.selectPartnerLabel || 'Select Partner' }}</option>
-              <option *ngFor="let partner of partners" [value]="partner.partnerID">{{ partner.partnerID }}</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.name }}</option>
             </select>
           </div>
 

@@ -14,8 +14,8 @@
               formControlName="partnerName" 
               class="form-control">
               <option value="">--Select--</option>
-              <option *ngFor="let partner of partners" [value]="partner.partnerID">
-                {{ partner.partnerID }}
+              <option *ngFor="let partner of partners" [value]="partner.id">
+                {{ partner.name }}
               </option>
             </select>
           </div>
