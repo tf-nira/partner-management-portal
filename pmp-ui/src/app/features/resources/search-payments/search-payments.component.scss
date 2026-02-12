@@ -35,9 +35,17 @@
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+
+  &.full-width {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form-group {
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+
   label {
     display: block;
     margin-bottom: 8px;
@@ -204,6 +212,22 @@
   padding: 40px;
   color: #999;
   font-size: 14px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 14px;
+  background: white;
+  border-radius: 8px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes slideIn {

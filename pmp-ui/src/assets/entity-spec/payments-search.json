@@ -1,0 +1,143 @@
+{
+	"auditEventIds": ["ADM-069"],
+	"actionButtons": [
+		{
+			"buttonName": {
+				"eng": "Filter",
+				"ara": "Filter_ara",
+				"fra": "Filter_fra",
+				"hin": "Filter_hin",
+				"kan": "Filter_kan",
+				"tam": "Filter_tam"
+			},
+			"imagePath": "assets/images/filter.png",
+			"actionListType": "action",
+			"actionURL": {
+				"case": "filter"
+			},
+			"redirectURL": "",
+			"showIn": "Button",
+			"validations": ""
+		}
+	],
+	"columnsToDisplay": [
+		{
+			"name": "transactionId",
+			"showInListView": "true",
+			"label": {
+				"eng": "Transaction ID",
+				"ara": "Transaction ID_ara",
+				"fra": "Transaction ID_fra",
+				"hin": "Transaction ID_hin",
+				"kan": "Transaction ID_kan",
+				"tam": "Transaction ID_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "partnerId",
+			"showInListView": "true",
+			"label": {
+				"eng": "Partner ID",
+				"ara": "Partner ID_ara",
+				"fra": "Partner ID_fra",
+				"hin": "Partner ID_hin",
+				"kan": "Partner ID_kan",
+				"tam": "Partner ID_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "entryType",
+			"showInListView": "true",
+			"label": {
+				"eng": "Entry Type",
+				"ara": "Entry Type_ara",
+				"fra": "Entry Type_fra",
+				"hin": "Entry Type_hin",
+				"kan": "Entry Type_kan",
+				"tam": "Entry Type_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "amount",
+			"showInListView": "true",
+			"label": {
+				"eng": "Amount",
+				"ara": "Amount_ara",
+				"fra": "Amount_fra",
+				"hin": "Amount_hin",
+				"kan": "Amount_kan",
+				"tam": "Amount_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "sourceSystem",
+			"showInListView": "true",
+			"label": {
+				"eng": "Source System",
+				"ara": "Source System_ara",
+				"fra": "Source System_fra",
+				"hin": "Source System_hin",
+				"kan": "Source System_kan",
+				"tam": "Source System_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "description",
+			"showInListView": "true",
+			"label": {
+				"eng": "Description",
+				"ara": "Description_ara",
+				"fra": "Description_fra",
+				"hin": "Description_hin",
+				"kan": "Description_kan",
+				"tam": "Description_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "crDtimes",
+			"showInListView": "true",
+			"label": {
+				"eng": "Created Date",
+				"ara": "Created Date_ara",
+				"fra": "Created Date_fra",
+				"hin": "Created Date_hin",
+				"kan": "Created Date_kan",
+				"tam": "Created Date_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		}
+	],
+	"paginator": {
+		"pageSize": 10,
+		"pageSizeOptions": [5, 10, 25, 50, 100],
+		"totalEntries": 0,
+		"pageIndex": 0
+	}
+}

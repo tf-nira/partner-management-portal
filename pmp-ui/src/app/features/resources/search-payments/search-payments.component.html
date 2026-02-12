@@ -8,43 +8,77 @@
       <form [formGroup]="searchForm" (ngSubmit)="searchPayments()">
         <div class="form-row">
           <div class="form-group">
-            <label for="dateRange">{{ labels.dateRangeLabel || 'Date Range' }}</label>
+            <label for="transactionId">{{ labels.transactionIdLabel || 'Transaction ID' }}</label>
             <input 
               type="text" 
-              id="dateRange" 
-              formControlName="dateRange" 
+              id="transactionId" 
+              formControlName="transactionId" 
               class="form-control"
-              placeholder="Select date range">
+              placeholder="Enter Transaction ID">
           </div>
 
           <div class="form-group">
-            <label for="partner">{{ labels.partnerLabel || 'Partner' }}</label>
-            <select id="partner" formControlName="partner" class="form-control">
+            <label for="partnerId">{{ labels.partnerNameLabel || 'Partner ID' }}</label>
+            <select id="partnerId" formControlName="partnerId" class="form-control">
               <option value="">--Select--</option>
-              <option value="partner1">Partner 1</option>
-              <option value="partner2">Partner 2</option>
+              <option *ngFor="let partner of partners" [value]="partner.partnerID">
+                {{ partner.partnerID }}
+              </option>
             </select>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="prn">{{ labels.prnHeader || 'PRN' }}</label>
-            <input 
-              type="text" 
-              id="prn" 
-              formControlName="prn" 
-              class="form-control"
-              placeholder="Enter PRN">
+            <label for="entryType">{{ labels.entryTypeLabel || 'Entry Type' }}</label>
+            <select id="entryType" formControlName="entryType" class="form-control">
+              <option value="">--Select--</option>
+              <option value="DEBIT">DEBIT</option>
+              <option value="CREDIT">CREDIT</option>
+            </select>
           </div>
 
           <div class="form-group">
-            <label for="category">{{ labels.categoryLabel || 'Category' }}</label>
-            <select id="category" formControlName="category" class="form-control">
-              <option value="">--Select--</option>
-              <option value="cat1">Category 1</option>
-              <option value="cat2">Category 2</option>
-            </select>
+            <label for="sourceSystem">{{ labels.sourceSystemLabel || 'Source System' }}</label>
+            <input 
+              type="text" 
+              id="sourceSystem" 
+              formControlName="sourceSystem" 
+              class="form-control"
+              placeholder="Enter Source System">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="amount">{{ labels.amountLabel || 'Amount' }}</label>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount" 
+              class="form-control"
+              placeholder="Enter Amount">
+          </div>
+
+          <div class="form-group">
+            <label for="crDtimes">{{ labels.createdDateLabel || 'Created Date' }}</label>
+            <input 
+              type="date" 
+              id="crDtimes" 
+              formControlName="crDtimes" 
+              class="form-control">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="description">{{ labels.descriptionLabel || 'Description' }}</label>
+            <input 
+              type="text" 
+              id="description" 
+              formControlName="description" 
+              class="form-control"
+              placeholder="Enter Description">
           </div>
         </div>
 
@@ -64,43 +98,33 @@
   <div class="results-section" *ngIf="showResults">
     <div class="results-card">
       <div class="results-header">
-        <h3>{{ labels.resultsLabel || 'Results' }}</h3>
+        <h3>{{ labels.resultsLabel || 'Results' }} ({{ totalRecords }} records)</h3>
         <button class="btn btn-export" (click)="exportResults()" *ngIf="searchResults.length > 0">
           {{ labels.exportBtn || 'Export' }}
         </button>
       </div>
 
-      <table class="results-table" *ngIf="searchResults.length > 0">
-        <thead>
-          <tr>
-            <th>{{ labels.transactionIdHeader || 'Transaction ID' }}</th>
-            <th>{{ labels.partnerNameHeader || 'Partner Name' }}</th>
-            <th>{{ labels.paymentCategoryHeader || 'Payment Category' }}</th>
-            <th>{{ labels.prnHeader || 'PRN' }}</th>
-            <th>{{ labels.amountHeader || 'Amount' }}</th>
-            <th>{{ labels.transactionDateHeader || 'Transaction Date' }}</th>
-            <th>{{ labels.statusHeader || 'Status' }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let payment of searchResults">
-            <td>{{ payment.transactionId }}</td>
-            <td>{{ payment.partnerName }}</td>
-            <td>{{ payment.category }}</td>
-            <td>{{ payment.prn }}</td>
-            <td>{{ payment.amount }}</td>
-            <td>{{ payment.transactionDate }}</td>
-            <td>
-              <span class="status-badge" [ngClass]="'status-' + payment.status">
-                {{ payment.status }}
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper" *ngIf="searchResults.length > 0">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th *ngFor="let column of displayedColumns">
+                {{ column.label[headerService.getlanguageCode()] || column.label['eng'] }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of searchResults">
+              <td *ngFor="let column of displayedColumns">
+                {{ payment[column.name] }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <div class="no-results" *ngIf="searchResults.length === 0">
-        {{ labels.noResultsLabel || 'No payments found matching your criteria' }}
+      <div class="no-data" *ngIf="searchResults.length === 0">
+        <p>{{ labels.noDataLabel || 'No records found' }}</p>
       </div>
     </div>
   </div>
