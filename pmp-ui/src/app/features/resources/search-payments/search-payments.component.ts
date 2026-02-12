@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataStorageService } from 'src/app/core/services/data-storage.service';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { AuditService } from 'src/app/core/services/audit.service';
@@ -87,7 +87,7 @@ export class SearchPaymentsComponent implements OnInit {
 
     const request = new RequestModel(
       'mosip.registration.partner.payment.search.1.0',
-      '1.0',
+      null,
       filterCriteria
     );
 
