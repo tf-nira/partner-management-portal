@@ -467,27 +467,14 @@ export class DataStorageService {
 
   generatePRN(request: RequestModel): Observable<any> {
     return this.http.post(
-      this.BASE_URL + 'v1/partnermanager/payments/generate-prn',
+      this.BASE_URL + 'v1/partnermanager/partners/generatePrn',
       request
-    );
-  }
-
-  getPendingPRNs(partnerId: string): Observable<any> {
-    return this.http.get(
-      this.BASE_URL + 'v1/partnermanager/payments/pending-prns/' + partnerId
     );
   }
 
   validatePRN(request: RequestModel): Observable<any> {
     return this.http.post(
-      this.BASE_URL + 'v1/partnermanager/payments/validate-prn',
-      request
-    );
-  }
-
-  searchPayments(request: RequestModel): Observable<any> {
-    return this.http.post(
-      this.BASE_URL + 'v1/partnermanager/payments/search',
+      this.BASE_URL + 'v1/partnermanager/partners/validatePrn',
       request
     );
   }

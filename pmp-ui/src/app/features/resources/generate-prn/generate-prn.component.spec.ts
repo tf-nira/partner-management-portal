@@ -25,7 +25,6 @@ describe('GeneratePrnComponent', () => {
     mockHeaderService.getlanguageCode.and.returnValue('eng');
     mockTranslateService.getTranslation.and.returnValue(of({ payments: {} }));
     mockDataService.generatePRN.and.returnValue(of({ response: { prn: 'PRN123456789' } }));
-    mockDataService.getPendingPRNs.and.returnValue(of({ response: { prns: [] } }));
 
     await TestBed.configureTestingModule({
       declarations: [GeneratePrnComponent],
