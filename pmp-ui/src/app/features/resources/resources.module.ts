@@ -11,7 +11,6 @@ import { CertUploadComponent } from './cert-upload/cert-upload.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { GeneratePrnComponent } from './generate-prn/generate-prn.component';
 import { ValidatePrnComponent } from './validate-prn/validate-prn.component';
-import { SearchPaymentsComponent } from './search-payments/search-payments.component';
 import { MasterDataCommonHeaderComponent } from './shared/master-data-common-header/master-data-common-header.component';
 import { MasterDataCommonBodyComponent } from './shared/master-data-common-body/master-data-common-body.component';
 import { MasterDataCommonViewComponent } from './shared/master-data-common-view/master-data-common-view.component';
@@ -43,8 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CertUploadComponent,
     WalletComponent,
     GeneratePrnComponent,
-    ValidatePrnComponent,
-    SearchPaymentsComponent
+    ValidatePrnComponent
   ],
   exports:[TableComponent, ToolbarComponent, DialogComponent],
   entryComponents: [DialogComponent]

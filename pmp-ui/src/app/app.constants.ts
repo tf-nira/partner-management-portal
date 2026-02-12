@@ -128,7 +128,7 @@ export const navItems = [
       {
         displayName: 'menuItems.item9.subItem4',
         icon: null,
-        route: '/pmp/resources/payments/search',
+        route: '/pmp/resources/payments-search/view',
         auditEventId: 'ADM-016',
         roles: ['PARTNER_ADMIN']
       }
@@ -220,6 +220,14 @@ export const masterdataMapping = {
     nameKey: 'titleName',
     idKey: 'id',
     headerName: 'Payments'
+  },
+  'payments-search': {
+    apiName: 'payments/search',
+    specFileName: 'payments-search',
+    name: 'Payment Search',
+    nameKey: 'transactionId',
+    idKey: 'transactionId',
+    headerName: 'Search Payments'
   }
 };
 
@@ -233,6 +241,7 @@ export const ListViewIdKeyMapping = {
   sbidetails: { idKey: 'id', auditEventId: 'ADM-069' },
   policymapping: { idKey: 'apikeyRequestId', auditEventId: 'ADM-069' },
   payments: { idKey: 'id', auditEventId: 'ADM-069' },
+  'payments-search': { idKey: 'transactionId', auditEventId: 'ADM-069' }
 };
 
 export const keyboardMapping = {
