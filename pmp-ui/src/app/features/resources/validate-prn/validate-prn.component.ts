@@ -45,8 +45,12 @@ export class ValidatePrnComponent implements OnInit {
   loadPartners() {
     this.dataService.getPartners().subscribe(
       (response: any) => {
-        if (response && response.response && response.response.partners) {
-          this.partners = response.response.partners;
+        if (response && response.response && response.response.data) {
+          // Extract partner IDs from the response data array
+          this.partners = response.response.data.map((partner: any) => ({
+            id: partner.id,
+            name: partner.name
+          }));
         }
       },
       (error: any) => {
