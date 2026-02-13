@@ -87,19 +87,23 @@ export class GeneratePrnComponent implements OnInit {
 
     this.dataService.generatePRN(request).subscribe(
       (response: any) => {
+        this.isLoading = false;
         if (response && response.response && response.response.data && response.response.data.prn) {
           this.generatedPRN = response.response.data.prn;
           this.isSuccess = true;
           this.errorMessage = '';
+        } else if (response && response.errors && response.errors.length > 0) {
+          this.isSuccess = false;
+          const errorMsg = (response && response.errors[0] && response.errors[0].message) 
+                          ? response.errors[0].message 
+                          : 'PRN generation failed, please try again';
+          this.errorMessage = errorMsg;
         } else {
           this.isSuccess = false;
-          const errorMsg = (response && response.response && response.response.message) 
-            ? response.response.message 
-            : 'PRN generation failed, please try again';
-          this.errorMessage = errorMsg;
+          this.errorMessage = 'PRN generation failed, please try again';
         }
         this.showPRNResult = true;
-        this.isLoading = false;
+        
         // this.auditService.audit('ADM-014');
       },
       (error: any) => {

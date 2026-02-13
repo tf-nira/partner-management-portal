@@ -96,8 +96,8 @@ export class ValidatePrnComponent implements OnInit {
         } else if (response && response.errors && response.errors.length > 0) {
           // API-level errors array
           this.isValid = false;
-          const errorDesc = response.errors[0] && response.errors[0].errorDesc 
-                          ? response.errors[0].errorDesc 
+          const errorDesc = response.errors[0] && response.errors[0].message 
+                          ? response.errors[0].message 
                           : 'Validation failed';
           this.validationResult = { statusDesc: errorDesc } as any;
           this.showValidationResult = true;
