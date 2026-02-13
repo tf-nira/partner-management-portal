@@ -82,13 +82,32 @@ export class ValidatePrnComponent implements OnInit {
 
     this.dataService.validatePRN(request).subscribe(
       (response: any) => {
+        this.isLoading = false;
         if (response && response.response) {
           this.validationResult = response.response;
-          // Check if validation was successful based on statusCode
-          this.isValid = response.response.statusCode === 'PAYMENT_SUCCESS';
+
+          if (response.response.statusCode === 'A') {
+            this.isValid = true;
+          } else {
+            this.isValid = false;
+          }
+          this.showValidationResult = true;
+          
+        } else if (response && response.errors && response.errors.length > 0) {
+          // API-level errors array
+          this.isValid = false;
+          const errorDesc = response.errors[0] && response.errors[0].errorDesc 
+                          ? response.errors[0].errorDesc 
+                          : 'Validation failed';
+          this.validationResult = { statusDesc: errorDesc } as any;
+          this.showValidationResult = true;
+          
+        } else {
+          // Empty/malformed response
+          this.isValid = false;
+          this.validationResult = { statusDesc: 'Invalid response format' };
           this.showValidationResult = true;
         }
-        this.isLoading = false;
         // this.auditService.audit('ADM-015');
       },
       (error: any) => {
@@ -108,5 +127,10 @@ export class ValidatePrnComponent implements OnInit {
     this.showValidationResult = false;
     this.validationResult = null;
     this.validatePrnForm.reset();
+    
+    this.validatePrnForm.patchValue({ 
+    partnerName: '',
+    prn: '' 
+  });
   }
 }

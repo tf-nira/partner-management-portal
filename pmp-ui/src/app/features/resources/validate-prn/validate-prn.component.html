@@ -44,7 +44,6 @@
             <p *ngIf="!isValid"><strong>{{ labels.prnInvalidLabel || 'PRN Validation Failed' }}</strong></p>
             <p *ngIf="validationResult.statusDesc">{{ validationResult.statusDesc }}</p>
             <p *ngIf="isValid && validationResult.amountPaid" class="amount-info">{{ labels.amountPaidLabel || 'Amount Paid' }}: {{ validationResult.amountPaid }}</p>
-            <p *ngIf="isValid && validationResult.instrumentID" class="instrument-info">{{ labels.instrumentIdLabel || 'Instrument ID' }}: {{ validationResult.instrumentID }}</p>
             <small *ngIf="validationResult.errorDesc">{{ validationResult.errorDesc }}</small>
           </div>
         </div>

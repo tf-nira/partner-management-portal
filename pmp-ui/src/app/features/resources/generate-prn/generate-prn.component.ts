@@ -120,5 +120,10 @@ export class GeneratePrnComponent implements OnInit {
     this.generatedPRN = '';
     this.errorMessage = '';
     this.generatePrnForm.reset();
+
+    this.generatePrnForm.patchValue({ 
+    partnerName: '',
+    amount: '' 
+  });
   }
 }
