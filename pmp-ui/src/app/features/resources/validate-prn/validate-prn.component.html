@@ -42,9 +42,8 @@
           <div class="message">
             <p *ngIf="isValid"><strong>{{ labels.prnValidLabel || 'PRN is Valid' }}</strong></p>
             <p *ngIf="!isValid"><strong>{{ labels.prnInvalidLabel || 'PRN Validation Failed' }}</strong></p>
-            <p *ngIf="validationResult.statusDesc">{{ validationResult.statusDesc }}</p>
+            <!-- <p *ngIf="validationResult.statusDesc">{{ validationResult.statusDesc }}</p> -->
             <p *ngIf="isValid && validationResult.amountPaid" class="amount-info">{{ labels.amountPaidLabel || 'Amount Paid' }}: {{ validationResult.amountPaid }}</p>
-            <small *ngIf="validationResult.errorDesc">{{ validationResult.errorDesc }}</small>
           </div>
         </div>
         <button class="btn btn-secondary" (click)="closeValidationResult()">{{ labels.closeBtn || 'Close' }}</button>
