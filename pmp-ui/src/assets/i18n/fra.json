@@ -26,11 +26,57 @@
     },
     "item8": {
       "title": "Upload CA Certificate_fra"
+    },
+    "item9": {
+      "title": "Payments_fra",
+      "subItem1": "Wallet_fra",
+      "subItem2": "Generate PRN_fra",
+      "subItem3": "Validate PRN_fra",
+      "subItem4": "Search Payments_fra"
     }
   },
   "dashboard": {
     "welcomeMessage":"Welcome to Mosip Partner portal fra !",
     "Logout":"Logout_fra"
+  },
+  "payments": {
+    "walletTitle": "Wallet Balance_fra",
+    "walletBalanceLabel": "Wallet Balance_fra",
+    "lastUpdatedLabel": "Last Updated Date and Time_fra",
+    "loadingLabel": "Loading wallet balance..._fra",
+    "generatePrnTitle": "Generate PRN_fra",
+    "selectServiceCategory": "Select the Service Category_fra",
+    "generateBtn": "Generate_fra",
+    "generatingLabel": "Generating..._fra",
+    "prnGeneratedLabel": "PRN Generated Successfully_fra",
+    "savePrnNote": "Please save this PRN for future reference_fra",
+    "closeBtn": "Close_fra",
+    "pendingPrnsLabel": "Pending PRN validations_fra",
+    "prnHeader": "PRN_fra",
+    "generatedDateHeader": "Generated Date_fra",
+    "amountHeader": "Amount_fra",
+    "statusHeader": "Status_fra",
+    "noPendingPrns": "No pending PRNs_fra",
+    "validatePrnTitle": "Validate PRN_fra",
+    "enterPrnLabel": "Enter the PRN code_fra",
+    "validateBtn": "Validate_fra",
+    "validatingLabel": "Validating..._fra",
+    "prnValidLabel": "PRN is Valid_fra",
+    "prnInvalidLabel": "PRN Validation Failed_fra",
+    "searchPaymentsTitle": "Search Payments_fra",
+    "dateRangeLabel": "Date Range_fra",
+    "partnerLabel": "Partner_fra",
+    "categoryLabel": "Category_fra",
+    "searchBtn": "Search_fra",
+    "searchingLabel": "Searching..._fra",
+    "resetBtn": "Reset_fra",
+    "resultsLabel": "Results_fra",
+    "exportBtn": "Export_fra",
+    "transactionIdHeader": "Transaction ID_fra",
+    "partnerNameHeader": "Partner Name_fra",
+    "paymentCategoryHeader": "Payment Category_fra",
+    "transactionDateHeader": "Transaction Date_fra",
+    "noResultsLabel": "No payments found matching your criteria_fra"
   },
   "singleView": {
     "errorMessages": [

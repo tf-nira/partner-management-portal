@@ -458,4 +458,86 @@ export class DataStorageService {
       data
     );
   }
+
+  getWalletBalance(partnerId: string): Observable<any> {
+    return this.http.get(
+      this.BASE_URL + 'v1/partnermanager/partners/' + partnerId + '/wallet/balance'
+    );
+  }
+
+  generatePRN(request: RequestModel): Observable<any> {
+    return this.http.post(
+      this.BASE_URL + 'v1/partnermanager/partners/generatePrn',
+      request
+    );
+  }
+
+  validatePRN(request: RequestModel): Observable<any> {
+    return this.http.post(
+      this.BASE_URL + 'v1/partnermanager/partners/validatePrn',
+      request
+    );
+  }
+
+  getPartners(): Observable<any> {
+    return new Observable(observer => {
+      let allPartners: any[] = [];
+      let pageStart = 0;
+      const pageFetch = 100;
+
+      const fetchPage = () => {
+        const request = new RequestModel(
+          'mosip.partnermanager.partners.search',
+          null,
+          {
+            'filters': [
+              {
+                'columnName': 'requiresPayment',
+                'type': 'equals',
+                'value': 'true'
+              }
+            ],
+            'sort': [],
+            'pagination': {
+              'pageStart': pageStart,
+              'pageFetch': pageFetch
+            },
+            'languageCode': this.headerService.getlanguageCode(),
+            'partnerType': 'all'
+          }
+        );
+
+        this.http.post(
+          this.BASE_URL + 'v1/partnermanager/partners/search',
+          request
+        ).subscribe(
+          (response: any) => {
+            if (response && response.response && response.response.data) {
+              allPartners = allPartners.concat(response.response.data);
+              
+              // Check if there are more records to fetch
+              const totalRecords = response.response.totalRecord || 0;
+              if (allPartners.length < totalRecords) {
+                pageStart += pageFetch;
+                fetchPage();
+              } else {
+                // All records fetched, return the complete response
+                response.response.data = allPartners;
+                observer.next(response);
+                observer.complete();
+              }
+            } else {
+              observer.next(response);
+              observer.complete();
+            }
+          },
+          error => {
+            observer.error(error);
+          }
+        );
+      };
+
+      fetchPage();
+    });
+  }
 }

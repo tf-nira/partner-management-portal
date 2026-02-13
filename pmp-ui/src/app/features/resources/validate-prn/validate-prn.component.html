@@ -1,0 +1,53 @@
+<div class="validate-prn-container">
+  <div class="header">
+    <h2>{{ labels.validatePrnTitle || 'Validate PRN' }}</h2>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="form-section">
+      <div class="form-card">
+        <form [formGroup]="validatePrnForm" (ngSubmit)="validatePRN()">
+          <div class="form-group">
+            <label for="partnerName">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
+            <select id="partnerName" formControlName="partnerName" class="form-control">
+              <option value="" disabled selected>{{ labels.selectPartnerLabel || 'Select Partner' }}</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prn">{{ labels.enterPrnLabel || 'Enter the PRN code' }}</label>
+            <input 
+              type="text" 
+              id="prn" 
+              formControlName="prn" 
+              class="form-control"
+              placeholder="Enter PRN">
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary" [disabled]="validatePrnForm.invalid || isLoading">
+              <span *ngIf="!isLoading">{{ labels.validateBtn || 'Validate' }}</span>
+              <span *ngIf="isLoading">{{ labels.validatingLabel || 'Validating...' }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="result-card" *ngIf="showValidationResult && !isLoading">
+        <div [ngClass]="isValid ? 'success-message' : 'error-message'">
+          <div class="icon" [ngClass]="isValid ? 'success' : 'error'">
+            {{ isValid ? '✓' : '✗' }}
+          </div>
+          <div class="message">
+            <p *ngIf="isValid"><strong>{{ labels.prnValidLabel || 'PRN is Valid' }}</strong></p>
+            <p *ngIf="!isValid"><strong>{{ labels.prnInvalidLabel || 'PRN Validation Failed' }}</strong></p>
+            <!-- <p *ngIf="validationResult.statusDesc">{{ validationResult.statusDesc }}</p> -->
+            <p *ngIf="isValid && validationResult.amountPaid" class="amount-info">{{ labels.amountPaidLabel || 'Amount Paid' }}: {{ validationResult.amountPaid }}</p>
+          </div>
+        </div>
+        <button class="btn btn-secondary" (click)="closeValidationResult()">{{ labels.closeBtn || 'Close' }}</button>
+      </div>
+    </div>
+  </div>
+</div>

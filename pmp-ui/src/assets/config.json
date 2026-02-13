@@ -1,7 +1,7 @@
 {
     "primaryLangCode": "eng",
     "secondaryLangCode": "ara",
-    "baseUrl": "https://dev.mosip.net/",
+    "baseUrl": "https://api-internal.niradev1.idencode.link/",
     "pmpUrl":"/",
     "version":"v1/"
 } 

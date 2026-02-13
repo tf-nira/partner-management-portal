@@ -1,0 +1,58 @@
+<div class="generate-prn-container">
+  <div class="header">
+    <h2>{{ labels.generatePrnTitle || 'Generate PRN' }}</h2>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="form-section">
+      <div class="form-card">
+        <form [formGroup]="generatePrnForm" (ngSubmit)="generatePRN()">
+          <div class="form-group">
+            <label for="partnerName">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
+            <select 
+              id="partnerName" 
+              formControlName="partnerName" 
+              class="form-control">
+              <option value="">Select Partner</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">
+                {{ partner.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">{{ labels.amountLabel || 'Amount' }}</label>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount" 
+              class="form-control"
+              placeholder="Enter amount">
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary" [disabled]="generatePrnForm.invalid || isLoading">
+              <span *ngIf="!isLoading">{{ labels.generateBtn || 'Generate PRN' }}</span>
+              <span *ngIf="isLoading">{{ labels.generatingLabel || 'Generating...' }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="result-card" *ngIf="showPRNResult && !isLoading">
+        <div [ngClass]="isSuccess ? 'success-message' : 'error-message'">
+          <div class="icon" [ngClass]="isSuccess ? 'success' : 'error'">
+            {{ isSuccess ? '✓' : '✗' }}
+          </div>
+          <div class="message">
+            <p *ngIf="isSuccess"><strong>{{ labels.prnGeneratedLabel || 'PRN Generated Successfully' }}</strong></p>
+            <p *ngIf="!isSuccess"><strong>{{ labels.prnFailedLabel || 'PRN generation failed, please try again' }}</strong></p>
+            <p *ngIf="isSuccess" class="prn-value">{{ generatedPRN }}</p>
+            <p *ngIf="!isSuccess" class="error-text">{{ errorMessage }}</p>
+          </div>
+        </div>
+        <button class="btn btn-secondary" (click)="closePRNResult()">{{ labels.closeBtn || 'Close' }}</button>
+      </div>
+    </div>
+  </div>
+</div>

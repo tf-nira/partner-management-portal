@@ -8,6 +8,9 @@ import { SingleViewComponent } from './single-view/single-view.component';
 import { SubListViewComponent } from './sub-list-view/sub-list-view.component';
 import { SubSingleViewComponent } from './sub-single-view/sub-single-view.component';
 import { CertUploadComponent } from './cert-upload/cert-upload.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { GeneratePrnComponent } from './generate-prn/generate-prn.component';
+import { ValidatePrnComponent } from './validate-prn/validate-prn.component';
 import { MasterDataCommonHeaderComponent } from './shared/master-data-common-header/master-data-common-header.component';
 import { MasterDataCommonBodyComponent } from './shared/master-data-common-body/master-data-common-body.component';
 import { MasterDataCommonViewComponent } from './shared/master-data-common-view/master-data-common-view.component';
@@ -36,7 +39,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TableComponent,
     ToolbarComponent,
     DialogComponent,
-    CertUploadComponent
+    CertUploadComponent,
+    WalletComponent,
+    GeneratePrnComponent,
+    ValidatePrnComponent
   ],
   exports:[TableComponent, ToolbarComponent, DialogComponent],
   entryComponents: [DialogComponent]
