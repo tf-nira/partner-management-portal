@@ -15,6 +15,8 @@ export class HeaderService {
   public contactNumber = '';
   public partnerType = '';
   public notificationLanguage = '';
+  public partnerId = '';
+  public partnerName = '';
 
   constructor() { }
 
@@ -106,5 +108,21 @@ export class HeaderService {
     }else{
       return "eng";
     }
+  }
+
+  setPartnerId(partnerId: string) {
+    this.partnerId = partnerId;
+  }
+
+  getPartnerId(): string {
+    return this.partnerId;
+  }
+
+  setPartnerName(partnerName: string) {
+    this.partnerName = partnerName;
+  }
+
+  getPartnerName(): string {
+    return this.partnerName;
   }
 }

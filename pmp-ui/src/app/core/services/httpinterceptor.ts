@@ -59,6 +59,9 @@ export class AuthInterceptor implements HttpInterceptor {
                 this.headerService.setUsername(event.body.response.userId);
                 this.headerService.setRoles(event.body.response.role);
                 this.headerService.setNotificationLanguage(this.decoded["langCode"]);
+                // Set partner ID from userId and partner name from decoded token
+                this.headerService.setPartnerId(event.body.response.userId);
+                this.headerService.setPartnerName(this.decoded["name"]);
               }
               if (
                 event.body.errors !== null &&

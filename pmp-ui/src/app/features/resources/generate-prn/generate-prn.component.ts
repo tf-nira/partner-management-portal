@@ -20,6 +20,7 @@ export class GeneratePrnComponent implements OnInit {
   isSuccess: boolean = false;
   errorMessage: string = '';
   partners: any[] = [];
+  isPartnerDropdownDisabled: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,6 +55,21 @@ export class GeneratePrnComponent implements OnInit {
             id: partner.id,
             name: partner.name
           }));
+
+          // Check if user is not global admin or partner admin
+          const roles = this.headerService.getRoleCodes();
+          const isAdmin = roles.includes('GLOBAL_ADMIN') || roles.includes('PARTNER_ADMIN');
+          
+          if (!isAdmin) {
+            // For non-admin users, set the logged-in partner as default and disable the dropdown
+            const loggedInPartnerId = this.headerService.getPartnerId();
+            const loggedInPartnerName = this.headerService.getPartnerName();
+            
+            if (loggedInPartnerId) {
+              this.generatePrnForm.patchValue({ partnerName: loggedInPartnerId });
+              this.isPartnerDropdownDisabled = true;
+            }
+          }
         }
       },
       (error: any) => {
