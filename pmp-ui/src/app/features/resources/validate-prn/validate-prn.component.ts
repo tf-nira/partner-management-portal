@@ -60,7 +60,6 @@ export class ValidatePrnComponent implements OnInit {
           if (!isAdmin) {
             // For non-admin users, set the logged-in partner as default and disable the dropdown
             const loggedInPartnerId = this.headerService.getPartnerId();
-            const loggedInPartnerName = this.headerService.getPartnerName();
             
             if (loggedInPartnerId) {
               this.validatePrnForm.patchValue({ partnerName: loggedInPartnerId });

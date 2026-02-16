@@ -63,7 +63,6 @@ export class GeneratePrnComponent implements OnInit {
           if (!isAdmin) {
             // For non-admin users, set the logged-in partner as default and disable the dropdown
             const loggedInPartnerId = this.headerService.getPartnerId();
-            const loggedInPartnerName = this.headerService.getPartnerName();
             
             if (loggedInPartnerId) {
               this.generatePrnForm.patchValue({ partnerName: loggedInPartnerId });
