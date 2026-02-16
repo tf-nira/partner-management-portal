@@ -107,7 +107,7 @@ export const navItems = [
       {
         displayName: 'menuItems.item9.subItem1',
         icon: null,
-        route: '/pmp/resources/payments/wallet',
+        route: '/pmp/resources/wallet/view',
         auditEventId: 'ADM-013',
         roles: []
       },
@@ -228,6 +228,14 @@ export const masterdataMapping = {
     nameKey: 'transactionId',
     idKey: 'transactionId',
     headerName: 'Search Payments'
+  },
+  'wallet': {
+    apiName: 'wallet/balance',
+    specFileName: 'wallet',
+    name: 'Wallet',
+    nameKey: 'partnerName',
+    idKey: 'partnerName',
+    headerName: 'Wallet'
   }
 };
 

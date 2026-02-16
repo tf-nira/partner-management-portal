@@ -1,0 +1,103 @@
+{
+	"auditEventIds": ["ADM-013"],
+	"actionButtons": [
+		{
+			"buttonName": {
+				"eng": "Filter",
+				"ara": "Filter_ara",
+				"fra": "Filter_fra",
+				"hin": "Filter_hin",
+				"kan": "Filter_kan",
+				"tam": "Filter_tam"
+			},
+			"imagePath": "assets/images/filter.png",
+			"actionListType": "action",
+			"actionURL": {
+				"case": "filter"
+			},
+			"redirectURL": "",
+			"showIn": "Button",
+			"validations": ""
+		}
+	],
+	"columnsToDisplay": [
+		{
+			"name": "partnerName",
+			"showInListView": "true",
+			"label": {
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "walletBalance",
+			"showInListView": "true",
+			"label": {
+				"eng": "Wallet Balance",
+				"ara": "Wallet Balance_ara",
+				"fra": "Wallet Balance_fra",
+				"hin": "Wallet Balance_hin",
+				"kan": "Wallet Balance_kan",
+				"tam": "Wallet Balance_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		}
+	],
+	"filterColumns": [
+		{
+			"filtername": "partnerName",
+			"filterlabel": {
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
+			},
+			"filterType": "equals",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "false",
+			"datePicker": "false",
+			"apiName": "",
+			"fieldName": "partnerName",
+			"methodCallName": ""
+		},
+		{
+			"filtername": "walletBalance",
+			"filterlabel": {
+				"eng": "Wallet Balance",
+				"ara": "Wallet Balance_ara",
+				"fra": "Wallet Balance_fra",
+				"hin": "Wallet Balance_hin",
+				"kan": "Wallet Balance_kan",
+				"tam": "Wallet Balance_tam"
+			},
+			"filterType": "equals",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "false",
+			"datePicker": "false",
+			"apiName": "",
+			"fieldName": "walletBalance",
+			"methodCallName": ""
+		}
+	],
+	"paginator": {
+		"pageSize": 10,
+		"pageSizeOptions": [5, 10, 25, 50, 100],
+		"totalEntries": 0,
+		"pageIndex": 0
+	}
+}
