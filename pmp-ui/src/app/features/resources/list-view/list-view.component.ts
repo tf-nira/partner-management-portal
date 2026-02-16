@@ -95,11 +95,7 @@ export class ListViewComponent implements OnDestroy {
 
   loadData() {
     return new Promise((resolve, reject) => {
-      let routeParts = this.activatedRoute.snapshot.params.type;
-      // Fallback to route data if type param is not available
-      if (!routeParts && this.activatedRoute.snapshot.data.type) {
-        routeParts = this.activatedRoute.snapshot.data.type;
-      }
+      const routeParts = this.activatedRoute.snapshot.params.type;
       if(appConstants.masterdataMapping[`${routeParts}`]){
         this.mapping = appConstants.masterdataMapping[`${routeParts}`];
         this.headerName = appConstants.masterdataMapping[`${routeParts}`].headerName;        
