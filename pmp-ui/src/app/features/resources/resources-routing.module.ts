@@ -11,9 +11,10 @@ import { RolesGuard } from 'src/app/core/services/roles.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'misp', pathMatch: 'full' },  
+  { path: 'payments/wallet/view', component: ListViewComponent, canActivate: [RolesGuard] },
   { path: 'payments/generate-prn', component: GeneratePrnComponent, canActivate: [RolesGuard] },
   { path: 'payments/validate-prn', component: ValidatePrnComponent, canActivate: [RolesGuard] },
-  { path: 'payments-search/view', component: ListViewComponent, canActivate: [RolesGuard] },
+  { path: 'payments/search/view', component: ListViewComponent, canActivate: [RolesGuard] },
   { path: ':type/view', component: ListViewComponent, canActivate: [RolesGuard] },
   { path: ':type/create', component: SingleViewComponent, canActivate: [RolesGuard] },
   { path: ':type/single-view/:id', component: SingleViewComponent, canActivate: [RolesGuard] },
