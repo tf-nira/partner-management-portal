@@ -12,7 +12,7 @@
           'filter-button-style': button.buttonName.eng === 'Filter'
         }"
       >
-        <img [src]="button.imagePath" height="14px" width="14px"/>
+        <img [src]="button.imagePath" [height]="button.buttonName.eng === 'Refresh' ? '18px' : '14px'" [width]="button.buttonName.eng === 'Refresh' ? '18px' : '14px'" [style.filter]="button.buttonName.eng === 'Refresh' ? 'brightness(0) invert(1)' : 'none'"/>
         <span>{{ button.buttonName[lang]}}</span>
         <span class="filter-placer" *ngIf="button.buttonName.eng === 'Filter' && filtersAppliedFlag">
           <i style="font-size: 16px;" class="material-icons">fiber_manual_record</i>
