@@ -18,6 +18,24 @@
 			"redirectURL": "",
 			"showIn": "Button",
 			"validations": ""
+		},
+		{
+			"buttonName": {
+				"eng": "Refresh",
+				"ara": "Refresh_ara",
+				"fra": "Refresh_fra",
+				"hin": "Refresh_hin",
+				"kan": "Refresh_kan",
+				"tam": "Refresh_tam"
+			},
+			"imagePath": "assets/images/refresh.png",
+			"actionListType": "action",
+			"actionURL": {
+				"case": "refresh"
+			},
+			"redirectURL": "",
+			"showIn": "Button",
+			"validations": ""
 		}
 	],
 	"columnsToDisplay": [

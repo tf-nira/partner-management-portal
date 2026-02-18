@@ -164,6 +164,10 @@ export class ListViewComponent implements OnDestroy {
     );
   }
 
+  refreshData() {
+    this.getMasterDataTypeValues(this.headerService.getlanguageCode());
+  }
+
   getMasterDataTypeValues(language: string) {
     let self = this;
     return new Promise((resolve, reject) => {

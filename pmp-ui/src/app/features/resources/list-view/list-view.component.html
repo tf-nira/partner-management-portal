@@ -10,6 +10,7 @@
       [paginationOptions]="paginatorOptions"
       [filtersAppliedFlag]="filtersApplied"
       (pageEvent)="pageEvent($event)"
+      (refreshEvent)="refreshData()"
     ></app-toolbar>
     <app-table
       *ngIf="masterData && displayedColumns && actionButtons"

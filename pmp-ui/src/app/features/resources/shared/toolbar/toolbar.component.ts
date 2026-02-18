@@ -15,6 +15,7 @@ export class ToolbarComponent extends MatPaginatorIntl implements OnInit {
   @Input() paginationOptions: any;
   @Input() filtersAppliedFlag: boolean;
   @Output() pageEvent = new EventEmitter();
+  @Output() refreshEvent = new EventEmitter();
   lang: string;
 
   pageSize: number;
@@ -36,7 +37,11 @@ export class ToolbarComponent extends MatPaginatorIntl implements OnInit {
 
   actionEvent(buttonAction) {
     if (buttonAction.actionListType === 'action') {
-      this.openFilterDialog(buttonAction.actionURL);
+      if (buttonAction.actionURL.case === 'refresh') {
+        this.refreshEvent.emit();
+      } else {
+        this.openFilterDialog(buttonAction.actionURL);
+      }
     }
     if (buttonAction.actionListType === 'redirect') {
       console.log(buttonAction.actionListType);
