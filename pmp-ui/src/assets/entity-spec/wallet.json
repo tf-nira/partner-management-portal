@@ -22,15 +22,15 @@
 	],
 	"columnsToDisplay": [
 		{
-			"name": "partnerName",
+			"name": "partnerId",
 			"showInListView": "true",
 			"label": {
-				"eng": "Partner Name",
-				"ara": "Partner Name_ara",
-				"fra": "Partner Name_fra",
-				"hin": "Partner Name_hin",
-				"kan": "Partner Name_kan",
-				"tam": "Partner Name_tam"
+				"eng": "Partner ID",
+				"ara": "Partner ID_ara",
+				"fra": "Partner ID_fra",
+				"hin": "Partner ID_hin",
+				"kan": "Partner ID_kan",
+				"tam": "Partner ID_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -38,15 +38,31 @@
 			"LinkURL": ""
 		},
 		{
-			"name": "walletBalance",
+			"name": "balance",
 			"showInListView": "true",
 			"label": {
-				"eng": "Wallet Balance",
-				"ara": "Wallet Balance_ara",
-				"fra": "Wallet Balance_fra",
-				"hin": "Wallet Balance_hin",
-				"kan": "Wallet Balance_kan",
-				"tam": "Wallet Balance_tam"
+				"eng": "Balance",
+				"ara": "Balance_ara",
+				"fra": "Balance_fra",
+				"hin": "Balance_hin",
+				"kan": "Balance_kan",
+				"tam": "Balance_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "updDtimes",
+			"showInListView": "true",
+			"label": {
+				"eng": "Last Updated DateTime",
+				"ara": "Last Updated DateTime_ara",
+				"fra": "Last Updated DateTime_fra",
+				"hin": "Last Updated DateTime_hin",
+				"kan": "Last Updated DateTime_kan",
+				"tam": "Last Updated DateTime_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -56,14 +72,14 @@
 	],
 	"filterColumns": [
 		{
-			"filtername": "partnerName",
+			"filtername": "partnerId",
 			"filterlabel": {
-				"eng": "Partner Name",
-				"ara": "Partner Name_ara",
-				"fra": "Partner Name_fra",
-				"hin": "Partner Name_hin",
-				"kan": "Partner Name_kan",
-				"tam": "Partner Name_tam"
+				"eng": "Partner ID",
+				"ara": "Partner ID_ara",
+				"fra": "Partner ID_fra",
+				"hin": "Partner ID_hin",
+				"kan": "Partner ID_kan",
+				"tam": "Partner ID_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
@@ -71,18 +87,18 @@
 			"dropdown": "false",
 			"datePicker": "false",
 			"apiName": "",
-			"fieldName": "partnerName",
+			"fieldName": "partnerId",
 			"methodCallName": ""
 		},
 		{
-			"filtername": "walletBalance",
+			"filtername": "balance",
 			"filterlabel": {
-				"eng": "Wallet Balance",
-				"ara": "Wallet Balance_ara",
-				"fra": "Wallet Balance_fra",
-				"hin": "Wallet Balance_hin",
-				"kan": "Wallet Balance_kan",
-				"tam": "Wallet Balance_tam"
+				"eng": "Balance",
+				"ara": "Balance_ara",
+				"fra": "Balance_fra",
+				"hin": "Balance_hin",
+				"kan": "Balance_kan",
+				"tam": "Balance_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
@@ -90,7 +106,7 @@
 			"dropdown": "false",
 			"datePicker": "false",
 			"apiName": "",
-			"fieldName": "walletBalance",
+			"fieldName": "balance",
 			"methodCallName": ""
 		}
 	],

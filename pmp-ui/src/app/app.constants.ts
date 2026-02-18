@@ -230,7 +230,7 @@ export const masterdataMapping = {
     headerName: 'Search Payments'
   },
   'wallet': {
-    apiName: 'wallet/balance',
+    apiName: 'partnermanager/partners/balance',
     specFileName: 'wallet',
     name: 'Wallet',
     nameKey: 'partnerName',
