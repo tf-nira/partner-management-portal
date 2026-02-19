@@ -182,6 +182,29 @@ export class ListViewComponent implements OnDestroy {
       if (filters.filters.length > 0) {
         this.filtersApplied = true;
       }
+
+      // Check if user is non-admin and screen is wallet or payments-search
+      const userRoles = this.headerService.getRoleCodes();
+      const isAdmin = userRoles && (userRoles.includes('GLOBAL_ADMIN') || userRoles.includes('PARTNER_ADMIN'));
+      const isWalletOrPaymentScreen = routeParts === 'wallet' || routeParts === 'payments-search';
+      
+      // For non-admin users on wallet/payment-search screens, add partnerId filter
+      if (!isAdmin && isWalletOrPaymentScreen) {
+        const loggedInPartnerId = this.headerService.getPartnerId();
+        if (loggedInPartnerId) {
+          // Add partnerId filter if not already present
+          const partnerIdFilterExists = filters.filters.some(f => f.columnName === 'partnerId');
+          if (!partnerIdFilterExists) {
+            filters.filters.push({
+              columnName: 'partnerId',
+              type: 'equals',
+              text: loggedInPartnerId
+            });
+            this.filtersApplied = true;
+          }
+        }
+      }
+
       /*this.sortFilter = filters.sort;
       if(this.sortFilter.length == 0){
         if(routeParts != "policymapping"){
