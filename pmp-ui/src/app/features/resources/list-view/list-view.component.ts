@@ -198,7 +198,7 @@ export class ListViewComponent implements OnDestroy {
             filters.filters.push({
               columnName: 'partnerId',
               type: 'equals',
-              text: loggedInPartnerId
+              value: loggedInPartnerId
             });
             this.filtersApplied = true;
           }
