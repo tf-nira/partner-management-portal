@@ -109,32 +109,32 @@ export const navItems = [
         icon: null,
         route: '/pmp/resources/wallet/view',
         auditEventId: 'ADM-013',
-        roles: []
+        roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
       },
       {
         displayName: 'menuItems.item9.subItem2',
         icon: null,
         route: '/pmp/resources/payments/generate-prn',
         auditEventId: 'ADM-014',
-        roles: []
+        roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
       },
       {
         displayName: 'menuItems.item9.subItem3',
         icon: null,
         route: '/pmp/resources/payments/validate-prn',
         auditEventId: 'ADM-015',
-        roles: []
+        roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
       },
       {
         displayName: 'menuItems.item9.subItem4',
         icon: null,
         route: '/pmp/resources/payments-search/view',
         auditEventId: 'ADM-016',
-        roles: []
+        roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
       }
     ],
     auditEventId: 'ADM-012',
-    roles: []
+    roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
   }
 ];
 

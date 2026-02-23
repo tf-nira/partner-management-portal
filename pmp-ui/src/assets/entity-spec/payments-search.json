@@ -25,12 +25,12 @@
 			"name": "transactionId",
 			"showInListView": "true",
 			"label": {
-				"eng": "Transaction ID",
-				"ara": "Transaction ID_ara",
-				"fra": "Transaction ID_fra",
-				"hin": "Transaction ID_hin",
-				"kan": "Transaction ID_kan",
-				"tam": "Transaction ID_tam"
+				"eng": "PRN",
+				"ara": "PRN_ara",
+				"fra": "PRN_fra",
+				"hin": "PRN_hin",
+				"kan": "PRN_kan",
+				"tam": "PRN_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -228,25 +228,6 @@
 			"datePicker": "false",
 			"apiName": "",
 			"fieldName": "sourceSystem",
-			"methodCallName": ""
-		},
-		{
-			"filtername": "description",
-			"filterlabel": {
-				"eng": "Description",
-				"ara": "Description_ara",
-				"fra": "Description_fra",
-				"hin": "Description_hin",
-				"kan": "Description_kan",
-				"tam": "Description_tam"
-			},
-			"filterType": "equals",
-			"fieldType": "input",
-			"autocomplete": "false",
-			"dropdown": "false",
-			"datePicker": "false",
-			"apiName": "",
-			"fieldName": "description",
 			"methodCallName": ""
 		},
 		{
