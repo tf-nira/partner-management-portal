@@ -138,12 +138,12 @@
 		{
 			"filtername": "transactionId",
 			"filterlabel": {
-				"eng": "Transaction ID",
-				"ara": "Transaction ID_ara",
-				"fra": "Transaction ID_fra",
-				"hin": "Transaction ID_hin",
-				"kan": "Transaction ID_kan",
-				"tam": "Transaction ID_tam"
+				"eng": "PRN",
+				"ara": "PRN_ara",
+				"fra": "PRN_fra",
+				"hin": "PRN_hin",
+				"kan": "PRN_kan",
+				"tam": "PRN_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
