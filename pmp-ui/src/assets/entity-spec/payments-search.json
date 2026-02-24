@@ -22,22 +22,6 @@
 	],
 	"columnsToDisplay": [
 		{
-			"name": "transactionId",
-			"showInListView": "true",
-			"label": {
-				"eng": "PRN",
-				"ara": "PRN_ara",
-				"fra": "PRN_fra",
-				"hin": "PRN_hin",
-				"kan": "PRN_kan",
-				"tam": "PRN_tam"
-			},
-			"sortOrder": "",
-			"showAsLink": "false",
-			"linkType": "",
-			"LinkURL": ""
-		},
-		{
 			"name": "partnerId",
 			"showInListView": "true",
 			"label": {
@@ -54,15 +38,31 @@
 			"LinkURL": ""
 		},
 		{
-			"name": "entryType",
+			"name": "prn",
 			"showInListView": "true",
 			"label": {
-				"eng": "Entry Type",
-				"ara": "Entry Type_ara",
-				"fra": "Entry Type_fra",
-				"hin": "Entry Type_hin",
-				"kan": "Entry Type_kan",
-				"tam": "Entry Type_tam"
+				"eng": "PRN",
+				"ara": "PRN_ara",
+				"fra": "PRN_fra",
+				"hin": "PRN_hin",
+				"kan": "PRN_kan",
+				"tam": "PRN_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "status",
+			"showInListView": "true",
+			"label": {
+				"eng": "Status",
+				"ara": "Status_ara",
+				"fra": "Status_fra",
+				"hin": "Status_hin",
+				"kan": "Status_kan",
+				"tam": "Status_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -86,15 +86,15 @@
 			"LinkURL": ""
 		},
 		{
-			"name": "sourceSystem",
+			"name": "serviceCode",
 			"showInListView": "true",
 			"label": {
-				"eng": "Source System",
-				"ara": "Source System_ara",
-				"fra": "Source System_fra",
-				"hin": "Source System_hin",
-				"kan": "Source System_kan",
-				"tam": "Source System_tam"
+				"eng": "Service Code",
+				"ara": "Service Code_ara",
+				"fra": "Service Code_fra",
+				"hin": "Service Code_hin",
+				"kan": "Service Code_kan",
+				"tam": "Service Code_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -102,15 +102,31 @@
 			"LinkURL": ""
 		},
 		{
-			"name": "description",
+			"name": "remarks",
 			"showInListView": "true",
 			"label": {
-				"eng": "Description",
-				"ara": "Description_ara",
-				"fra": "Description_fra",
-				"hin": "Description_hin",
-				"kan": "Description_kan",
-				"tam": "Description_tam"
+				"eng": "Remarks",
+				"ara": "Remarks_ara",
+				"fra": "Remarks_fra",
+				"hin": "Remarks_hin",
+				"kan": "Remarks_kan",
+				"tam": "Remarks_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "false",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "crBy",
+			"showInListView": "true",
+			"label": {
+				"eng": "Created By",
+				"ara": "Created By_ara",
+				"fra": "Created By_fra",
+				"hin": "Created By_hin",
+				"kan": "Created By_kan",
+				"tam": "Created By_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -136,25 +152,6 @@
 	],
 	"filterColumns": [
 		{
-			"filtername": "transactionId",
-			"filterlabel": {
-				"eng": "PRN",
-				"ara": "PRN_ara",
-				"fra": "PRN_fra",
-				"hin": "PRN_hin",
-				"kan": "PRN_kan",
-				"tam": "PRN_tam"
-			},
-			"filterType": "equals",
-			"fieldType": "input",
-			"autocomplete": "false",
-			"dropdown": "false",
-			"datePicker": "false",
-			"apiName": "",
-			"fieldName": "transactionId",
-			"methodCallName": ""
-		},
-		{
 			"filtername": "partnerId",
 			"filterlabel": {
 				"eng": "Partner ID",
@@ -174,14 +171,14 @@
 			"methodCallName": ""
 		},
 		{
-			"filtername": "entryType",
+			"filtername": "prn",
 			"filterlabel": {
-				"eng": "Entry Type",
-				"ara": "Entry Type_ara",
-				"fra": "Entry Type_fra",
-				"hin": "Entry Type_hin",
-				"kan": "Entry Type_kan",
-				"tam": "Entry Type_tam"
+				"eng": "PRN",
+				"ara": "PRN_ara",
+				"fra": "PRN_fra",
+				"hin": "PRN_hin",
+				"kan": "PRN_kan",
+				"tam": "PRN_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
@@ -189,7 +186,26 @@
 			"dropdown": "false",
 			"datePicker": "false",
 			"apiName": "",
-			"fieldName": "entryType",
+			"fieldName": "prn",
+			"methodCallName": ""
+		},
+		{
+			"filtername": "status",
+			"filterlabel": {
+				"eng": "Status",
+				"ara": "Status_ara",
+				"fra": "Status_fra",
+				"hin": "Status_hin",
+				"kan": "Status_kan",
+				"tam": "Status_tam"
+			},
+			"filterType": "equals",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "false",
+			"datePicker": "false",
+			"apiName": "",
+			"fieldName": "status",
 			"methodCallName": ""
 		},
 		{
@@ -212,14 +228,14 @@
 			"methodCallName": ""
 		},
 		{
-			"filtername": "sourceSystem",
+			"filtername": "serviceCode",
 			"filterlabel": {
-				"eng": "Source System",
-				"ara": "Source System_ara",
-				"fra": "Source System_fra",
-				"hin": "Source System_hin",
-				"kan": "Source System_kan",
-				"tam": "Source System_tam"
+				"eng": "Service Code",
+				"ara": "Service Code_ara",
+				"fra": "Service Code_fra",
+				"hin": "Service Code_hin",
+				"kan": "Service Code_kan",
+				"tam": "Service Code_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
@@ -227,7 +243,45 @@
 			"dropdown": "false",
 			"datePicker": "false",
 			"apiName": "",
-			"fieldName": "sourceSystem",
+			"fieldName": "serviceCode",
+			"methodCallName": ""
+		},
+		{
+			"filtername": "remarks",
+			"filterlabel": {
+				"eng": "Remarks",
+				"ara": "Remarks_ara",
+				"fra": "Remarks_fra",
+				"hin": "Remarks_hin",
+				"kan": "Remarks_kan",
+				"tam": "Remarks_tam"
+			},
+			"filterType": "contains",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "false",
+			"datePicker": "false",
+			"apiName": "",
+			"fieldName": "remarks",
+			"methodCallName": ""
+		},
+		{
+			"filtername": "crBy",
+			"filterlabel": {
+				"eng": "Created By",
+				"ara": "Created By_ara",
+				"fra": "Created By_fra",
+				"hin": "Created By_hin",
+				"kan": "Created By_kan",
+				"tam": "Created By_tam"
+			},
+			"filterType": "contains",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "false",
+			"datePicker": "false",
+			"apiName": "",
+			"fieldName": "crBy",
 			"methodCallName": ""
 		},
 		{
