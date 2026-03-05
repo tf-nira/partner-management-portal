@@ -18,6 +18,24 @@
 			"redirectURL": "",
 			"showIn": "Button",
 			"validations": ""
+		},
+		{
+			"buttonName": {
+				"eng": "Export to CSV",
+				"ara": "Export to csv_ara",
+				"fra": "Export to csv_fra",
+				"hin": "Export to csv_hin",
+				"kan": "Export to csv_kan",
+				"tam": "Export to csv_tam"
+			},
+			"imagePath": "assets/images/export.png",
+			"actionListType": "action",
+			"actionURL": {
+				"case": "exportCsv"
+			},
+			"redirectURL": "",
+			"showIn": "Button",
+			"validations": ""
 		}
 	],
 	"columnsToDisplay": [
@@ -305,9 +323,9 @@
 		}
 	],
 	"paginator": {
-		"pageSize": 10,
-		"pageSizeOptions": [5, 10, 25, 50, 100],
-		"totalEntries": 0,
-		"pageIndex": 0
+		"totalEntries": null,
+		"pageSize": "10",
+		"pageSizeList": [10,20, 50, 100, 500, 1000]
 	}
+	
 }

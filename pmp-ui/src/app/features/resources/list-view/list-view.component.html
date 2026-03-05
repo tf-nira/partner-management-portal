@@ -11,6 +11,7 @@
       [filtersAppliedFlag]="filtersApplied"
       (pageEvent)="pageEvent($event)"
       (refreshEvent)="refreshData()"
+      (exportEvent)="exportToCSV()"
     ></app-toolbar>
     <app-table
       *ngIf="masterData && displayedColumns && actionButtons"
