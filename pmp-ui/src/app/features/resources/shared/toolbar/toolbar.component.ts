@@ -16,6 +16,7 @@ export class ToolbarComponent extends MatPaginatorIntl implements OnInit {
   @Input() filtersAppliedFlag: boolean;
   @Output() pageEvent = new EventEmitter();
   @Output() refreshEvent = new EventEmitter();
+  @Output() exportEvent = new EventEmitter();
   lang: string;
 
   pageSize: number;
@@ -39,6 +40,8 @@ export class ToolbarComponent extends MatPaginatorIntl implements OnInit {
     if (buttonAction.actionListType === 'action') {
       if (buttonAction.actionURL.case === 'refresh') {
         this.refreshEvent.emit();
+      } else if (buttonAction.actionURL.case === 'exportCsv') {
+        this.exportEvent.emit();
       } else {
         this.openFilterDialog(buttonAction.actionURL);
       }
