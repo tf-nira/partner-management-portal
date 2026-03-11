@@ -21,12 +21,12 @@
 		},
 		{
 			"buttonName": {
-				"eng": "Export to CSV",
-				"ara": "Export to csv_ara",
-				"fra": "Export to csv_fra",
-				"hin": "Export to csv_hin",
-				"kan": "Export to csv_kan",
-				"tam": "Export to csv_tam"
+				"eng": "Export",
+				"ara": "Export",
+				"fra": "Export",
+				"hin": "Export",
+				"kan": "Export",
+				"tam": "Export"
 			},
 			"imagePath": "assets/images/export.png",
 			"actionListType": "action",
