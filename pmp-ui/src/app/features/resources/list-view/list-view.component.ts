@@ -281,4 +281,21 @@ export class ListViewComponent implements OnDestroy {
   ngOnDestroy() {
     this.subscribed.unsubscribe();
   }
+
+  exportToCSV() {
+    if (!this.masterData || this.masterData.length === 0) {
+      return;
+    }
+    const headers = this.displayedColumns.map(col => col.name);
+    const rows = this.masterData.map(row =>
+      headers.map(field => `"${row[field] || ''}"`).join(',')
+    );
+    const csvContent = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'payments.csv';
+    link.click();
+  }
+
 }
