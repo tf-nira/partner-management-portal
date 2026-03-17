@@ -16,15 +16,17 @@ describe('GeneratePrnComponent', () => {
   let mockTranslateService: jasmine.SpyObj<TranslateService>;
 
   beforeEach(async () => {
-    mockDataService = jasmine.createSpyObj('DataStorageService', ['generatePRN', 'getPendingPRNs']);
-    mockHeaderService = jasmine.createSpyObj('HeaderService', ['getUsername', 'getlanguageCode']);
+    mockDataService = jasmine.createSpyObj('DataStorageService', ['generatePRN', 'getPartners']);
+    mockHeaderService = jasmine.createSpyObj('HeaderService', ['getlanguageCode', 'getRoleCodes', 'getPartnerId']);
     mockAuditService = jasmine.createSpyObj('AuditService', ['audit']);
     mockTranslateService = jasmine.createSpyObj('TranslateService', ['getTranslation']);
 
-    mockHeaderService.getUsername.and.returnValue('PARTNER001');
     mockHeaderService.getlanguageCode.and.returnValue('eng');
+    mockHeaderService.getRoleCodes.and.returnValue('GLOBAL_ADMIN');
+    mockHeaderService.getPartnerId.and.returnValue('PARTNER001');
     mockTranslateService.getTranslation.and.returnValue(of({ payments: {} }));
-    mockDataService.generatePRN.and.returnValue(of({ response: { prn: 'PRN123456789' } }));
+    mockDataService.getPartners.and.returnValue(of({ response: { data: [{ id: 'PARTNER001', name: 'Partner 001' }] } }));
+    mockDataService.generatePRN.and.returnValue(of({ response: { data: { prn: 'PRN123456789' } } }));
 
     await TestBed.configureTestingModule({
       declarations: [GeneratePrnComponent],
@@ -46,7 +48,12 @@ describe('GeneratePrnComponent', () => {
   });
 
   it('should generate PRN on form submit', () => {
-    component.generatePrnForm.patchValue({ category: 'service1' });
+    component.generatePrnForm.patchValue({
+      partnerId: 'PARTNER001',
+      partnerType: 'ACCESS',
+      partnerGroup: 'PRIVATE',
+      numberOfRecords: 5
+    });
     component.generatePRN();
     expect(mockDataService.generatePRN).toHaveBeenCalled();
   });
