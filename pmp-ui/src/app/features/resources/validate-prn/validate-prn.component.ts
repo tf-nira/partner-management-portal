@@ -29,7 +29,7 @@ export class ValidatePrnComponent implements OnInit {
     public translateService: TranslateService
   ) {
     this.validatePrnForm = this.formBuilder.group({
-      partnerName: ['', Validators.required],
+      partnerId: ['', Validators.required],
       prn: ['', Validators.required]
     });
   }
@@ -62,7 +62,7 @@ export class ValidatePrnComponent implements OnInit {
             const loggedInPartnerId = this.headerService.getPartnerId();
             
             if (loggedInPartnerId) {
-              this.validatePrnForm.patchValue({ partnerName: loggedInPartnerId });
+              this.validatePrnForm.patchValue({ partnerId: loggedInPartnerId });
               this.isPartnerDropdownDisabled = true;
             }
           }
@@ -81,7 +81,7 @@ export class ValidatePrnComponent implements OnInit {
     }
 
     this.isLoading = true;
-    const partnerId = this.validatePrnForm.get('partnerName').value;
+    const partnerId = this.validatePrnForm.get('partnerId').value;
     const prn = this.validatePrnForm.get('prn').value;
 
     const request = new RequestModel(
@@ -144,8 +144,8 @@ export class ValidatePrnComponent implements OnInit {
     this.validatePrnForm.reset();
     
     this.validatePrnForm.patchValue({ 
-    partnerName: '',
-    prn: '' 
-  });
+      partnerId: this.isPartnerDropdownDisabled ? this.headerService.getPartnerId() : '',
+      prn: '' 
+    });
   }
 }

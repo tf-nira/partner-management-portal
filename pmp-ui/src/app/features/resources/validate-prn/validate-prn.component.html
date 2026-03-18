@@ -8,14 +8,14 @@
       <div class="form-card">
         <form [formGroup]="validatePrnForm" (ngSubmit)="validatePRN()">
           <div class="form-group">
-            <label for="partnerName">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
+            <label for="partnerId">{{ labels.partnerIdLabel || 'Partner ID' }}</label>
             <select 
-              id="partnerName" 
-              formControlName="partnerName" 
+              id="partnerId" 
+              formControlName="partnerId" 
               class="form-control"
               [disabled]="isPartnerDropdownDisabled">
               <option value="" disabled selected>{{ labels.selectPartnerLabel || 'Select Partner' }}</option>
-              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.name }}</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.id }}</option>
             </select>
           </div>
 
