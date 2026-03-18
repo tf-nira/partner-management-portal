@@ -21,8 +21,12 @@ export class GeneratePrnComponent implements OnInit {
   errorMessage: string = '';
   partners: any[] = [];
   isPartnerDropdownDisabled: boolean = false;
-  partnerTypeOptions: string[] = ['ACCESS'];
-  partnerGroupOptions: string[] = ['PRIVATE'];
+  partnerTypeOptions: string[] = ['ACCESS', 'VERIFY'];
+  partnerGroupOptions: string[] = ['GOV', 'PRIVATE', 'FOREIGN'];
+  readonly partnerGroupByType: { [key: string]: string[] } = {
+    ACCESS: ['GOV', 'PRIVATE', 'FOREIGN'],
+    VERIFY: ['GOV', 'PRIVATE']
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,6 +51,20 @@ export class GeneratePrnComponent implements OnInit {
       });
 
     this.loadPartners();
+    this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
+    this.generatePrnForm.get('partnerType').valueChanges.subscribe((selectedPartnerType: string) => {
+      this.updatePartnerGroupOptions(selectedPartnerType);
+    });
+  }
+
+  updatePartnerGroupOptions(partnerType: string) {
+    this.partnerGroupOptions = this.partnerGroupByType[partnerType] ? [...this.partnerGroupByType[partnerType]] : [];
+    const selectedPartnerGroup = this.generatePrnForm.get('partnerGroup').value;
+    if (!this.partnerGroupOptions.includes(selectedPartnerGroup)) {
+      this.generatePrnForm.patchValue({
+        partnerGroup: this.partnerGroupOptions.length ? this.partnerGroupOptions[0] : ''
+      });
+    }
   }
 
   loadPartners() {
@@ -149,5 +167,6 @@ export class GeneratePrnComponent implements OnInit {
       partnerGroup: 'PRIVATE',
       numberOfRecords: null
     });
+    this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
   }
 }
