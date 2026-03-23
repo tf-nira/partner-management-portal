@@ -65,7 +65,7 @@ export const navItems = [
     route: '/pmp/resources/devicedetails/view',
     children: null,
     auditEventId: 'ADM-007',
-    roles: ['PARTNER_ADMIN', 'DEVICE_PROVIDER']
+    roles: []
   },
   {
     displayName: 'menuItems.item5.title',
@@ -73,7 +73,7 @@ export const navItems = [
     route: '/pmp/resources/ftmdetails/view',
     children: null,
     auditEventId: 'ADM-008',
-    roles: ['PARTNER_ADMIN', 'FTM_PROVIDER']
+    roles: []
   },
   {
     displayName: 'menuItems.item6.title',
@@ -81,7 +81,7 @@ export const navItems = [
     route: '/pmp/resources/sbidetails/view',
     children: null,
     auditEventId: 'ADM-009',
-    roles: ['PARTNER_ADMIN', 'DEVICE_PROVIDER']
+    roles: []
   },
   {
     displayName: 'menuItems.item7.title',
