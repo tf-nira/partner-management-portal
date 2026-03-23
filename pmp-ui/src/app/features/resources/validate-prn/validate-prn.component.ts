@@ -101,7 +101,7 @@ export class ValidatePrnComponent implements OnInit {
         if (response && response.response) {
           this.validationResult = response.response;
 
-          if (response.response.statusCode === 'T') {
+          if (response.response.statusCode === 'A') {
             this.isValid = true;
           } else {
             this.isValid = false;

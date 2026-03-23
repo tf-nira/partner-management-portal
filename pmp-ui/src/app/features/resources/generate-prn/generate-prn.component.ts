@@ -124,8 +124,8 @@ export class GeneratePrnComponent implements OnInit {
     this.dataService.generatePRN(request).subscribe(
       (response: any) => {
         this.isLoading = false;
-        if (response && response.response && response.response.data && response.response.data.prn) {
-          this.generatedPRN = response.response.data.prn;
+        if (response && response.response && response.response.prn) {
+          this.generatedPRN = response.response.prn;
           this.isSuccess = true;
           this.errorMessage = '';
         } else if (response && response.errors && response.errors.length > 0) {
