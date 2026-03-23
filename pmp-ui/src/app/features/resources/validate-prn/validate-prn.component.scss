@@ -173,6 +173,34 @@
   }
 }
 
+.validation-details {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+  p {
+    margin: 10px 0 8px 0;
+    font-weight: 600;
+    color: #155724;
+  }
+
+  .details-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+
+    li {
+      padding: 8px 0;
+      color: #155724;
+      font-size: 14px;
+
+      strong {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
