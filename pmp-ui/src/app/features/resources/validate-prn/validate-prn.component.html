@@ -8,7 +8,7 @@
       <div class="form-card">
         <form [formGroup]="validatePrnForm" (ngSubmit)="validatePRN()">
           <div class="form-group">
-            <label for="partnerId">{{ labels.partnerIdLabel || 'Partner ID' }}</label>
+            <label for="partnerId">{{ labels.partnerIdLabel || 'Partner Name' }}</label>
             <select 
               id="partnerId" 
               formControlName="partnerId" 
