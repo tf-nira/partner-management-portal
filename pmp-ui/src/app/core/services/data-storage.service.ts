@@ -524,7 +524,7 @@ export class DataStorageService {
               
               if (fetchedSoFar < totalRecords) {
                 // More records exist, fetch the next page
-                pageStart += pageFetch;
+                pageStart += 1;
                 fetchPage();
               } else {
                 // All records fetched, return the complete response
