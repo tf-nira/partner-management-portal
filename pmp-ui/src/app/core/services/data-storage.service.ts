@@ -513,17 +513,29 @@ export class DataStorageService {
         ).subscribe(
           (response: any) => {
             if (response && response.response && response.response.data) {
-              allPartners = allPartners.concat(response.response.data);
+              const currentPageData = response.response.data;
+              allPartners = allPartners.concat(currentPageData);
               
               // Check if there are more records to fetch
               const totalRecords = response.response.totalRecord || 0;
-              if (allPartners.length < totalRecords) {
-                pageStart += pageFetch;
+              const fetchedSoFar = allPartners.length;
+              
+              console.log(`Fetched: ${fetchedSoFar} out of ${totalRecords} records`);
+              
+              if (fetchedSoFar < totalRecords) {
+                // More records exist, fetch the next page
+                pageStart += 1;
                 fetchPage();
               } else {
                 // All records fetched, return the complete response
-                response.response.data = allPartners;
-                observer.next(response);
+                const finalResponse = {
+                  ...response,
+                  response: {
+                    ...response.response,
+                    data: allPartners
+                  }
+                };
+                observer.next(finalResponse);
                 observer.complete();
               }
             } else {

@@ -21,6 +21,12 @@ export class GeneratePrnComponent implements OnInit {
   errorMessage: string = '';
   partners: any[] = [];
   isPartnerDropdownDisabled: boolean = false;
+  partnerTypeOptions: string[] = ['ACCESS', 'VERIFY'];
+  partnerGroupOptions: string[] = ['GOV', 'PRIVATE', 'FOREIGN'];
+  readonly partnerGroupByType: { [key: string]: string[] } = {
+    ACCESS: ['GOV', 'PRIVATE', 'FOREIGN'],
+    VERIFY: ['GOV', 'PRIVATE']
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,8 +36,10 @@ export class GeneratePrnComponent implements OnInit {
     public translateService: TranslateService
   ) {
     this.generatePrnForm = this.formBuilder.group({
-      partnerName: ['', Validators.required],
-      amount: ['', Validators.required]
+      partnerId: ['', Validators.required],
+      partnerType: ['ACCESS', Validators.required],
+      partnerGroup: ['PRIVATE', Validators.required],
+      numberOfRecords: [null, [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -43,6 +51,20 @@ export class GeneratePrnComponent implements OnInit {
       });
 
     this.loadPartners();
+    this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
+    this.generatePrnForm.get('partnerType').valueChanges.subscribe((selectedPartnerType: string) => {
+      this.updatePartnerGroupOptions(selectedPartnerType);
+    });
+  }
+
+  updatePartnerGroupOptions(partnerType: string) {
+    this.partnerGroupOptions = this.partnerGroupByType[partnerType] ? [...this.partnerGroupByType[partnerType]] : [];
+    const selectedPartnerGroup = this.generatePrnForm.get('partnerGroup').value;
+    if (!this.partnerGroupOptions.includes(selectedPartnerGroup)) {
+      this.generatePrnForm.patchValue({
+        partnerGroup: this.partnerGroupOptions.length ? this.partnerGroupOptions[0] : ''
+      });
+    }
   }
 
   loadPartners() {
@@ -65,7 +87,7 @@ export class GeneratePrnComponent implements OnInit {
             const loggedInPartnerId = this.headerService.getPartnerId();
             
             if (loggedInPartnerId) {
-              this.generatePrnForm.patchValue({ partnerName: loggedInPartnerId });
+              this.generatePrnForm.patchValue({ partnerId: loggedInPartnerId });
               this.isPartnerDropdownDisabled = true;
             }
           }
@@ -83,28 +105,27 @@ export class GeneratePrnComponent implements OnInit {
     }
 
     this.isLoading = true;
-    const partnerID = this.generatePrnForm.get('partnerName').value;
-    const amount = this.generatePrnForm.get('amount').value;
+    const partnerId = this.generatePrnForm.get('partnerId').value;
+    const partnerType = this.generatePrnForm.get('partnerType').value;
+    const partnerGroup = this.generatePrnForm.get('partnerGroup').value;
+    const numberOfRecords = this.generatePrnForm.get('numberOfRecords').value;
 
     const request = new RequestModel(
       'mosip.registration.processor.prn.gen.1.0',
       null,
       {
-        'service': '',
-        'nin': '',
-        'fullName': '',
-        'remarks': 'PRN generated from partner management portal',
-        'amount': amount,
-        'partnerId': partnerID,
-        'serviceCode': ''
+        'partnerId': partnerId,
+        'partnerType': partnerType,
+        'partnerGroup': partnerGroup,
+        'numberOfRecords': Number(numberOfRecords)
       }
     );
 
     this.dataService.generatePRN(request).subscribe(
       (response: any) => {
         this.isLoading = false;
-        if (response && response.response && response.response.data && response.response.data.prn) {
-          this.generatedPRN = response.response.data.prn;
+        if (response && response.response && response.response.prn) {
+          this.generatedPRN = response.response.prn;
           this.isSuccess = true;
           this.errorMessage = '';
         } else if (response && response.errors && response.errors.length > 0) {
@@ -141,8 +162,11 @@ export class GeneratePrnComponent implements OnInit {
     this.generatePrnForm.reset();
 
     this.generatePrnForm.patchValue({ 
-    partnerName: '',
-    amount: '' 
-  });
+      partnerId: this.isPartnerDropdownDisabled ? this.headerService.getPartnerId() : '',
+      partnerType: 'ACCESS',
+      partnerGroup: 'PRIVATE',
+      numberOfRecords: null
+    });
+    this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
   }
 }
