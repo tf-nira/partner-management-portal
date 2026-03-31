@@ -10,25 +10,18 @@
 }
 .mosip-logo {
   flex: 2;
-  margin: 6px 0 0px;
+  margin: 0;
   opacity: 1;
   cursor: pointer !important;
-  span {
-    display: inline-block;
-    vertical-align: top;
-  }
-  .mosip-text {
-    font-size: 18px;
-    opacity: 1;
-    font-family: "Roboto", sans-serif;
-  }
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    width: 35px;
-    height: 35px;
-  }
+  display: flex;
+  align-items: center;
+}
+
+.mosip-logo img {
+  height: 45px;
+  width: auto;
+  max-height: 100%;
 }
 .version-txt{
   font-size: 8px;
