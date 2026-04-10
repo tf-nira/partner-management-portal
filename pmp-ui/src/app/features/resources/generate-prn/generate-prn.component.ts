@@ -54,8 +54,11 @@ export class GeneratePrnComponent implements OnInit {
 
     this.loadPartners();
     this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
+    // Only subscribe to partnerType changes if it's not disabled
     this.generatePrnForm.get('partnerType').valueChanges.subscribe((selectedPartnerType: string) => {
-      this.updatePartnerGroupOptions(selectedPartnerType);
+      if (!this.isPartnerTypeDisabled) {
+        this.updatePartnerGroupOptions(selectedPartnerType);
+      }
     });
   }
 
@@ -186,12 +189,32 @@ export class GeneratePrnComponent implements OnInit {
     this.errorMessage = '';
     this.generatePrnForm.reset();
 
-    this.generatePrnForm.patchValue({ 
-      partnerId: this.isPartnerDropdownDisabled ? this.headerService.getPartnerId() : '',
-      partnerType: 'ACCESS',
-      partnerGroup: 'PRIVATE',
+    // Reset based on disabled state
+    const resetData: any = { 
       numberOfRecords: null
-    });
-    this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
+    };
+
+    if (this.isPartnerDropdownDisabled) {
+      resetData.partnerId = this.headerService.getPartnerId();
+    }
+
+    if (this.isPartnerTypeDisabled) {
+      resetData.partnerType = this.headerService.getPartnerAuthType() || 'ACCESS';
+    } else {
+      resetData.partnerType = 'ACCESS';
+    }
+
+    if (this.isPartnerGroupDisabled) {
+      resetData.partnerGroup = this.headerService.getPartnerGroup() || 'PRIVATE';
+    } else {
+      resetData.partnerGroup = 'PRIVATE';
+    }
+
+    this.generatePrnForm.patchValue(resetData);
+    
+    // Only update partner group options if the field is not disabled
+    if (!this.isPartnerTypeDisabled) {
+      this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
+    }
   }
 }
