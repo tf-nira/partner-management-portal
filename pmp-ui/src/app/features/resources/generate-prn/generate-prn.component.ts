@@ -21,6 +21,8 @@ export class GeneratePrnComponent implements OnInit {
   errorMessage: string = '';
   partners: any[] = [];
   isPartnerDropdownDisabled: boolean = false;
+  isPartnerTypeDisabled: boolean = false;
+  isPartnerGroupDisabled: boolean = false;
   partnerTypeOptions: string[] = ['ACCESS', 'VERIFY'];
   partnerGroupOptions: string[] = ['GOV', 'PRIVATE', 'FOREIGN'];
   readonly partnerGroupByType: { [key: string]: string[] } = {
@@ -72,10 +74,12 @@ export class GeneratePrnComponent implements OnInit {
     this.dataService.getPartners().subscribe(
       (response: any) => {
         if (response && response.response && response.response.data) {
-          // Extract partner IDs from the response data array
+          // Extract partner data from the response data array
           this.partners = response.response.data.map((partner: any) => ({
             id: partner.id,
-            name: partner.name
+            name: partner.name,
+            partnerAuthType: partner.partnerAuthType,
+            partnerGroup: partner.partnerGroup
           }));
 
           // Check if user is not global admin or partner admin
@@ -83,12 +87,26 @@ export class GeneratePrnComponent implements OnInit {
           const isAdmin = roles.includes('GLOBAL_ADMIN') || roles.includes('PARTNER_ADMIN');
           
           if (!isAdmin) {
-            // For non-admin users, set the logged-in partner as default and disable the dropdown
+            // For non-admin users, get their partner data and set as default
             const loggedInPartnerId = this.headerService.getPartnerId();
             
             if (loggedInPartnerId) {
-              this.generatePrnForm.patchValue({ partnerId: loggedInPartnerId });
+              const partnerData = this.partners.find(p => p.id === loggedInPartnerId);
+              if (partnerData) {
+                // Extract partner type from API response
+                const partnerAuthType = partnerData.partnerAuthType || 'ACCESS';
+                const partnerGroup = partnerData.partnerGroup || 'PRIVATE';
+                
+                this.generatePrnForm.patchValue({ 
+                  partnerId: loggedInPartnerId,
+                  partnerType: partnerAuthType,
+                  partnerGroup: partnerGroup
+                });
+              }
+              
               this.isPartnerDropdownDisabled = true;
+              this.isPartnerTypeDisabled = true;
+              this.isPartnerGroupDisabled = true;
             }
           }
         }

@@ -26,7 +26,8 @@
             <select
               id="partnerType"
               formControlName="partnerType"
-              class="form-control">
+              class="form-control"
+              [disabled]="isPartnerTypeDisabled">
               <option *ngFor="let partnerType of partnerTypeOptions" [value]="partnerType">
                 {{ partnerType }}
               </option>
@@ -38,7 +39,8 @@
             <select
               id="partnerGroup"
               formControlName="partnerGroup"
-              class="form-control">
+              class="form-control"
+              [disabled]="isPartnerGroupDisabled">
               <option *ngFor="let partnerGroup of partnerGroupOptions" [value]="partnerGroup">
                 {{ partnerGroup }}
               </option>
