@@ -97,6 +97,8 @@ export class GeneratePrnComponent implements OnInit {
               this.generatePrnForm.patchValue({ 
                 partnerId: loggedInPartnerId
               });
+              // Disable the partner dropdown
+              this.generatePrnForm.get('partnerId').disable();
               this.isPartnerDropdownDisabled = true;
               
               // Get partner auth type and group from header service
@@ -108,6 +110,8 @@ export class GeneratePrnComponent implements OnInit {
                 this.generatePrnForm.patchValue({ 
                   partnerType: headerPartnerAuthType
                 });
+                // Disable the partner type field
+                this.generatePrnForm.get('partnerType').disable();
                 this.isPartnerTypeDisabled = true;
               }
               
@@ -115,6 +119,8 @@ export class GeneratePrnComponent implements OnInit {
                 this.generatePrnForm.patchValue({ 
                   partnerGroup: headerPartnerGroup
                 });
+                // Disable the partner group field
+                this.generatePrnForm.get('partnerGroup').disable();
                 this.isPartnerGroupDisabled = true;
               }
             }
@@ -196,18 +202,27 @@ export class GeneratePrnComponent implements OnInit {
 
     if (this.isPartnerDropdownDisabled) {
       resetData.partnerId = this.headerService.getPartnerId();
+      this.generatePrnForm.patchValue(resetData);
+      this.generatePrnForm.get('partnerId').disable();
+    } else {
+      this.generatePrnForm.patchValue(resetData);
+      this.generatePrnForm.get('partnerId').enable();
     }
 
     if (this.isPartnerTypeDisabled) {
       resetData.partnerType = this.headerService.getPartnerAuthType() || 'ACCESS';
+      this.generatePrnForm.get('partnerType').disable();
     } else {
       resetData.partnerType = 'ACCESS';
+      this.generatePrnForm.get('partnerType').enable();
     }
 
     if (this.isPartnerGroupDisabled) {
       resetData.partnerGroup = this.headerService.getPartnerGroup() || 'PRIVATE';
+      this.generatePrnForm.get('partnerGroup').disable();
     } else {
       resetData.partnerGroup = 'PRIVATE';
+      this.generatePrnForm.get('partnerGroup').enable();
     }
 
     this.generatePrnForm.patchValue(resetData);
