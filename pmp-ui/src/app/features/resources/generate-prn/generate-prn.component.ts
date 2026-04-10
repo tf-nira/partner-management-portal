@@ -87,26 +87,33 @@ export class GeneratePrnComponent implements OnInit {
           const isAdmin = roles.includes('GLOBAL_ADMIN') || roles.includes('PARTNER_ADMIN');
           
           if (!isAdmin) {
-            // For non-admin users, get their partner data and set as default
+            // For non-admin users, set partner ID and check header service for auth type and group
             const loggedInPartnerId = this.headerService.getPartnerId();
             
             if (loggedInPartnerId) {
-              const partnerData = this.partners.find(p => p.id === loggedInPartnerId);
-              if (partnerData) {
-                // Extract partner type from API response
-                const partnerAuthType = partnerData.partnerAuthType || 'ACCESS';
-                const partnerGroup = partnerData.partnerGroup || 'PRIVATE';
-                
+              this.generatePrnForm.patchValue({ 
+                partnerId: loggedInPartnerId
+              });
+              this.isPartnerDropdownDisabled = true;
+              
+              // Get partner auth type and group from header service
+              const headerPartnerAuthType = this.headerService.getPartnerAuthType();
+              const headerPartnerGroup = this.headerService.getPartnerGroup();
+              
+              // If values exist in header service, use them and disable fields
+              if (headerPartnerAuthType && headerPartnerAuthType.trim()) {
                 this.generatePrnForm.patchValue({ 
-                  partnerId: loggedInPartnerId,
-                  partnerType: partnerAuthType,
-                  partnerGroup: partnerGroup
+                  partnerType: headerPartnerAuthType
                 });
+                this.isPartnerTypeDisabled = true;
               }
               
-              this.isPartnerDropdownDisabled = true;
-              this.isPartnerTypeDisabled = true;
-              this.isPartnerGroupDisabled = true;
+              if (headerPartnerGroup && headerPartnerGroup.trim()) {
+                this.generatePrnForm.patchValue({ 
+                  partnerGroup: headerPartnerGroup
+                });
+                this.isPartnerGroupDisabled = true;
+              }
             }
           }
         }
