@@ -1,0 +1,324 @@
+{
+    "auditEventIds": [
+        "ADM-069"
+    ],
+    "actionButtons": [
+        {
+            "buttonName": {
+                "eng": "Filter",
+                "ara": "Filter_ara",
+                "fra": "Filter_fra",
+                "hin": "Filter_hin",
+                "kan": "Filter_kan",
+                "tam": "Filter_tam"
+            },
+            "imagePath": "assets/images/filter.png",
+            "actionListType": "action",
+            "actionURL": {
+                "case": "filter"
+            },
+            "redirectURL": "",
+            "showIn": "Button",
+            "validations": ""
+        },
+        {
+            "buttonName": {
+                "eng": "Export",
+                "ara": "Export",
+                "fra": "Export",
+                "hin": "Export",
+                "kan": "Export",
+                "tam": "Export"
+            },
+            "imagePath": "assets/images/export.png",
+            "actionListType": "action",
+            "actionURL": {
+                "case": "exportCsv"
+            },
+            "redirectURL": "",
+            "showIn": "Button",
+            "validations": ""
+        }
+    ],
+    "columnsToDisplay": [
+        {
+            "name": "id",
+            "showInListView": "true",
+            "label": {
+                "eng": "ID",
+                "ara": "ID_ara",
+                "fra": "ID_fra",
+                "hin": "ID_hin",
+                "kan": "ID_kan",
+                "tam": "ID_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "requestDtimes",
+            "showInListView": "true",
+            "label": {
+                "eng": "Request Date Time",
+                "ara": "Request Date Time_ara",
+                "fra": "Request Date Time_fra",
+                "hin": "Request Date Time_hin",
+                "kan": "Request Date Time_kan",
+                "tam": "Request Date Time_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "responseDtimes",
+            "showInListView": "true",
+            "label": {
+                "eng": "Response Date Time",
+                "ara": "Response Date Time_ara",
+                "fra": "Response Date Time_fra",
+                "hin": "Response Date Time_hin",
+                "kan": "Response Date Time_kan",
+                "tam": "Response Date Time_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "requestTrnId",
+            "showInListView": "true",
+            "label": {
+                "eng": "Request Transaction ID",
+                "ara": "Request Transaction ID_ara",
+                "fra": "Request Transaction ID_fra",
+                "hin": "Request Transaction ID_hin",
+                "kan": "Request Transaction ID_kan",
+                "tam": "Request Transaction ID_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "authTypeCode",
+            "showInListView": "true",
+            "label": {
+                "eng": "Auth Type Code",
+                "ara": "Auth Type Code_ara",
+                "fra": "Auth Type Code_fra",
+                "hin": "Auth Type Code_hin",
+                "kan": "Auth Type Code_kan",
+                "tam": "Auth Type Code_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "statusCode",
+            "showInListView": "true",
+            "label": {
+                "eng": "Status Code",
+                "ara": "Status Code_ara",
+                "fra": "Status Code_fra",
+                "hin": "Status Code_hin",
+                "kan": "Status Code_kan",
+                "tam": "Status Code_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "statusComment",
+            "showInListView": "true",
+            "label": {
+                "eng": "Status Comment",
+                "ara": "Status Comment_ara",
+                "fra": "Status Comment_fra",
+                "hin": "Status Comment_hin",
+                "kan": "Status Comment_kan",
+                "tam": "Status Comment_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "requestedEntityId",
+            "showInListView": "true",
+            "label": {
+				"eng": "Partner ID",
+				"ara": "Partner ID_ara",
+				"fra": "Partner ID_fra",
+				"hin": "Partner ID_hin",
+				"kan": "Partner ID_kan",
+				"tam": "Partner ID_tam"
+			},
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "requestedEntityName",
+            "showInListView": "true",
+            "label": {
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
+			},
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "entryType",
+            "showInListView": "true",
+            "label": {
+                "eng": "Entry Type",
+                "ara": "Entry Type_ara",
+                "fra": "Entry Type_fra",
+                "hin": "Entry Type_hin",
+                "kan": "Entry Type_kan",
+                "tam": "Entry Type_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "amount",
+            "showInListView": "true",
+            "label": {
+                "eng": "Amount",
+                "ara": "Amount_ara",
+                "fra": "Amount_fra",
+                "hin": "Amount_hin",
+                "kan": "Amount_kan",
+                "tam": "Amount_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "crBy",
+            "showInListView": "true",
+            "label": {
+                "eng": "Created By",
+                "ara": "Created By_ara",
+                "fra": "Created By_fra",
+                "hin": "Created By_hin",
+                "kan": "Created By_kan",
+                "tam": "Created By_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        },
+        {
+            "name": "crDtimes",
+            "showInListView": "true",
+            "label": {
+                "eng": "Created Date Time",
+                "ara": "Created Date Time_ara",
+                "fra": "Created Date Time_fra",
+                "hin": "Created Date Time_hin",
+                "kan": "Created Date Time_kan",
+                "tam": "Created Date Time_tam"
+            },
+            "sortOrder": "",
+            "showAsLink": "false",
+            "linkType": "",
+            "LinkURL": ""
+        }
+    ],
+    "filterColumns": [
+        {
+            "filtername": "requestedEntityId",
+            "filterlabel": {
+                "eng": "Partner ID",
+                "ara": "Partner ID_ara",
+                "fra": "Partner ID_fra",
+                "hin": "Partner ID_hin",
+                "kan": "Partner ID_kan",
+                "tam": "Partner ID_tam"
+            },
+            "filterType": "equals",
+            "fieldType": "input",
+            "autocomplete": "false",
+            "dropdown": "false",
+            "datePicker": "false",
+            "apiName": "",
+            "fieldName": "requestedEntityId",
+            "methodCallName": ""
+        },
+        {
+            "filtername": "entryType",
+            "filterlabel": {
+                "eng": "Entry Type",
+                "ara": "Entry Type_ara",
+                "fra": "Entry Type_fra",
+                "hin": "Entry Type_hin",
+                "kan": "Entry Type_kan",
+                "tam": "Entry Type_tam"
+            },
+            "filterType": "equals",
+            "fieldType": "input",
+            "autocomplete": "false",
+            "dropdown": "false",
+            "datePicker": "false",
+            "apiName": "",
+            "fieldName": "entryType",
+            "methodCallName": ""
+        },
+        {
+            "filtername": "crDtimes",
+            "filterlabel": {
+                "eng": "Created Date",
+                "ara": "Created Date_ara",
+                "fra": "Created Date_fra",
+                "hin": "Created Date_hin",
+                "kan": "Created Date_kan",
+                "tam": "Created Date_tam"
+            },
+            "filterType": "equals",
+            "fieldType": "input",
+            "autocomplete": "false",
+            "dropdown": "false",
+            "datePicker": "true",
+            "apiName": "",
+            "fieldName": "crDtimes",
+            "methodCallName": ""
+        }
+    ],
+    "paginator": {
+        "totalEntries": null,
+        "pageSize": "10",
+        "pageSizeList": [
+            10,
+            20,
+            50,
+            100,
+            500,
+            1000
+        ]
+    }
+}
