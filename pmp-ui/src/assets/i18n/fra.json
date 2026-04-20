@@ -32,7 +32,8 @@
       "subItem1": "Wallet_fra",
       "subItem2": "Generate PRN_fra",
       "subItem3": "Validate PRN_fra",
-      "subItem4": "Search Payments_fra"
+      "subItem4": "Search Payments_fra",
+      "subItem5": "Search Transactions_fra"
     }
   },
   "dashboard": {

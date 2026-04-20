@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'payments/generate-prn', component: GeneratePrnComponent, canActivate: [RolesGuard] },
   { path: 'payments/validate-prn', component: ValidatePrnComponent, canActivate: [RolesGuard] },
   { path: 'payments/search/view', component: ListViewComponent, canActivate: [RolesGuard] },
+  { path: 'transactions/search/view', component: ListViewComponent, canActivate: [RolesGuard] },
   { path: ':type/view', component: ListViewComponent, canActivate: [RolesGuard] },
   { path: ':type/create', component: SingleViewComponent, canActivate: [RolesGuard] },
   { path: ':type/single-view/:id', component: SingleViewComponent, canActivate: [RolesGuard] },

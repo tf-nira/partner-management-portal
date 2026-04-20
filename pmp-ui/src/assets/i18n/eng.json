@@ -32,7 +32,8 @@
       "subItem1": "Wallet",
       "subItem2": "Generate PRN",
       "subItem3": "Validate PRN",
-      "subItem4": "Search Payments"
+      "subItem4": "Search Payments",
+      "subItem5": "Search Transactions"
     }
   },
   "dashboard": {
