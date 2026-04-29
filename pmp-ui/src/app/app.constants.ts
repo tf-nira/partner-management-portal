@@ -132,6 +132,13 @@ export const navItems = [
         route: '/pmp/resources/payments-search/view',
         auditEventId: 'ADM-016',
         roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
+      },
+      {
+        displayName: 'menuItems.item9.subItem5',
+        icon: null,
+        route: '/pmp/resources/transactions-search/view',
+        auditEventId: 'ADM-017',
+        roles: ['PARTNER_ADMIN', 'AUTH_PARTNER']
       }
     ],
     auditEventId: 'ADM-012',
@@ -230,6 +237,14 @@ export const masterdataMapping = {
     idKey: 'transactionId',
     headerName: 'Search Payments'
   },
+  'transactions-search': {
+    apiName: 'partnermanager/partners/transaction',
+    specFileName: 'transactions-search',
+    name: 'Transaction Search',
+    nameKey: 'transactionId',
+    idKey: 'transactionId',
+    headerName: 'Search Transactions'
+  },
   'wallet': {
     apiName: 'partnermanager/partners/balance',
     specFileName: 'wallet',
@@ -250,7 +265,8 @@ export const ListViewIdKeyMapping = {
   sbidetails: { idKey: 'id', auditEventId: 'ADM-069' },
   policymapping: { idKey: 'apikeyRequestId', auditEventId: 'ADM-069' },
   payments: { idKey: 'id', auditEventId: 'ADM-069' },
-  'payments-search': { idKey: 'transactionId', auditEventId: 'ADM-069' }
+  'payments-search': { idKey: 'transactionId', auditEventId: 'ADM-069' },
+  'transactions-search': { idKey: 'transactionId', auditEventId: 'ADM-069' }
 };
 
 export const keyboardMapping = {

@@ -41,6 +41,8 @@ td.mat-cell {
   line-height: 7px;
   font-weight: 200;
   color: #0f2126;
+  white-space: nowrap;
+  padding-right: 20px;
 }
 th.mat-header-cell:first-child,
 td.mat-cell:first-child,

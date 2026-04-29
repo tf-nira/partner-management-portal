@@ -17,6 +17,8 @@ export class HeaderService {
   public notificationLanguage = '';
   public partnerId = '';
   public partnerName = '';
+  public partnerAuthType = '';
+  public partnerGroup = '';
 
   constructor() { }
 
@@ -124,5 +126,21 @@ export class HeaderService {
 
   getPartnerName(): string {
     return this.partnerName;
+  }
+
+  setPartnerAuthType(partnerAuthType: string) {
+    this.partnerAuthType = partnerAuthType;
+  }
+
+  getPartnerAuthType(): string {
+    return this.partnerAuthType;
+  }
+
+  setPartnerGroup(partnerGroup: string) {
+    this.partnerGroup = partnerGroup;
+  }
+
+  getPartnerGroup(): string {
+    return this.partnerGroup;
   }
 }
