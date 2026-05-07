@@ -45,12 +45,12 @@
             "name": "id",
             "showInListView": "true",
             "label": {
-                "eng": "ID",
-                "ara": "ID_ara",
-                "fra": "ID_fra",
-                "hin": "ID_hin",
-                "kan": "ID_kan",
-                "tam": "ID_tam"
+                "eng": "Auth Transaction ID",
+                "ara": "Auth Transaction ID_ara",
+                "fra": "Auth Transaction ID_fra",
+                "hin": "Auth Transaction ID_hin",
+                "kan": "Auth Transaction ID_kan",
+                "tam": "Auth Transaction ID_tam"
             },
             "sortOrder": "",
             "showAsLink": "false",
@@ -154,22 +154,6 @@
             "LinkURL": ""
         },
         {
-            "name": "requestedEntityId",
-            "showInListView": "true",
-            "label": {
-				"eng": "Partner ID",
-				"ara": "Partner ID_ara",
-				"fra": "Partner ID_fra",
-				"hin": "Partner ID_hin",
-				"kan": "Partner ID_kan",
-				"tam": "Partner ID_tam"
-			},
-            "sortOrder": "",
-            "showAsLink": "false",
-            "linkType": "",
-            "LinkURL": ""
-        },
-        {
             "name": "requestedEntityName",
             "showInListView": "true",
             "label": {
@@ -252,14 +236,14 @@
     ],
     "filterColumns": [
         {
-            "filtername": "requestedEntityId",
+            "filtername": "requestedEntityName",
             "filterlabel": {
-                "eng": "Partner ID",
-                "ara": "Partner ID_ara",
-                "fra": "Partner ID_fra",
-                "hin": "Partner ID_hin",
-                "kan": "Partner ID_kan",
-                "tam": "Partner ID_tam"
+                "eng": "Partner Name",
+                "ara": "Partner Name_ara",
+                "fra": "Partner Name_fra",
+                "hin": "Partner Name_hin",
+                "kan": "Partner Name_kan",
+                "tam": "Partner Name_tam"
             },
             "filterType": "equals",
             "fieldType": "input",
@@ -267,7 +251,7 @@
             "dropdown": "false",
             "datePicker": "false",
             "apiName": "",
-            "fieldName": "requestedEntityId",
+            "fieldName": "requestedEntityName",
             "methodCallName": ""
         },
         {
@@ -283,23 +267,32 @@
             "filterType": "equals",
             "fieldType": "input",
             "autocomplete": "false",
-            "dropdown": "false",
+            "dropdown": "true",
             "datePicker": "false",
-            "apiName": "",
+            "apiName": "v1/partnermanager/partners/prn",
             "fieldName": "entryType",
             "methodCallName": ""
         },
         {
-            "filtername": "crDtimes",
+            "filtername": "crDtimesFrom",
             "filterlabel": {
-                "eng": "Created Date",
-                "ara": "Created Date_ara",
-                "fra": "Created Date_fra",
-                "hin": "Created Date_hin",
-                "kan": "Created Date_kan",
-                "tam": "Created Date_tam"
+                "eng": "Created Date From"
             },
-            "filterType": "equals",
+            "filterType": "between",
+            "fieldType": "input",
+            "autocomplete": "false",
+            "dropdown": "false",
+            "datePicker": "true",
+            "apiName": "",
+            "fieldName": "crDtimes",
+            "methodCallName": ""
+        },
+        {
+            "filtername": "crDtimesTo",
+            "filterlabel": {
+                "eng": "Created Date To"
+            },
+            "filterType": "between",
             "fieldType": "input",
             "autocomplete": "false",
             "dropdown": "false",

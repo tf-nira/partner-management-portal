@@ -290,6 +290,38 @@
 			"showAsLink": "",
 			"linkType": "",
 			"LinkURL": ""
+		},
+		{
+			"name": "partnerAuthType",
+			"showInListView": "true",
+			"label": {
+				"eng": "Partner Auth Type",
+				"ara": "Partner Auth Type_ara",
+				"fra": "Partner Auth Type_fra",
+				"hin": "Partner Auth Type_hin",
+				"kan": "Partner Auth Type_kan",
+				"tam": "Partner Auth Type_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "",
+			"linkType": "",
+			"LinkURL": ""
+		},
+		{
+			"name": "partnerGroup",
+			"showInListView": "true",
+			"label": {
+				"eng": "Partner Group Name",
+				"ara": "Partner Group Name_ara",
+				"fra": "Partner Group Name_fra",
+				"hin": "Partner Group Name_hin",
+				"kan": "Partner Group Name_kan",
+				"tam": "Partner Group Name_tam"
+			},
+			"sortOrder": "",
+			"showAsLink": "",
+			"linkType": "",
+			"LinkURL": ""
 		}
 	],
 	"paginator": {
@@ -409,6 +441,44 @@
 			"datePicker": "false",
 			"apiName": "",
 			"fieldName": "approvalStatus",
+			"methodCallName": ""
+		},
+		{
+			"filtername": "partnerAuthType",
+			"filterlabel": {
+				"eng": "Partner Authentication Type",
+				"ara": "Partner Authentication Type_ara",
+				"fra": "Partner Authentication Type_fra",
+				"hin": "Partner Authentication Type_hin",
+				"kan": "Partner Authentication Type_kan",
+				"tam": "Partner Authentication Type_tam"
+			},
+			"filterType": "equals",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "true",
+			"datePicker": "false",
+			"apiName": "v1/partnermanager/partners",
+			"fieldName": "partnerAuthType",
+			"methodCallName": ""
+		},
+		{
+			"filtername": "partnerGroup",
+			"filterlabel": {
+				"eng": "Partner Group",
+				"ara": "Partner Group_ara",
+				"fra": "Partner Group_fra",
+				"hin": "Partner Group_hin",
+				"kan": "Partner Group_kan",
+				"tam": "Partner Group_tam"
+			},
+			"filterType": "equals",
+			"fieldType": "input",
+			"autocomplete": "false",
+			"dropdown": "true",
+			"datePicker": "false",
+			"apiName": "v1/partnermanager/partners",
+			"fieldName": "partnerGroup",
 			"methodCallName": ""
 		}
 	]
