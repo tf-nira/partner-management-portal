@@ -176,68 +176,6 @@ export class DialogComponent implements OnInit {
     return returnDate;
   }
 
-  // createBetweenFilter(filterDetails: any) {
-  //   console.log(filterDetails);
-  //   const existingFilter = this.existingFilters.filter(
-  //     filters => filters.columnName === filterDetails.fieldName
-  //   );
-  //   if (existingFilter.length > 0) {
-  //     const index = this.existingFilters.indexOf(existingFilter[0]);
-  //     if (filterDetails.filtername.indexOf('From') >= 0) {
-  //       if (filterDetails.datePicker === 'true') {
-  //         this.momentDate = this.convertDate(
-  //           this.filterGroup.controls[filterDetails.filtername].value
-  //         );
-  //         console.log(this.momentDate);
-  //         this.existingFilters[index].fromValue = this.momentDate;
-  //       } else {
-  //         this.existingFilters[index].fromValue = this.filterGroup.controls[
-  //           filterDetails.filtername
-  //         ].value;
-  //       }
-  //     } else if (filterDetails.filtername.indexOf('To') >= 0) {
-  //       if (filterDetails.datePicker === 'true') {
-  //         this.momentDate = this.convertDate(
-  //           this.filterGroup.controls[filterDetails.filtername].value
-  //         );
-  //         console.log(this.momentDate);
-  //         this.existingFilters[index].toValue = this.momentDate;
-  //       } else {
-  //         this.existingFilters[index].toValue = this.filterGroup.controls[
-  //           filterDetails.filtername
-  //         ].value;
-  //       }
-  //     }
-  //   } else {
-  //     const filterModel = new FilterModel(filterDetails.fieldName, 'between');
-  //     if (filterDetails.filtername.indexOf('From') >= 0) {
-  //       if (filterDetails.datePicker === 'true') {
-  //         this.momentDate = this.convertDate(
-  //           this.filterGroup.controls[filterDetails.filtername].value
-  //         );
-  //         console.log(this.momentDate);
-  //         filterModel.fromValue = this.momentDate;
-  //       } else {
-  //         filterModel.fromValue = this.filterGroup.controls[
-  //           filterDetails.filtername
-  //         ].value;
-  //       }
-  //     } else if (filterDetails.filtername.indexOf('To') >= 0) {
-  //       if (filterDetails.datePicker === 'true') {
-  //         this.momentDate = this.convertDate(
-  //           this.filterGroup.controls[filterDetails.filtername].value
-  //         );
-  //         console.log(this.momentDate);
-  //         filterModel.toValue = this.momentDate;
-  //       } else {
-  //         filterModel.toValue = this.filterGroup.controls[
-  //           filterDetails.filtername
-  //         ].value;
-  //       }
-  //     }
-  //     this.existingFilters.push(filterModel);
-  //   }
-  // }
 
   createBetweenFilter(filterDetails: any) {
     console.log(filterDetails);
