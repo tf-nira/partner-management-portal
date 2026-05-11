@@ -89,19 +89,36 @@ export default class Utils {
     const filters = [];
     filterFields.forEach(field => {
       if (pattern.test(queryParams[field])) {
-        const filterParts = queryParams[field].split(':');
+        const lastColonIndex = queryParams[field].lastIndexOf(':');
+
+        const filterValue = queryParams[field].substring(0, lastColonIndex);
+        const filterType = queryParams[field].substring(lastColonIndex + 1);
+
+        const filterParts = [filterValue, filterType];
         switch (filterParts[1]) {
           case 'between': {
             if (/^.+[\\$].+/.test(filterParts[0])) {
               const values = filterParts[0].split('$');
-              const filterModel = new FilterModel(field, filterParts[1], '', values[0], values[1]);
+
+              const filterModel = new FilterModel(
+                field,
+                filterParts[1],
+                '',
+                decodeURIComponent(values[0]),
+                decodeURIComponent(values[1])
+              );
+
               filters.push(filterModel);
             }
             break;
           }
           default: {
             if (/^[0-9a-zA-Z]{1,}/.test(filterParts[0])) {
-              const filterModel = new FilterModel(field, filterParts[1], filterParts[0]);
+              const filterModel = new FilterModel(
+                field,
+                filterParts[1],
+                decodeURIComponent(filterParts[0])
+              );
               filters.push(filterModel);
             }
             break;
@@ -163,9 +180,13 @@ export default class Utils {
     });
     filterObject.filters.forEach(filter => {
       if (filter.type === 'between') {
-        url += `&${filter.columnName}=${filter.fromValue}$${filter.toValue}:${filter.type}`;
+        url += `&${filter.columnName}=${encodeURIComponent(
+          filter.fromValue
+        )}$${encodeURIComponent(filter.toValue)}:${filter.type}`;
       } else {
-        url += `&${filter.columnName}=${filter.value}:${filter.type}`;
+        url += `&${filter.columnName}=${encodeURIComponent(
+          filter.value
+        )}:${filter.type}`;
       }
     });
     return url;

@@ -40,15 +40,15 @@
 	],
 	"columnsToDisplay": [
 		{
-			"name": "partnerId",
+			"name": "partnerName",
 			"showInListView": "true",
 			"label": {
-				"eng": "Partner ID",
-				"ara": "Partner ID_ara",
-				"fra": "Partner ID_fra",
-				"hin": "Partner ID_hin",
-				"kan": "Partner ID_kan",
-				"tam": "Partner ID_tam"
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -136,22 +136,6 @@
 			"LinkURL": ""
 		},
 		{
-			"name": "crBy",
-			"showInListView": "true",
-			"label": {
-				"eng": "Created By",
-				"ara": "Created By_ara",
-				"fra": "Created By_fra",
-				"hin": "Created By_hin",
-				"kan": "Created By_kan",
-				"tam": "Created By_tam"
-			},
-			"sortOrder": "",
-			"showAsLink": "false",
-			"linkType": "",
-			"LinkURL": ""
-		},
-		{
 			"name": "crDtimes",
 			"showInListView": "true",
 			"label": {
@@ -170,14 +154,14 @@
 	],
 	"filterColumns": [
 		{
-			"filtername": "partnerId",
+			"filtername": "partnerName",
 			"filterlabel": {
-				"eng": "Partner ID",
-				"ara": "Partner ID_ara",
-				"fra": "Partner ID_fra",
-				"hin": "Partner ID_hin",
-				"kan": "Partner ID_kan",
-				"tam": "Partner ID_tam"
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
@@ -283,44 +267,34 @@
 			"fieldName": "remarks",
 			"methodCallName": ""
 		},
-		{
-			"filtername": "crBy",
-			"filterlabel": {
-				"eng": "Created By",
-				"ara": "Created By_ara",
-				"fra": "Created By_fra",
-				"hin": "Created By_hin",
-				"kan": "Created By_kan",
-				"tam": "Created By_tam"
-			},
-			"filterType": "contains",
-			"fieldType": "input",
-			"autocomplete": "false",
-			"dropdown": "false",
-			"datePicker": "false",
-			"apiName": "",
-			"fieldName": "crBy",
-			"methodCallName": ""
-		},
-		{
-			"filtername": "crDtimes",
-			"filterlabel": {
-				"eng": "Created Date",
-				"ara": "Created Date_ara",
-				"fra": "Created Date_fra",
-				"hin": "Created Date_hin",
-				"kan": "Created Date_kan",
-				"tam": "Created Date_tam"
-			},
-			"filterType": "equals",
-			"fieldType": "input",
-			"autocomplete": "false",
-			"dropdown": "false",
-			"datePicker": "true",
-			"apiName": "",
-			"fieldName": "crDtimes",
-			"methodCallName": ""
-		}
+        {
+            "filtername": "crDtimesFrom",
+            "filterlabel": {
+                "eng": "Created Date From"
+            },
+            "filterType": "between",
+            "fieldType": "input",
+            "autocomplete": "false",
+            "dropdown": "false",
+            "datePicker": "true",
+            "apiName": "",
+            "fieldName": "crDtimes",
+            "methodCallName": ""
+        },
+        {
+            "filtername": "crDtimesTo",
+            "filterlabel": {
+                "eng": "Created Date To"
+            },
+            "filterType": "between",
+            "fieldType": "input",
+            "autocomplete": "false",
+            "dropdown": "false",
+            "datePicker": "true",
+            "apiName": "",
+            "fieldName": "crDtimes",
+            "methodCallName": ""
+        }
 	],
 	"paginator": {
 		"totalEntries": null,

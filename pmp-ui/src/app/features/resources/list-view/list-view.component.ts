@@ -186,17 +186,24 @@ export class ListViewComponent implements OnDestroy {
       // Check if user is non-admin and screen is wallet or payments-search
       const userRoles = this.headerService.getRoleCodes();
       const isAdmin = userRoles && (userRoles.includes('GLOBAL_ADMIN') || userRoles.includes('PARTNER_ADMIN'));
-      const isWalletOrPaymentScreen = routeParts === 'wallet' || routeParts === 'payments-search';
+      const isWalletOrPaymentScreen = routeParts === 'wallet' || routeParts === 'payments-search' || routeParts === 'transactions-search';
       
       // For non-admin users on wallet/payment-search screens, add partnerId filter
       if (!isAdmin && isWalletOrPaymentScreen) {
+        let columnNametoFilter = '';
+        if(routeParts === 'transactions-search'){
+          columnNametoFilter = 'requestedEntityId';
+        }
+        else{
+          columnNametoFilter = 'partnerId';
+        }
         const loggedInPartnerId = this.headerService.getPartnerId();
         if (loggedInPartnerId) {
           // Add partnerId filter if not already present
-          const partnerIdFilterExists = filters.filters.some(f => f.columnName === 'partnerId');
+          const partnerIdFilterExists = filters.filters.some(f => f.columnName === columnNametoFilter);
           if (!partnerIdFilterExists) {
             filters.filters.push({
-              columnName: 'partnerId',
+              columnName: columnNametoFilter,
               type: 'equals',
               value: loggedInPartnerId
             });
