@@ -74,22 +74,6 @@
             "LinkURL": ""
         },
         {
-            "name": "responseDtimes",
-            "showInListView": "true",
-            "label": {
-                "eng": "Response Date Time",
-                "ara": "Response Date Time_ara",
-                "fra": "Response Date Time_fra",
-                "hin": "Response Date Time_hin",
-                "kan": "Response Date Time_kan",
-                "tam": "Response Date Time_tam"
-            },
-            "sortOrder": "",
-            "showAsLink": "false",
-            "linkType": "",
-            "LinkURL": ""
-        },
-        {
             "name": "requestTrnId",
             "showInListView": "true",
             "label": {
@@ -109,12 +93,12 @@
             "name": "authTypeCode",
             "showInListView": "true",
             "label": {
-                "eng": "Auth Type Code",
-                "ara": "Auth Type Code_ara",
-                "fra": "Auth Type Code_fra",
-                "hin": "Auth Type Code_hin",
-                "kan": "Auth Type Code_kan",
-                "tam": "Auth Type Code_tam"
+                "eng": "Service",
+                "ara": "Service_ara",
+                "fra": "Service_fra",
+                "hin": "Service_hin",
+                "kan": "Service_kan",
+                "tam": "Service_tam"
             },
             "sortOrder": "",
             "showAsLink": "false",
@@ -125,28 +109,12 @@
             "name": "statusCode",
             "showInListView": "true",
             "label": {
-                "eng": "Status Code",
-                "ara": "Status Code_ara",
-                "fra": "Status Code_fra",
-                "hin": "Status Code_hin",
-                "kan": "Status Code_kan",
-                "tam": "Status Code_tam"
-            },
-            "sortOrder": "",
-            "showAsLink": "false",
-            "linkType": "",
-            "LinkURL": ""
-        },
-        {
-            "name": "statusComment",
-            "showInListView": "true",
-            "label": {
-                "eng": "Status Comment",
-                "ara": "Status Comment_ara",
-                "fra": "Status Comment_fra",
-                "hin": "Status Comment_hin",
-                "kan": "Status Comment_kan",
-                "tam": "Status Comment_tam"
+                "eng": "Status",
+                "ara": "Status_ara",
+                "fra": "Status_fra",
+                "hin": "Status_hin",
+                "kan": "Status_kan",
+                "tam": "Status_tam"
             },
             "sortOrder": "",
             "showAsLink": "false",
@@ -195,38 +163,6 @@
                 "hin": "Amount_hin",
                 "kan": "Amount_kan",
                 "tam": "Amount_tam"
-            },
-            "sortOrder": "",
-            "showAsLink": "false",
-            "linkType": "",
-            "LinkURL": ""
-        },
-        {
-            "name": "crBy",
-            "showInListView": "true",
-            "label": {
-                "eng": "Created By",
-                "ara": "Created By_ara",
-                "fra": "Created By_fra",
-                "hin": "Created By_hin",
-                "kan": "Created By_kan",
-                "tam": "Created By_tam"
-            },
-            "sortOrder": "",
-            "showAsLink": "false",
-            "linkType": "",
-            "LinkURL": ""
-        },
-        {
-            "name": "crDtimes",
-            "showInListView": "true",
-            "label": {
-                "eng": "Created Date Time",
-                "ara": "Created Date Time_ara",
-                "fra": "Created Date Time_fra",
-                "hin": "Created Date Time_hin",
-                "kan": "Created Date Time_kan",
-                "tam": "Created Date Time_tam"
             },
             "sortOrder": "",
             "showAsLink": "false",
