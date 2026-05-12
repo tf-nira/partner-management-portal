@@ -176,6 +176,7 @@ export class DialogComponent implements OnInit {
     return returnDate;
   }
 
+
   createBetweenFilter(filterDetails: any) {
     console.log(filterDetails);
     const existingFilter = this.existingFilters.filter(
@@ -185,59 +186,64 @@ export class DialogComponent implements OnInit {
       const index = this.existingFilters.indexOf(existingFilter[0]);
       if (filterDetails.filtername.indexOf('From') >= 0) {
         if (filterDetails.datePicker === 'true') {
-          this.momentDate = this.convertDate(
+          const rawDate = this.convertDate(
             this.filterGroup.controls[filterDetails.filtername].value
           );
+          this.momentDate = rawDate + 'T00:00:00.000Z';
           console.log(this.momentDate);
           this.existingFilters[index].fromValue = this.momentDate;
         } else {
-          this.existingFilters[index].fromValue = this.filterGroup.controls[
-            filterDetails.filtername
-          ].value;
+          this.existingFilters[index].fromValue =
+            this.filterGroup.controls[filterDetails.filtername].value;
         }
       } else if (filterDetails.filtername.indexOf('To') >= 0) {
         if (filterDetails.datePicker === 'true') {
-          this.momentDate = this.convertDate(
+          const rawDate = this.convertDate(
             this.filterGroup.controls[filterDetails.filtername].value
           );
+          this.momentDate = rawDate + 'T23:59:59.000Z';
           console.log(this.momentDate);
           this.existingFilters[index].toValue = this.momentDate;
         } else {
-          this.existingFilters[index].toValue = this.filterGroup.controls[
-            filterDetails.filtername
-          ].value;
+          this.existingFilters[index].toValue =
+            this.filterGroup.controls[filterDetails.filtername].value;
         }
       }
     } else {
-      const filterModel = new FilterModel(filterDetails.fieldName, 'between');
-      if (filterDetails.filterlabel.indexOf('From') >= 0) {
+      const filterModel = new FilterModel(
+        filterDetails.fieldName,
+        'between'
+      );
+      if (filterDetails.filtername.indexOf('From') >= 0) {
         if (filterDetails.datePicker === 'true') {
-          this.momentDate = this.convertDate(
+          const rawDate = this.convertDate(
             this.filterGroup.controls[filterDetails.filtername].value
           );
+          this.momentDate = rawDate + 'T00:00:00.000Z';
           console.log(this.momentDate);
           filterModel.fromValue = this.momentDate;
         } else {
-          filterModel.fromValue = this.filterGroup.controls[
-            filterDetails.filtername
-          ].value;
+          filterModel.fromValue =
+            this.filterGroup.controls[filterDetails.filtername].value;
         }
-      } else if (filterDetails.filterlabel.indexOf('To') >= 0) {
+      } else if (filterDetails.filtername.indexOf('To') >= 0) {
         if (filterDetails.datePicker === 'true') {
-          this.momentDate = this.convertDate(
+          const rawDate = this.convertDate(
             this.filterGroup.controls[filterDetails.filtername].value
           );
+          this.momentDate = rawDate + 'T23:59:59.000Z';
           console.log(this.momentDate);
           filterModel.toValue = this.momentDate;
         } else {
-          filterModel.toValue = this.filterGroup.controls[
-            filterDetails.filtername
-          ].value;
+          filterModel.toValue =
+            this.filterGroup.controls[filterDetails.filtername].value;
         }
       }
       this.existingFilters.push(filterModel);
     }
   }
+
+  
 
   validateBetweenFilter(filterModel: FilterModel[], isDate: boolean[]) {
     console.log('validate called');
@@ -438,7 +444,15 @@ export class DialogComponent implements OnInit {
       .getFiltersForAllMasterDataTypes(apitype, this.requestModel)
       .subscribe(response => {
         console.log(response);
-        this.filterOptions[controlName] = [...response.response.filters];
+        //this.filterOptions[controlName] = [...response.response.filters];
+        const uniqueMap = new Map();
+        response.response.filters.forEach(item => {
+          if (!uniqueMap.has(item.fieldValue)) {
+            uniqueMap.set(item.fieldValue, item);
+          }
+        });
+
+        this.filterOptions[controlName] = Array.from(uniqueMap.values());
         console.log(this.filterOptions);
       });
   }
