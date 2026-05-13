@@ -9,7 +9,7 @@ import { SortModel } from 'src/app/core/models/sort.model';
 import { AppConfigService } from 'src/app/app-config.service';
 import Utils from 'src/app/app.utils';
 import { MatDialog } from '@angular/material';
-/*import { DialogComponent } from 'src/app/shared/dialog/dialog.component';*/
+import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { HeaderService } from 'src/app/core/services/header.service';
@@ -37,7 +37,7 @@ export class ListViewComponent implements OnDestroy {
   filtersApplied = false;
   masterDataType: string;
   auditEventId: string[];
-  labels:any;
+  labels: any;
 
   constructor(
     public router: Router,
@@ -46,7 +46,7 @@ export class ListViewComponent implements OnDestroy {
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     public translateService: TranslateService,
-    public auditService: AuditService, 
+    public auditService: AuditService,
     public headerService: HeaderService
   ) {
     translateService
@@ -96,12 +96,14 @@ export class ListViewComponent implements OnDestroy {
   loadData() {
     return new Promise((resolve, reject) => {
       const routeParts = this.activatedRoute.snapshot.params.type;
-      if(appConstants.masterdataMapping[`${routeParts}`]){
+      if (appConstants.masterdataMapping[`${routeParts}`]) {
         this.mapping = appConstants.masterdataMapping[`${routeParts}`];
-        this.headerName = appConstants.masterdataMapping[`${routeParts}`].headerName;        
-      }else{
-        this.mapping = { apiName: 'partnermanager/partners', specFileName: 'partner', name: 'Auth Partner', nameKey: 'titleName',
-         idKey: 'id', headerName: `${routeParts}`};
+        this.headerName = appConstants.masterdataMapping[`${routeParts}`].headerName;
+      } else {
+        this.mapping = {
+          apiName: 'partnermanager/partners', specFileName: 'partner', name: 'Auth Partner', nameKey: 'titleName',
+          idKey: 'id', headerName: `${routeParts}`
+        };
         this.headerName = `${routeParts}`.replace(/_/g, " ");
       }
       this.dataStorageService
@@ -187,14 +189,14 @@ export class ListViewComponent implements OnDestroy {
       const userRoles = this.headerService.getRoleCodes();
       const isAdmin = userRoles && (userRoles.includes('GLOBAL_ADMIN') || userRoles.includes('PARTNER_ADMIN'));
       const isWalletOrPaymentScreen = routeParts === 'wallet' || routeParts === 'payments-search' || routeParts === 'transactions-search';
-      
+
       // For non-admin users on wallet/payment-search screens, add partnerId filter
       if (!isAdmin && isWalletOrPaymentScreen) {
         let columnNametoFilter = '';
-        if(routeParts === 'transactions-search'){
+        if (routeParts === 'transactions-search') {
           columnNametoFilter = 'requestedEntityId';
         }
-        else{
+        else {
           columnNametoFilter = 'partnerId';
         }
         const loggedInPartnerId = this.headerService.getPartnerId();
@@ -222,25 +224,27 @@ export class ListViewComponent implements OnDestroy {
       }*/
       this.requestModel = new RequestModel(null, null, filters);
 
-      if(appConstants.masterdataMapping[`${routeParts}`]){
+      if (appConstants.masterdataMapping[`${routeParts}`]) {
         this.mapping = appConstants.masterdataMapping[`${routeParts}`];
         this.headerName = appConstants.masterdataMapping[`${routeParts}`].headerName;
-      }else{
-        this.mapping = { apiName: 'partnermanager/partners', specFileName: 'partner', name: 'Auth Partner', nameKey: 'titleName',
-         idKey: 'id', headerName: `${routeParts}`};
+      } else {
+        this.mapping = {
+          apiName: 'partnermanager/partners', specFileName: 'partner', name: 'Auth Partner', nameKey: 'titleName',
+          idKey: 'id', headerName: `${routeParts}`
+        };
         this.headerName = "Partner";
         this.requestModel.request["partnerType"] = "all";
       }
 
       let appConstantsValue = appConstants.navItems;
       appConstantsValue.forEach(element => {
-        if(element.children){
+        if (element.children) {
           element.children.forEach(childelement => {
             if (childelement.route.includes(routeParts)) {
               self.headerName = self.labels[childelement.displayName.split('.')[0]][childelement.displayName.split('.')[1]][childelement.displayName.split('.')[2]];
             }
           });
-        }else{
+        } else {
           if (element.route.includes(routeParts)) {
             self.headerName = self.labels[element.displayName.split('.')[0]][element.displayName.split('.')[1]][element.displayName.split('.')[2]];
           }
@@ -290,19 +294,133 @@ export class ListViewComponent implements OnDestroy {
   }
 
   exportToCSV() {
-    if (!this.masterData || this.masterData.length === 0) {
-      return;
-    }
-    const headers = this.displayedColumns.map(col => col.name);
-    const rows = this.masterData.map(row =>
-      headers.map(field => `"${row[field] || ''}"`).join(',')
-    );
-    const csvContent = [headers.join(','), ...rows].join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'export.csv';
-    link.click();
+
+  const filtersObj = Utils.convertFilter(
+    this.activatedRoute.snapshot.queryParams,
+    this.headerService.getlanguageCode()
+  );
+
+  const filters = filtersObj.filters || [];
+
+  const betweenFilter = filters.find(
+    (f: any) => f.type === 'between'
+  );
+
+ 
+  if (
+    !betweenFilter ||
+    !betweenFilter.fromValue ||
+    !betweenFilter.toValue
+  ) {
+
+    this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+        case: 'MESSAGE',
+        title: 'Export Validation',
+        message: 'Date range filter is mandatory for export',
+        btnTxt: 'OK'
+      }
+    });
+
+    return;
   }
+
+  const fromDate = new Date(betweenFilter.fromValue);
+  const toDate = new Date(betweenFilter.toValue);
+
+ 
+  if (fromDate > toDate) {
+
+    this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+        case: 'MESSAGE',
+        title: 'Export Validation',
+        message: 'From Date cannot be greater than To Date',
+        btnTxt: 'OK'
+      }
+    });
+
+    return;
+  }
+
+  
+  const diffTime = Math.abs(
+    toDate.getTime() - fromDate.getTime()
+  );
+
+  const diffDays = Math.ceil(
+    diffTime / (1000 * 60 * 60 * 24)
+  );
+
+  if (diffDays > appConstants.EXPORT_MAX_DAYS) {
+
+    this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {
+        case: 'MESSAGE',
+        title: 'Export Validation',
+        message: `Date range cannot exceed ${appConstants.EXPORT_MAX_DAYS} days`,
+        btnTxt: 'OK'
+      }
+    });
+
+    return;
+  }
+
+ 
+  const exportRequest = JSON.parse(
+    JSON.stringify(filtersObj)
+  );
+
+  
+  exportRequest.pagination = null;
+
+ 
+  const request = new RequestModel(
+    null,
+    null,
+    exportRequest
+  );
+
+  this.dataStorageService
+    .exportAllData(this.mapping, request)
+    .subscribe(
+      (response: Blob) => {
+
+        const blob = new Blob(
+          [response],
+          { type: 'text/csv;charset=utf-8;' }
+        );
+
+        const link = document.createElement('a');
+
+        link.href = URL.createObjectURL(blob);
+
+        link.download =
+          `${this.activatedRoute.snapshot.params.type}-export.csv`;
+
+        link.click();
+
+        URL.revokeObjectURL(link.href);
+      },
+      error => {
+
+        console.log(error);
+
+        this.dialog.open(DialogComponent, {
+          width: '400px',
+          data: {
+            case: 'MESSAGE',
+            title: 'Export Failed',
+            message: 'Unable to export CSV file',
+            btnTxt: 'OK'
+          }
+        });
+
+      }
+    );
+}
 
 }

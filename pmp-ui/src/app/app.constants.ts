@@ -274,3 +274,5 @@ export const keyboardMapping = {
   fra: 'fr',
   ara: 'ar'
 };
+
+export const EXPORT_MAX_DAYS = 30;
