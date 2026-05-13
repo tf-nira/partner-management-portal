@@ -302,12 +302,11 @@ export class ListViewComponent implements OnDestroy {
 
   const filters = filtersObj.filters || [];
 
-  // Find date between filter
   const betweenFilter = filters.find(
     (f: any) => f.type === 'between'
   );
 
-  // Mandatory validation
+ 
   if (
     !betweenFilter ||
     !betweenFilter.fromValue ||
@@ -330,7 +329,7 @@ export class ListViewComponent implements OnDestroy {
   const fromDate = new Date(betweenFilter.fromValue);
   const toDate = new Date(betweenFilter.toValue);
 
-  // Date validation
+ 
   if (fromDate > toDate) {
 
     this.dialog.open(DialogComponent, {
@@ -346,7 +345,7 @@ export class ListViewComponent implements OnDestroy {
     return;
   }
 
-  // Max range validation
+  
   const diffTime = Math.abs(
     toDate.getTime() - fromDate.getTime()
   );
@@ -370,15 +369,15 @@ export class ListViewComponent implements OnDestroy {
     return;
   }
 
-  // Clone filters object
+ 
   const exportRequest = JSON.parse(
     JSON.stringify(filtersObj)
   );
 
-  // Remove pagination for export
+  
   exportRequest.pagination = null;
 
-  // Create request model
+ 
   const request = new RequestModel(
     null,
     null,
