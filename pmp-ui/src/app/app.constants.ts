@@ -59,31 +59,30 @@ export const navItems = [
     auditEventId: 'ADM-006',
     roles: ['PARTNER_ADMIN']
   },
-  // Hidden screens - Device Details, FTM Details, SBI Details
-  // {
-  //   displayName: 'menuItems.item4.title',
-  //   icon: 'assets/images/biometric.png',
-  //   route: '/pmp/resources/devicedetails/view',
-  //   children: null,
-  //   auditEventId: 'ADM-007',
-  //   roles: []
-  // },
-  // {
-  //   displayName: 'menuItems.item5.title',
-  //   icon: 'assets/images/ftm.png',
-  //   route: '/pmp/resources/ftmdetails/view',
-  //   children: null,
-  //   auditEventId: 'ADM-008',
-  //   roles: []
-  // },
-  // {
-  //   displayName: 'menuItems.item6.title',
-  //   icon: 'assets/images/sbi.png',
-  //   route: '/pmp/resources/sbidetails/view',
-  //   children: null,
-  //   auditEventId: 'ADM-009',
-  //   roles: []
-  // },
+  {
+    displayName: 'menuItems.item4.title',
+    icon: 'assets/images/biometric.png',
+    route: '/pmp/resources/devicedetails/view',
+    children: null,
+    auditEventId: 'ADM-007',
+    roles: ['DEVICE_PROVIDER']
+  },
+  {
+    displayName: 'menuItems.item5.title',
+    icon: 'assets/images/ftm.png',
+    route: '/pmp/resources/ftmdetails/view',
+    children: null,
+    auditEventId: 'ADM-008',
+    roles: ['FTM_PROVIDER']
+  },
+  {
+    displayName: 'menuItems.item6.title',
+    icon: 'assets/images/sbi.png',
+    route: '/pmp/resources/sbidetails/view',
+    children: null,
+    auditEventId: 'ADM-009',
+    roles: ['DEVICE_PROVIDER']
+  },
   {
     displayName: 'menuItems.item7.title',
     icon: 'assets/images/partner-policy mapping.png',
