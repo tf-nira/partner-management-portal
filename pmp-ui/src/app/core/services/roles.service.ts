@@ -9,7 +9,7 @@ export class RolesService {
   constructor(public headerService: HeaderService) { }
 
   public checkRole(item: any): boolean {
-    const userRoles = this.headerService.getRoleCodes().split(',');
+    const userRoles = this.headerService.getRoleCodes().split(',').map(role => role.trim());
     let flag = false;
     if(item.roles.length == 0){
       flag = true;

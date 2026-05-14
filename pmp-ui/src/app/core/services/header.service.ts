@@ -73,7 +73,9 @@ export class HeaderService {
   }
 
   getRoleCodes(): string {
-    return this.roles;
+    // Filter out empty strings from role string (in case of trailing commas)
+    const roleArray = this.roles.split(',').filter(role => role.trim() !== '');
+    return roleArray.join(',');
   }
 
   setNotificationLanguage(notificationLanguage: string) {
