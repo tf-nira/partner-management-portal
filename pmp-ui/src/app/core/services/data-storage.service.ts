@@ -479,6 +479,17 @@ export class DataStorageService {
     );
   }
 
+  exportAllData(mapping: any, request: RequestModel): Observable<Blob> {
+
+  return this.http.post(
+    this.BASE_URL + 'v1/' + mapping.apiName + '/export',
+    request,
+    {
+      responseType: 'blob'
+    }
+  );
+}
+
   getPartners(): Observable<any> {
     return new Observable(observer => {
       let allPartners: any[] = [];
