@@ -21,11 +21,11 @@ import { HeaderService } from 'src/app/core/services/header.service';
 })
 export class ListViewComponent implements OnDestroy {
   headerName: string;
-  displayedColumns = [];
-  actionButtons = [];
-  actionEllipsis = [];
+  displayedColumns: any[] = [];
+  actionButtons: any[] = [];
+  actionEllipsis: any[] = [];
   paginatorOptions: any;
-  sortFilter = [];
+  sortFilter: SortModel[] = [];
   pagination = new PaginationModel();
   centerRequest = {} as CenterRequest;
   requestModel: RequestModel;
@@ -113,21 +113,47 @@ export class ListViewComponent implements OnDestroy {
           this.displayedColumns = response.columnsToDisplay.filter(
             values => values.showInListView === 'true'
           );
-          console.log(this.displayedColumns.length);
+          if (this.applyDefaultSort(routeParts)) {
+            return;
+          }
           this.actionButtons = response.actionButtons.filter(
             value => value.showIn.toLowerCase() === 'ellipsis'
           );
-          console.log(this.actionButtons);
           this.actionEllipsis = response.actionButtons.filter(
             value => value.showIn.toLowerCase() === 'button'
           );
-          console.log(this.actionEllipsis);
           this.paginatorOptions = response.paginator;
-          console.log(this.paginatorOptions);
           this.auditEventId = response.auditEventIds;
           resolve(true);
+        }, error => {
+          reject(error);
         });
     });
+  }
+
+  applyDefaultSort(routeParts: string) {
+    const queryParams = this.activatedRoute.snapshot.queryParams;
+    const hasRequestDtimes = this.displayedColumns &&
+      this.displayedColumns.some(col => col.name === 'requestDtimes');
+    if (!queryParams.sort && hasRequestDtimes) {
+      const defaultSort = [
+        {
+          sortField: 'requestDtimes',
+          sortType: 'D'
+        }
+      ];
+      const filters = Utils.convertFilter(
+        queryParams,
+        this.headerService.getlanguageCode()
+      );
+      filters.sort = defaultSort;
+      const url = Utils.convertFilterToUrl(filters);
+      this.router.navigateByUrl(
+        `pmp/resources/${routeParts}/view?${url}`
+      );
+      return true;
+    }
+    return false;
   }
 
   getSortColumn(event: SortModel) {
