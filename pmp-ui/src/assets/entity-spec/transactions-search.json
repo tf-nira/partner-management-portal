@@ -68,7 +68,7 @@
                 "kan": "Request Date Time_kan",
                 "tam": "Request Date Time_tam"
             },
-            "sortOrder": "desc",
+            "sortOrder": "",
             "showAsLink": "false",
             "linkType": "",
             "LinkURL": ""
