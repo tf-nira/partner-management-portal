@@ -132,29 +132,29 @@ export class ListViewComponent implements OnDestroy {
   }
 
   applyDefaultSort(routeParts: string) {
-    const queryParams = this.activatedRoute.snapshot.queryParams;
-    const hasRequestDtimes = this.displayedColumns &&
-      this.displayedColumns.some(col => col.name === 'requestDtimes');
-    if (!queryParams.sort && hasRequestDtimes) {
-      const defaultSort = [
-        {
-          sortField: 'requestDtimes',
-          sortType: 'D'
-        }
-      ];
-      const filters = Utils.convertFilter(
-        queryParams,
-        this.headerService.getlanguageCode()
-      );
-      filters.sort = defaultSort;
-      const url = Utils.convertFilterToUrl(filters);
-      this.router.navigateByUrl(
-        `pmp/resources/${routeParts}/view?${url}`
-      );
-      return true;
-    }
-    return false;
+  const queryParams = this.activatedRoute.snapshot.queryParams;
+  const sortableFields = ['requestDtimes', 'crDtimes', 'updtimes'];
+  const availableSortFields = sortableFields.filter(field =>
+    this.displayedColumns?.some(col => col.name === field)
+  );
+  if (!queryParams.sort && availableSortFields.length) {
+    const defaultSort = availableSortFields.map(field => ({
+      sortField: field,
+      sortType: 'D'
+    }));
+    const filters = Utils.convertFilter(
+      queryParams,
+      this.headerService.getlanguageCode()
+    );
+    filters.sort = defaultSort;
+    const url = Utils.convertFilterToUrl(filters);
+    this.router.navigateByUrl(
+      `pmp/resources/${routeParts}/view?${url}`
+    );
+    return true;
   }
+  return false;
+}
 
   getSortColumn(event: SortModel) {
     console.log(event);
