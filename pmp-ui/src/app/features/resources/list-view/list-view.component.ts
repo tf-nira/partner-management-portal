@@ -133,7 +133,7 @@ export class ListViewComponent implements OnDestroy {
 
   applyDefaultSort(routeParts: string) {
   const queryParams = this.activatedRoute.snapshot.queryParams;
-  const sortableFields = ['requestDtimes', 'crDtimes', 'updtimes'];
+  const sortableFields = ['requestDtimes', 'crDtimes', 'updDtimes'];
   const availableSortFields = sortableFields.filter(field =>
     this.displayedColumns?.some(col => col.name === field)
   );
