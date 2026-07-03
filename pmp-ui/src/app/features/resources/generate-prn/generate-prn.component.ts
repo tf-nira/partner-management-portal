@@ -53,6 +53,16 @@ export class GeneratePrnComponent implements OnInit {
       });
 
     this.loadPartners();
+    
+    this.generatePrnForm.get('partnerId').valueChanges.subscribe((partnerId: string) => {
+      const roles = this.headerService.getRoleCodes();
+      const isAdmin = roles.includes('GLOBAL_ADMIN') || roles.includes('PARTNER_ADMIN');
+
+      if (isAdmin) {
+        this.onPartnerChange(partnerId);
+      }
+    });
+
     this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
     // Only subscribe to partnerType changes if it's not disabled
     this.generatePrnForm.get('partnerType').valueChanges.subscribe((selectedPartnerType: string) => {
@@ -60,6 +70,39 @@ export class GeneratePrnComponent implements OnInit {
         this.updatePartnerGroupOptions(selectedPartnerType);
       }
     });
+  }
+
+  onPartnerChange(partnerId: string) {
+    const selectedPartner = this.partners.find(p => p.id === partnerId);
+
+    if (selectedPartner) {
+      // Only patch and disable partnerType if it has a value
+      if (selectedPartner.partnerAuthType) {
+        this.generatePrnForm.patchValue({ partnerType: selectedPartner.partnerAuthType });
+        this.generatePrnForm.get('partnerType').disable();
+        this.isPartnerTypeDisabled = true;
+      } else {
+        this.generatePrnForm.get('partnerType').enable();
+        this.isPartnerTypeDisabled = false;
+      }
+
+      // Only patch and disable partnerGroup if it has a value
+      if (selectedPartner.partnerGroup) {
+        this.generatePrnForm.patchValue({ partnerGroup: selectedPartner.partnerGroup });
+        this.generatePrnForm.get('partnerGroup').disable();
+        this.isPartnerGroupDisabled = true;
+      } else {
+        this.generatePrnForm.get('partnerGroup').enable();
+        this.isPartnerGroupDisabled = false;
+      }
+    } else {
+      // No partner selected, enable fields again
+      this.generatePrnForm.get('partnerType').enable();
+      this.generatePrnForm.get('partnerGroup').enable();
+
+      this.isPartnerTypeDisabled = false;
+      this.isPartnerGroupDisabled = false;
+    }
   }
 
   updatePartnerGroupOptions(partnerType: string) {
@@ -92,7 +135,7 @@ export class GeneratePrnComponent implements OnInit {
           if (!isAdmin) {
             // For non-admin users, set partner ID and check header service for auth type and group
             const loggedInPartnerId = this.headerService.getPartnerId();
-            
+            debugger;
             if (loggedInPartnerId) {
               this.generatePrnForm.patchValue({ 
                 partnerId: loggedInPartnerId
