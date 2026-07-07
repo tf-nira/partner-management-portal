@@ -31,7 +31,7 @@
       "title": "Payments",
       "subItem1": "Wallet",
       "subItem2": "Generate PRN",
-      "subItem3": "Validate PRN",
+      "subItem3": "Validate and Load Wallet",
       "subItem4": "Search Payments",
       "subItem5": "Search Transactions"
     }
@@ -58,7 +58,7 @@
     "amountHeader": "Amount",
     "statusHeader": "Status",
     "noPendingPrns": "No pending PRNs",
-    "validatePrnTitle": "Validate PRN",
+    "validatePrnTitle": "Validate and Load Wallet",
     "enterPrnLabel": "Enter the PRN code",
     "validateBtn": "Validate",
     "validatingLabel": "Validating...",

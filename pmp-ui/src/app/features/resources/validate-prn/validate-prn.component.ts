@@ -5,6 +5,9 @@ import { HeaderService } from 'src/app/core/services/header.service';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { TranslateService } from '@ngx-translate/core';
 import { RequestModel } from 'src/app/core/models/request.model';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-validate-prn',
@@ -20,6 +23,8 @@ export class ValidatePrnComponent implements OnInit {
   isValid: boolean = false;
   partners: any[] = [];
   isPartnerDropdownDisabled: boolean = false;
+  partnerSearch = new FormControl();
+  filteredPartners!: Observable<any[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,7 +56,23 @@ export class ValidatePrnComponent implements OnInit {
           this.partners = response.response.data.map((partner: any) => ({
             id: partner.id,
             name: partner.name
-          }));
+          }))
+          .sort((a, b) => a.id.localeCompare(b.id));
+
+
+          this.filteredPartners = this.partnerSearch.valueChanges.pipe(
+            startWith(''),
+            map(value => {
+              const filterValue =
+                typeof value === 'string'
+                  ? value
+                  : value
+                    ? value.id
+                    : '';
+
+              return this.filterPartners(filterValue);
+            })
+          );
 
           // Check if user is not global admin or partner admin
           const roles = this.headerService.getRoleCodes();
@@ -64,6 +85,12 @@ export class ValidatePrnComponent implements OnInit {
             if (loggedInPartnerId) {
               this.validatePrnForm.patchValue({ partnerId: loggedInPartnerId });
               this.isPartnerDropdownDisabled = true;
+              const partner = this.partners.find(p => p.id === loggedInPartnerId);
+              this.partnerSearch.setValue(partner || '');
+              this.partnerSearch.disable();
+            }
+            else {
+              this.partnerSearch.enable();
             }
           }
         }
@@ -74,6 +101,59 @@ export class ValidatePrnComponent implements OnInit {
       }
     );
   }
+
+  private filterPartners(value: string): any[] {
+
+  if (!value) {
+    return this.partners;
+  }
+
+  value = value.toLowerCase();
+
+  return this.partners.filter(partner =>
+    partner.id.toLowerCase().includes(value) ||
+    (partner.name && partner.name.toLowerCase().includes(value))
+  );
+}
+
+  onPartnerSelected(partner: any) {
+
+    this.validatePrnForm.patchValue({
+      partnerId: partner.id
+    });
+  }
+
+  displayPartner(partner: any): string {
+    return partner ? partner.id : '';
+  }
+
+  onAutocompleteClosed() {
+
+    const value = this.partnerSearch.value;
+
+    // User selected a partner object
+    if (typeof value === 'object') {
+      return;
+    }
+
+    const partnerId = this.validatePrnForm.get('partnerId').value;
+
+    const partner = this.partners.find(p => p.id === partnerId);
+
+    this.partnerSearch.setValue(partner || '', {
+      emitEvent: false
+    });
+  }
+
+  onFocus() {
+  this.partnerSearch.setValue(
+    typeof this.partnerSearch.value === 'object'
+      ? this.partnerSearch.value.id
+      : ''
+  );
+}
+
+
 
   validatePRN() {
     if (this.validatePrnForm.invalid) {
@@ -142,10 +222,24 @@ export class ValidatePrnComponent implements OnInit {
     this.showValidationResult = false;
     this.validationResult = null;
     this.validatePrnForm.reset();
-    
-    this.validatePrnForm.patchValue({ 
-      partnerId: this.isPartnerDropdownDisabled ? this.headerService.getPartnerId() : '',
-      prn: '' 
-    });
+    this.partnerSearch.reset();
+
+    if (this.isPartnerDropdownDisabled) {
+      const partnerId = this.headerService.getPartnerId();
+
+      const partner = this.partners.find(p => p.id === partnerId);
+
+      this.partnerSearch.setValue(partner || '');
+
+      this.validatePrnForm.patchValue({
+        partnerId: partnerId,
+        prn: ''
+      });
+    } else {
+      this.validatePrnForm.patchValue({
+        partnerId: '',
+        prn: ''
+      });
+    }
   }
 }

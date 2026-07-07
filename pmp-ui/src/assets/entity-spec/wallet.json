@@ -59,7 +59,7 @@
 			"name": "balance",
 			"showInListView": "true",
 			"label": {
-				"eng": "Balance",
+				"eng": "Balance In UGX",
 				"ara": "Balance_ara",
 				"fra": "Balance_fra",
 				"hin": "Balance_hin",
