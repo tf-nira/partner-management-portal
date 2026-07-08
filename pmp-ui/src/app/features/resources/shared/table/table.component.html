@@ -45,6 +45,7 @@
               <!-- <span *ngIf="data['approvalStatus'] != 'approved'">
                 <span *ngIf="data['approvalStatus'] !== 'rejected'"> -->
                   <!-- <span *ngIf="data['isActive'] != true"> -->
+                  <span *ngIf="!isActionDisabled(data)">
                     <span *ngIf="data['statusCode'] !== 'rejected'">
                       <span *ngIf="data['statusCode'] !== 'approved'">
                         <button mat-icon-button [matMenuTriggerFor]="menu" id="ellipsis-button{{i}}" (click)="ellipsisAction(data)">
@@ -52,7 +53,9 @@
                         </button>
                       </span>
                     </span>
+                  </span>
 
+                  <span *ngIf="!isActionDisabled(data)">
                     <span *ngIf="showapilistbutton === true">
                       <span *ngIf="data['statusCode'] !== 'rejected'">
                         <span *ngIf="data['statusCode'] === 'approved'">
@@ -62,6 +65,7 @@
                         </span>
                       </span>
                     </span>
+                  </span>
                   <!--    -->
                 <!-- </span>
               </span> -->

@@ -160,12 +160,12 @@
 		{
 			"name": "requestDetail",
 			"label": {
-				"eng": "Request Detail",
-				"ara": "Request Detail_ara",
-				"fra": "Request Detail_fra",
-				"hin": "Request Detail_hin",
-				"kan": "Request Detail_kan",
-				"tam": "Request Detail_tam"
+				"eng": "Request Description",
+				"ara": "Request Description_ara",
+				"fra": "Request Description_fra",
+				"hin": "Request Description_hin",
+				"kan": "Request Description_kan",
+				"tam": "Request Description_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "",
@@ -244,12 +244,12 @@
 		{
 			"filtername": "requestDetail",
 			"filterlabel": {
-				"eng": "Request Detail",
-				"ara": "Request Detail_ara",
-				"fra": "Request Detail_fra",
-				"hin": "Request Detail_hin",
-				"kan": "Request Detail_kan",
-				"tam": "Request Detail_tam"
+				"eng": "Request Description",
+				"ara": "Request Description_ara",
+				"fra": "Request Description_fra",
+				"hin": "Request Description_hin",
+				"kan": "Request Description_kan",
+				"tam": "Request Description_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",

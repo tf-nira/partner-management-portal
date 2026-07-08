@@ -109,7 +109,6 @@ export class TableComponent implements OnInit, OnChanges {
     const routeIndex = this.router.url.lastIndexOf('/');
     this.currentRoute = this.router.url.slice(0, routeIndex);    
     const currentRouteType = this.router.url.split('/')[3];
-    
     const id = appConstants.ListViewIdKeyMapping[`${currentRouteType}`];
     this.auditService.audit(7, id.auditEventId, currentRouteType);
     if (index === 0) {
@@ -238,6 +237,15 @@ export class TableComponent implements OnInit, OnChanges {
         }
       });
     } 
+  }
+
+  isActionDisabled(data: any): boolean {
+    const currentRoute = this.router.url.split('/')[3];
+    if ((currentRoute === 'authpolicy' || currentRoute === 'datasharepolicy') &&
+      (data.isActive === true || data.active === true)) {
+        return true;
+    }
+    return false;
   }
 
   tableStyle(index, columnValue, columnName) {
