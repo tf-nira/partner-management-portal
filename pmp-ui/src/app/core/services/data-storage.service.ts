@@ -263,7 +263,7 @@ export class DataStorageService {
   }
 
   getDataByTypeAndId(mapping: any, data: RequestModel): Observable<any> {
-    if(mapping.headerName == "Auth Policy"){
+    if(mapping.headerName == "Auth/eKYC Policy"){
       data.request["policyType"] = "Auth";
     }
     else if(mapping.headerName == "Data Share Policy"){

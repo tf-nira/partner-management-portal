@@ -6,7 +6,7 @@
     "item2": {
       "title": "Policy",
       "subItem1": "Policy Group",
-      "subItem2": "Auth Policy",
+      "subItem2": "Auth/eKYC Policy",
       "subItem3": "Data Share Policy"
     },
     "item3": {
@@ -613,7 +613,7 @@
     "PMS_POL_006": "Unsupported Authentication Type in the Policy File",
     "PMS_POL_007": "eKYC attribute missing in the policy file",
     "PMS_POL_008": "Policy ID does not exist",
-    "PMS_POL_009": "Auth policy exists with name : ",
+    "PMS_POL_009": "Auth/eKYC Policy exists with name : ",
     "PMS_COR_002": "Invalid Input Parameter _ ",
     "PMS_COR_003": "Could not process the request",
     "PMS_POL_010": " Auth Policies are not defined against to policy",
