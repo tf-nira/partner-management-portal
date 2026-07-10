@@ -5,6 +5,9 @@ import { HeaderService } from 'src/app/core/services/header.service';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { TranslateService } from '@ngx-translate/core';
 import { RequestModel } from 'src/app/core/models/request.model';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-generate-prn',
@@ -29,6 +32,8 @@ export class GeneratePrnComponent implements OnInit {
     ACCESS: ['GOV', 'PRIVATE', 'FOREIGN'],
     VERIFY: ['GOV', 'PRIVATE']
   };
+  partnerSearch = new FormControl();
+  filteredPartners!: Observable<any[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -126,40 +131,61 @@ export class GeneratePrnComponent implements OnInit {
             name: partner.name,
             partnerAuthType: partner.partnerAuthType,
             partnerGroup: partner.partnerGroup
-          }));
+          }))
+            .sort((a, b) => a.id.localeCompare(b.id));
+
+
+          this.filteredPartners = this.partnerSearch.valueChanges.pipe(
+            startWith(''),
+            map(value => {
+              const filterValue =
+                typeof value === 'string'
+                  ? value
+                  : value
+                    ? value.id
+                    : '';
+
+              return this.filterPartners(filterValue);
+            })
+          );
+
 
           // Check if user is not global admin or partner admin
           const roles = this.headerService.getRoleCodes();
           const isAdmin = roles.includes('GLOBAL_ADMIN') || roles.includes('PARTNER_ADMIN');
-          
+
           if (!isAdmin) {
             // For non-admin users, set partner ID and check header service for auth type and group
             const loggedInPartnerId = this.headerService.getPartnerId();
-            debugger;
             if (loggedInPartnerId) {
-              this.generatePrnForm.patchValue({ 
+              this.generatePrnForm.patchValue({
                 partnerId: loggedInPartnerId
+              });
+              const partner = this.partners.find(p => p.id === loggedInPartnerId);
+
+              this.partnerSearch.setValue(partner || null, {
+                emitEvent: false
               });
               // Disable the partner dropdown
               this.generatePrnForm.get('partnerId').disable();
               this.isPartnerDropdownDisabled = true;
-              
+
               // Get partner auth type and group from header service
               const headerPartnerAuthType = this.headerService.getPartnerAuthType();
               const headerPartnerGroup = this.headerService.getPartnerGroup();
-              
+
               // If values exist in header service, use them and disable fields
               if (headerPartnerAuthType && headerPartnerAuthType.trim()) {
-                this.generatePrnForm.patchValue({ 
+                this.generatePrnForm.patchValue({
                   partnerType: headerPartnerAuthType
                 });
                 // Disable the partner type field
                 this.generatePrnForm.get('partnerType').disable();
                 this.isPartnerTypeDisabled = true;
               }
-              
+
               if (headerPartnerGroup && headerPartnerGroup.trim()) {
-                this.generatePrnForm.patchValue({ 
+                this.generatePrnForm.patchValue({
                   partnerGroup: headerPartnerGroup
                 });
                 // Disable the partner group field
@@ -175,6 +201,57 @@ export class GeneratePrnComponent implements OnInit {
       }
     );
   }
+
+  private filterPartners(value: string): any[] {
+
+    if (!value) {
+      return this.partners;
+    }
+
+    value = value.toLowerCase();
+
+    return this.partners.filter(partner =>
+      partner.id.toLowerCase().includes(value)
+    );
+  }
+
+
+  onPartnerSelected(partner: any) {
+
+    this.generatePrnForm.patchValue({
+      partnerId: partner.id
+    });
+
+    this.onPartnerChange(partner.id);
+  }
+
+  displayPartner(partner: any): string {
+    return partner ? partner.id : '';
+  }
+
+
+  onAutocompleteClosed() {
+
+    const value = this.partnerSearch.value;
+
+    // User selected a partner object
+    if (typeof value === 'object') {
+      return;
+    }
+
+    const partnerId = this.generatePrnForm.get('partnerId').value;
+
+    const partner = this.partners.find(p => p.id === partnerId);
+
+    this.partnerSearch.setValue(partner || '', {
+      emitEvent: false
+    });
+  }
+
+  onFocus() {
+    this.partnerSearch.setValue(this.partnerSearch.value);
+  }
+
 
   generatePRN() {
     if (this.generatePrnForm.invalid) {
@@ -236,43 +313,65 @@ export class GeneratePrnComponent implements OnInit {
     this.showPRNResult = false;
     this.generatedPRN = '';
     this.errorMessage = '';
-    this.generatePrnForm.reset();
 
-    // Reset based on disabled state
-    const resetData: any = { 
+    this.generatePrnForm.reset();
+    this.partnerSearch.reset();
+
+    const resetData: any = {
       numberOfRecords: null
     };
 
+    // Partner
     if (this.isPartnerDropdownDisabled) {
-      resetData.partnerId = this.headerService.getPartnerId();
-      this.generatePrnForm.patchValue(resetData);
+      const partnerId = this.headerService.getPartnerId();
+
+      resetData.partnerId = partnerId;
+
       this.generatePrnForm.get('partnerId').disable();
+
+      // Restore partner object in autocomplete
+      const partner = this.partners.find(p => p.id === partnerId);
+
+      this.partnerSearch.setValue(partner || null, {
+        emitEvent: false
+      });
+
     } else {
-      this.generatePrnForm.patchValue(resetData);
+      resetData.partnerId = '';
       this.generatePrnForm.get('partnerId').enable();
+      this.partnerSearch.reset();
     }
 
+    // Partner Type
     if (this.isPartnerTypeDisabled) {
-      resetData.partnerType = this.headerService.getPartnerAuthType() || 'ACCESS';
+      resetData.partnerType =
+        this.headerService.getPartnerAuthType() || 'ACCESS';
+
       this.generatePrnForm.get('partnerType').disable();
+
     } else {
       resetData.partnerType = 'ACCESS';
       this.generatePrnForm.get('partnerType').enable();
     }
 
+    // Partner Group
     if (this.isPartnerGroupDisabled) {
-      resetData.partnerGroup = this.headerService.getPartnerGroup() || 'PRIVATE';
+      resetData.partnerGroup =
+        this.headerService.getPartnerGroup() || 'PRIVATE';
+
       this.generatePrnForm.get('partnerGroup').disable();
+
     } else {
       resetData.partnerGroup = 'PRIVATE';
       this.generatePrnForm.get('partnerGroup').enable();
     }
 
+    // Apply values
     this.generatePrnForm.patchValue(resetData);
-    
-    // Only update partner group options if the field is not disabled
+
+    // Update partner group options only when editable
     if (!this.isPartnerTypeDisabled) {
-      this.updatePartnerGroupOptions(this.generatePrnForm.get('partnerType').value);
+      this.updatePartnerGroupOptions(resetData.partnerType);
     }
   }
 }

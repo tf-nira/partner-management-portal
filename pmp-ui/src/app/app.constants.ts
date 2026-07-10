@@ -51,14 +51,6 @@ export const navItems = [
     auditEventId: 'ADM-003',
     roles: ['POLICYMANAGER', 'PARTNER_ADMIN']
   },
-  {
-    displayName: 'menuItems.item3.title',
-    icon: 'assets/images/Partners.png',
-    route: '/pmp/resources/partner/view',
-    children: null,
-    auditEventId: 'ADM-006',
-    roles: ['PARTNER_ADMIN']
-  },
   // Hidden screens - Device Details, FTM Details, SBI Details
   // {
   //   displayName: 'menuItems.item4.title',

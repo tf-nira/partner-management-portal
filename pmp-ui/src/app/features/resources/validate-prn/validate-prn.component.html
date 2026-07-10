@@ -1,6 +1,6 @@
 <div class="validate-prn-container">
   <div class="header">
-    <h2>{{ labels.validatePrnTitle || 'Validate PRN' }}</h2>
+    <h2>{{ labels.validatePrnTitle || 'Validate and Load Wallet' }}</h2>
   </div>
 
   <div class="content-wrapper">
@@ -15,7 +15,7 @@
               class="form-control"
               [disabled]="isPartnerDropdownDisabled">
               <option value="" disabled selected>{{ labels.selectPartnerLabel || 'Select Partner' }}</option>
-              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.name }}</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.id }}</option>
             </select>
           </div>
 
@@ -30,11 +30,19 @@
           </div>
 
           <div class="button-group">
-            <button type="submit" class="btn btn-primary" [disabled]="validatePrnForm.invalid || isLoading">
-              <span *ngIf="!isLoading">{{ labels.validateBtn || 'Validate' }}</span>
-              <span *ngIf="isLoading">{{ labels.validatingLabel || 'Validating...' }}</span>
+            <button mat-raised-button color="primary" type="submit" [disabled]="validatePrnForm.invalid || isLoading">
+        
+              <span *ngIf="!isLoading">
+                {{ labels.validateBtn || 'Validate' }}
+              </span>
+        
+              <span *ngIf="isLoading">
+                {{ labels.validatingLabel || 'Validating...' }}
+              </span>
+        
             </button>
           </div>
+        
         </form>
       </div>
 

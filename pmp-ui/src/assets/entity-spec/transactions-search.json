@@ -157,7 +157,7 @@
             "name": "amount",
             "showInListView": "true",
             "label": {
-                "eng": "Amount",
+                "eng": "Amount In UGX",
                 "ara": "Amount_ara",
                 "fra": "Amount_fra",
                 "hin": "Amount_hin",

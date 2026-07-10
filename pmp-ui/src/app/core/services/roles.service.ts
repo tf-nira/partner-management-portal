@@ -9,18 +9,25 @@ export class RolesService {
   constructor(public headerService: HeaderService) { }
 
   public checkRole(item: any): boolean {
-    const userRoles = this.headerService.getRoleCodes().split(',');
+    const userRoles = this.headerService.getRoleCodes().split(',').map(role => role.trim());
     let flag = false;
+    console.log('RolesService - checkRole:', {
+      item: item,
+      userRoles: userRoles,
+      itemRoles: item.roles
+    });
     if(item.roles.length == 0){
       flag = true;
     }else{
       for (let i in item.roles) {
         if (userRoles.indexOf(item.roles[i]) >= 0) {
+          console.log('RolesService - MATCH FOUND:', item.roles[i]);
           flag = true;
           break;
         }
       }
     }
+    console.log('RolesService - checkRole result:', flag);
     return flag;
   }
 

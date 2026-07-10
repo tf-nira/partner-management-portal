@@ -64,6 +64,7 @@ export class HeaderService {
 
   setRoles(roles: string) {
     this.roles = roles;
+    console.log('HeaderService - setRoles called with:', roles);
   }
 
   getRoles(): string {
@@ -73,7 +74,15 @@ export class HeaderService {
   }
 
   getRoleCodes(): string {
-    return this.roles;
+    // Filter out empty strings from role string (in case of trailing commas)
+    const roleArray = this.roles.split(',').filter(role => role.trim() !== '');
+    const cleanRoles = roleArray.join(',');
+    console.log('HeaderService - getRoleCodes:', {
+      raw: this.roles,
+      split: roleArray,
+      clean: cleanRoles
+    });
+    return cleanRoles;
   }
 
   setNotificationLanguage(notificationLanguage: string) {
