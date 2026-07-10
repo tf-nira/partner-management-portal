@@ -132,7 +132,7 @@ export class GeneratePrnComponent implements OnInit {
             partnerAuthType: partner.partnerAuthType,
             partnerGroup: partner.partnerGroup
           }))
-            .sort((a, b) => a.id.localeCompare(b.id));
+            .sort((a, b) => a.name.localeCompare(b.name));
 
 
           this.filteredPartners = this.partnerSearch.valueChanges.pipe(
@@ -142,7 +142,7 @@ export class GeneratePrnComponent implements OnInit {
                 typeof value === 'string'
                   ? value
                   : value
-                    ? value.id
+                    ? value.name
                     : '';
 
               return this.filterPartners(filterValue);
@@ -211,7 +211,7 @@ export class GeneratePrnComponent implements OnInit {
     value = value.toLowerCase();
 
     return this.partners.filter(partner =>
-      partner.id.toLowerCase().includes(value)
+      partner.name.toLowerCase().includes(value)
     );
   }
 
@@ -226,7 +226,7 @@ export class GeneratePrnComponent implements OnInit {
   }
 
   displayPartner(partner: any): string {
-    return partner ? partner.id : '';
+    return partner ? partner.name : '';
   }
 
 
