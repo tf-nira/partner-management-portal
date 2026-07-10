@@ -7,63 +7,79 @@
     <div class="form-section">
       <div class="form-card">
         <form [formGroup]="generatePrnForm" (ngSubmit)="generatePRN()">
-          <div class="form-group">
-            <label for="partnerId">{{ labels.partnerNameLabel || 'Partner Name' }}</label>
-            <select 
-              id="partnerId" 
-              formControlName="partnerId" 
-              class="form-control"
-              [disabled]="isPartnerDropdownDisabled">
-              <option value="">Select Partner</option>
-              <option *ngFor="let partner of partners" [value]="partner.id">
+
+          <!-- Partner Name -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ labels.partnerNameLabel || 'Partner Name' }}</mat-label>
+          
+            <input matInput [formControl]="partnerSearch" [matAutocomplete]="partnerAuto" (focus)="onFocus()"
+              [readonly]="isPartnerDropdownDisabled">
+          
+            <mat-autocomplete #partnerAuto="matAutocomplete" [displayWith]="displayPartner"
+              (optionSelected)="onPartnerSelected($event.option.value)" (closed)="onAutocompleteClosed()">
+          
+              <mat-option *ngFor="let partner of filteredPartners | async" [value]="partner">
+          
                 {{ partner.id }}
-              </option>
-            </select>
-          </div>
+          
+              </mat-option>
+          
+            </mat-autocomplete>
+          
+          </mat-form-field>
 
-          <div class="form-group">
-            <label for="partnerType">{{ labels.partnerTypeLabel || 'Partner Type' }}</label>
-            <select
-              id="partnerType"
-              formControlName="partnerType"
-              class="form-control"
-              [disabled]="isPartnerTypeDisabled">
-              <option *ngFor="let partnerType of partnerTypeOptions" [value]="partnerType">
+          <!-- Partner Type -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ labels.partnerTypeLabel || 'Partner Type' }}</mat-label>
+
+            <mat-select formControlName="partnerType" [disabled]="isPartnerTypeDisabled">
+
+              <mat-option *ngFor="let partnerType of partnerTypeOptions" [value]="partnerType">
+
                 {{ partnerType }}
-              </option>
-            </select>
-          </div>
 
-          <div class="form-group">
-            <label for="partnerGroup">{{ labels.partnerGroupLabel || 'Partner Group' }}</label>
-            <select
-              id="partnerGroup"
-              formControlName="partnerGroup"
-              class="form-control"
-              [disabled]="isPartnerGroupDisabled">
-              <option *ngFor="let partnerGroup of partnerGroupOptions" [value]="partnerGroup">
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Partner Group -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ labels.partnerGroupLabel || 'Partner Group' }}</mat-label>
+
+            <mat-select formControlName="partnerGroup" [disabled]="isPartnerGroupDisabled">
+
+              <mat-option *ngFor="let partnerGroup of partnerGroupOptions" [value]="partnerGroup">
+
                 {{ partnerGroup }}
-              </option>
-            </select>
-          </div>
 
-          <div class="form-group">
-            <label for="numberOfRecords">{{ labels.numberOfRecordsLabel || 'Number Of Records' }}</label>
-            <input 
-              type="number" 
-              id="numberOfRecords" 
-              formControlName="numberOfRecords" 
-              class="form-control"
-              min="1"
-              placeholder="Enter number of records">
-          </div>
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Number Of Records -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ labels.numberOfRecordsLabel || 'Number Of Records' }}</mat-label>
+
+            <input matInput type="number" min="1" formControlName="numberOfRecords">
+
+          </mat-form-field>
 
           <div class="button-group">
-            <button type="submit" class="btn btn-primary" [disabled]="generatePrnForm.invalid || isLoading">
-              <span *ngIf="!isLoading">{{ labels.generateBtn || 'Generate PRN' }}</span>
-              <span *ngIf="isLoading">{{ labels.generatingLabel || 'Generating...' }}</span>
+            <button mat-raised-button color="primary" type="submit" [disabled]="generatePrnForm.invalid || isLoading">
+
+              <span *ngIf="!isLoading">
+                {{ labels.generateBtn || 'Generate PRN' }}
+              </span>
+
+              <span *ngIf="isLoading">
+                {{ labels.generatingLabel || 'Generating...' }}
+              </span>
+
             </button>
           </div>
+
         </form>
       </div>
 
@@ -74,7 +90,8 @@
           </div>
           <div class="message">
             <p *ngIf="isSuccess"><strong>{{ labels.prnGeneratedLabel || 'PRN Generated Successfully' }}</strong></p>
-            <p *ngIf="!isSuccess"><strong>{{ labels.prnFailedLabel || 'PRN generation failed, please try again' }}</strong></p>
+            <p *ngIf="!isSuccess"><strong>{{ labels.prnFailedLabel || 'PRN generation failed, please try again'
+                }}</strong></p>
             <p *ngIf="isSuccess" class="prn-value">{{ generatedPRN }}</p>
             <p *ngIf="!isSuccess" class="error-text">{{ errorMessage }}</p>
           </div>

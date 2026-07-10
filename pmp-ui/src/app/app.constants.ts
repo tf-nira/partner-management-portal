@@ -167,10 +167,10 @@ export const masterdataMapping = {
   authpolicy: {
     apiName: 'policymanager/policies',
     specFileName: 'auth-policy',
-    name: 'Auth Policy',
+    name: 'Auth/eKYC Policy',
     nameKey: 'titleName',
     idKey: 'id',
-    headerName: 'Auth Policy'
+    headerName: 'Auth/eKYC Policy'
   },
   datasharepolicy: {
     apiName: 'policymanager/policies',

@@ -113,23 +113,19 @@ export class ListViewComponent implements OnDestroy {
           this.displayedColumns = response.columnsToDisplay.filter(
             values => values.showInListView === 'true'
           );
-          console.log(this.displayedColumns.length);
           if (this.applyDefaultSort(routeParts)) {
             return;
           }
           this.actionButtons = response.actionButtons.filter(
             value => value.showIn.toLowerCase() === 'ellipsis'
           );
-          console.log(this.actionButtons);
           this.actionEllipsis = response.actionButtons.filter(
             value => value.showIn.toLowerCase() === 'button'
           );
-          console.log(this.actionEllipsis);
           this.paginatorOptions = response.paginator;
-          console.log(this.paginatorOptions);
           this.auditEventId = response.auditEventIds;
           resolve(true);
-          }, error => {
+        }, error => {
           reject(error);
         });
     });

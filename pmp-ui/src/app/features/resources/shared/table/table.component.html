@@ -29,14 +29,23 @@
       <th class="table-header sticky-header">&emsp;</th>
     </tr>
     <tr *ngFor="let data of tableData; index as i" class="mat-row">
-      <td
-        *ngFor="let item of columnsOfTableData; let i = index"
-        class="mat-cell  "
-        (click)="getTableRowData(data, i, item)"
-        [ngClass]="{ 'text-alignment': item === 'name' && imageSource}"
-      >
-        <span class="flex-display" [ngStyle]="tableStyle(i, data[item], item)"
-           *ngIf="item !== 'isActive'"><span *ngIf="item !== 'active'">{{ data[item] }}</span><span *ngIf="item === 'active'"><span *ngIf="data[item] == true">{{'isActive.Active'|translate}}</span><span *ngIf="data[item] == false">{{'isActive.InActive'|translate}}</span></span></span><span *ngIf="item === 'isActive'"><span *ngIf="data[item] == true">{{'isActive.Active'|translate}}</span><span *ngIf="data[item] == false">{{'isActive.InActive'|translate}}</span></span>
+      <td *ngFor="let item of columnsOfTableData; let i = index" class="mat-cell  " (click)="getTableRowData(data, i, item)"
+        [ngClass]="{ 'text-alignment': item === 'name' && imageSource}">
+        <span class="flex-display" [ngStyle]="tableStyle(i, data[item], item)" *ngIf="item !== 'isActive'"><span
+            *ngIf="item !== 'active'">
+      
+            <ng-container *ngIf="item === 'balance' || item === 'amount'; else normalValue">
+              {{ data[item] | number:'1.0-2' }}
+            </ng-container>
+      
+            <ng-template #normalValue>
+              {{ data[item] }}
+            </ng-template>
+      
+          </span><span *ngIf="item === 'active'"><span *ngIf="data[item] == true">{{'isActive.Active'|translate}}</span><span
+              *ngIf="data[item] == false">{{'isActive.InActive'|translate}}</span></span></span><span
+          *ngIf="item === 'isActive'"><span *ngIf="data[item] == true">{{'isActive.Active'|translate}}</span><span
+            *ngIf="data[item] == false">{{'isActive.InActive'|translate}}</span></span>
       </td>
       <td class="mat-cell mat-header-cell" *ngIf="buttonList.length>0"> 
         <span *ngIf="this.currentRoute !== 'partner'">
@@ -45,6 +54,7 @@
               <!-- <span *ngIf="data['approvalStatus'] != 'approved'">
                 <span *ngIf="data['approvalStatus'] !== 'rejected'"> -->
                   <!-- <span *ngIf="data['isActive'] != true"> -->
+                  <span *ngIf="!isActionDisabled(data)">
                     <span *ngIf="data['statusCode'] !== 'rejected'">
                       <span *ngIf="data['statusCode'] !== 'approved'">
                         <button mat-icon-button [matMenuTriggerFor]="menu" id="ellipsis-button{{i}}" (click)="ellipsisAction(data)">
@@ -52,7 +62,9 @@
                         </button>
                       </span>
                     </span>
+                  </span>
 
+                  <span *ngIf="!isActionDisabled(data)">
                     <span *ngIf="showapilistbutton === true">
                       <span *ngIf="data['statusCode'] !== 'rejected'">
                         <span *ngIf="data['statusCode'] === 'approved'">
@@ -62,6 +74,7 @@
                         </span>
                       </span>
                     </span>
+                  </span>
                   <!--    -->
                 <!-- </span>
               </span> -->
