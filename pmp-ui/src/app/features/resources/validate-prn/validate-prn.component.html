@@ -15,7 +15,7 @@
               class="form-control"
               [disabled]="isPartnerDropdownDisabled">
               <option value="" disabled selected>{{ labels.selectPartnerLabel || 'Select Partner' }}</option>
-              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.id }}</option>
+              <option *ngFor="let partner of partners" [value]="partner.id">{{ partner.name }}</option>
             </select>
           </div>
 

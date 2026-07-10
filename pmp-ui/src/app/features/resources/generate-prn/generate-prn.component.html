@@ -16,7 +16,7 @@
               [disabled]="isPartnerDropdownDisabled">
               <option value="">Select Partner</option>
               <option *ngFor="let partner of partners" [value]="partner.id">
-                {{ partner.id }}
+                {{ partner.name }}
               </option>
             </select>
           </div>
