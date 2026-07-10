@@ -82,4 +82,9 @@ export class HomeComponent implements OnInit {
   	let data = {"id": this.partnerIdDetail.partnerID};
 		this.commonService["viewCertificate"](data);
   }  
+
+  isAuthPartner(): boolean {
+  	return this.partnerIdDetail &&
+         this.partnerIdDetail.partnerType === 'Auth_Partner';
+  }
 }
