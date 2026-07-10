@@ -33,11 +33,11 @@
 	      	<div class="col s4">Partner Type</div>
       		<div class="col s8">{{partnerIdDetail.partnerType}}</div>
 	    </div>
-			<div class="row" *ngIf="partnerIdDetail.partnerType?.startsWith('AUTH')">
+			<div class="row" *ngIf="isAuthPartner()">
 	      	<div class="col s4">NIRA Partner Type</div>
       		<div class="col s8">{{partnerIdDetail.partnerAuthType}}</div>
 	    </div>
-			<div class="row" *ngIf="partnerIdDetail.partnerType?.startsWith('AUTH')">
+			<div class="row" *ngIf="isAuthPartner()">
 	      	<div class="col s4">NIRA Partner Group</div>
       		<div class="col s8">{{partnerIdDetail.partnerGroup}}</div>
 	    </div>
