@@ -57,7 +57,7 @@ export class ValidatePrnComponent implements OnInit {
             id: partner.id,
             name: partner.name
           }))
-          .sort((a, b) => a.id.localeCompare(b.id));
+          .sort((a, b) => a.name.localeCompare(b.name));
 
 
           this.filteredPartners = this.partnerSearch.valueChanges.pipe(
@@ -67,7 +67,7 @@ export class ValidatePrnComponent implements OnInit {
                 typeof value === 'string'
                   ? value
                   : value
-                    ? value.id
+                    ? value.name
                     : '';
 
               return this.filterPartners(filterValue);
@@ -104,17 +104,16 @@ export class ValidatePrnComponent implements OnInit {
 
   private filterPartners(value: string): any[] {
 
-  if (!value) {
-    return this.partners;
+    if (!value) {
+      return this.partners;
+    }
+
+    value = value.toLowerCase();
+
+    return this.partners.filter(partner =>
+      partner.name.toLowerCase().includes(value)
+    );
   }
-
-  value = value.toLowerCase();
-
-  return this.partners.filter(partner =>
-    partner.id.toLowerCase().includes(value) ||
-    (partner.name && partner.name.toLowerCase().includes(value))
-  );
-}
 
   onPartnerSelected(partner: any) {
 
@@ -124,7 +123,7 @@ export class ValidatePrnComponent implements OnInit {
   }
 
   displayPartner(partner: any): string {
-    return partner ? partner.id : '';
+    return partner ? partner.name : '';
   }
 
   onAutocompleteClosed() {
