@@ -43,12 +43,12 @@
 			"name": "partnerId",
 			"showInListView": "true",
 			"label": {
-				"eng": "Partner ID",
-				"ara": "Partner ID_ara",
-				"fra": "Partner ID_fra",
-				"hin": "Partner ID_hin",
-				"kan": "Partner ID_kan",
-				"tam": "Partner ID_tam"
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
 			},
 			"sortOrder": "",
 			"showAsLink": "false",
@@ -92,12 +92,12 @@
 		{
 			"filtername": "partnerId",
 			"filterlabel": {
-				"eng": "Partner ID",
-				"ara": "Partner ID_ara",
-				"fra": "Partner ID_fra",
-				"hin": "Partner ID_hin",
-				"kan": "Partner ID_kan",
-				"tam": "Partner ID_tam"
+				"eng": "Partner Name",
+				"ara": "Partner Name_ara",
+				"fra": "Partner Name_fra",
+				"hin": "Partner Name_hin",
+				"kan": "Partner Name_kan",
+				"tam": "Partner Name_tam"
 			},
 			"filterType": "equals",
 			"fieldType": "input",
