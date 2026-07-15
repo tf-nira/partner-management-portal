@@ -576,8 +576,13 @@ export class MasterDataCommonBodyComponent implements OnInit {
       else
         url = url;
     }
-    else if(url === "policymanager/policies"){
-      this.primaryData["policies"] =  JSON.parse(this.primaryData["policies"]);
+    else if (url === "policymanager/policies") {
+      try {
+        this.primaryData["policies"] = JSON.parse(this.primaryData["policies"]);
+      } catch (error) {
+        this.showErrorPopup("Please enter a valid JSON in the Policies Data field.");
+        return;
+      }
     }
     if(this.primaryData.id || this.primaryData.ftpChipDetailId){ 
       this.primaryData["isItForRegistrationDevice"] = true;
