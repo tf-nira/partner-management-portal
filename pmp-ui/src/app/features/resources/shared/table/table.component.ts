@@ -161,6 +161,11 @@ export class TableComponent implements OnInit, OnChanges {
       }
     });
     this.ellipsisList = [...this.buttonList];
+    if (data.statusCode !== 'approved') {
+      this.ellipsisList = this.ellipsisList.filter(
+        btn => btn.buttonName.eng !== 'Generate API Key'
+      );
+    }
     if (data.isActive === true || data.active === true) {
       this.ellipsisList.filter(values => {
         if (values.buttonName.eng === 'Activate') {
