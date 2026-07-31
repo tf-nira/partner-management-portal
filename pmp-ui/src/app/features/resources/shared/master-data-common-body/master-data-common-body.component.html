@@ -151,7 +151,7 @@
               <tr style="vertical-align: top;">
                 <td width="30%">
                   <mat-form-field>
-                    <input
+                    <input *ngIf="primaryData.statusCode === 'approved'"
                       id="apiKeyLabel"
                       #keyboardRef
                       matInput
