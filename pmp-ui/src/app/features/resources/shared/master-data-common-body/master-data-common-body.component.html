@@ -163,7 +163,7 @@
                   </mat-form-field>
                 </td>
                 <td width="20%">
-                  <button id="generateAPIKey" mat-raised-button (click)="generateAPIKey()">
+                  <button  *ngIf="primaryData.statusCode === 'approved'" id="generateAPIKey" mat-raised-button (click)="generateAPIKey()">
                     Generate
                   </button>
                 </td>
