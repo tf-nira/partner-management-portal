@@ -1,29 +1,60 @@
 @import '../../_theme.scss';
 
 #home-component {
-    margin-top: 16px;
-    
-    .title {
+  margin-top: 16px;
+  padding: 0 8px;
+
+  .page-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .info-section {
+    margin-bottom: 16px;
+    padding: 18px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    .section-title {
+      font-size: mat-font-size($custom-typography, title);
+      font-weight: 700;
+      margin: 0 0 14px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid mat-color($app-primary, 100);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 40px;
+      row-gap: 16px;
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: center;
+
+      .label {
+        font-size: mat-font-size($custom-typography, caption);
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: 0;
+        font-weight: 600;
+      }
+
+      .value {
         font-size: mat-font-size($custom-typography, body-1);
-        border-bottom: 1px solid mat-color($app-primary, 100);
-        padding-bottom: 5px;
-        margin-bottom: 10px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.87);
+      }
     }
-    .discription {
-        font-size: mat-font-size($custom-typography, caption)
-    }
+  }
 }
 
-.row > .col{
-    display: -webkit-inline-box;
-    padding: 10px;
+// responsive: stack to single column on narrow screens
+@media (max-width: 599px) {
+  #home-component .info-section .info-grid {
+    grid-template-columns: 1fr;
+  }
 }
-
-.row > .s4{
-    width:10%
-}
-
-.row > .s8{
-    width:90%
-}
-
