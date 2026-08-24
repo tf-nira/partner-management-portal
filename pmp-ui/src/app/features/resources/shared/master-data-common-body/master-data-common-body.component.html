@@ -150,8 +150,8 @@
             <table width="100%" *ngIf="showSecondaryAPIPanel">
               <tr style="vertical-align: top;">
                 <td width="30%">
-                  <mat-form-field>
-                    <input *ngIf="primaryData.statusCode === 'approved'"
+                  <mat-form-field *ngIf="primaryData.statusCode === 'approved'">
+                    <input
                       id="apiKeyLabel"
                       #keyboardRef
                       matInput
