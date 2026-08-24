@@ -1,65 +1,102 @@
 <div id="home-component" *ngIf="partnerIdDetail">
-  <h3 class="mat-h1">
-    DashBoard
-  </h3>
+	<h3 class="mat-h1 page-title">
+		Dashboard
+	</h3>
 
-  <mat-card>
-    <div class="discription">
-      	<div class="row">
-	      	<div class="col s4">Partner ID</div>
-      		<div class="col s8">{{partnerIdDetail.partnerID}}</div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">Organization Name</div>
-      		<div class="col s8">{{partnerIdDetail.organizationName}}</div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">Address</div>
-      		<div class="col s8">{{partnerIdDetail.address}}</div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">Contact No.</div>
-      		<div class="col s8">{{partnerIdDetail.contactNumber}}</div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">EmailId</div>
-      		<div class="col s8">{{partnerIdDetail.emailId}}</div>
-	    </div>
-	    <div class="row" *ngIf="partnerIdDetail.policyGroup">
-	      	<div class="col s4">Policy Group</div>
-      		<div class="col s8">{{partnerIdDetail.policyGroup}}</div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">Partner Type</div>
-      		<div class="col s8">{{partnerIdDetail.partnerType}}</div>
-	    </div>
-			<div class="row" *ngIf="isAuthPartner()">
-	      	<div class="col s4">NIRA Partner Type</div>
-      		<div class="col s8">{{partnerIdDetail.partnerAuthType}}</div>
-	    </div>
-			<div class="row" *ngIf="isAuthPartner()">
-	      	<div class="col s4">NIRA Partner Group</div>
-      		<div class="col s8">{{partnerIdDetail.partnerGroup}}</div>
-	    </div>
-			<div class="row">
-	      	<div class="col s4">Onboarded Date</div>
-      		<div class="col s8">{{partnerIdDetail.onboardedDate | date:'medium'}}</div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">Upload Certificate</div>
-      		<div class="col s8"><button id="uploadCertificate" mat-raised-button (click)="redirecttoupload()">Upload</button></div>
-	    </div>
-	    <div class="row">
-	      	<div class="col s4">View Certificate</div>
-      		<div class="col s8"><button id="viewCertificate" mat-raised-button (click)="viewCertificate()">View</button></div>
-	    </div>
+	<!-- Organization Information -->
+	<mat-card class="info-section">
+		<h4 class="section-title">Organization Information</h4>
+		<div class="info-grid">
+			<div class="info-item">
+				<div class="label">Partner ID</div>
+				<div class="value">{{partnerIdDetail.partnerID}}</div>
+			</div>
+			<div class="info-item">
+				<div class="label">Organization Name</div>
+				<div class="value">{{partnerIdDetail.organizationName}}</div>
+			</div>
+			<div class="info-item">
+				<div class="label">Address</div>
+				<div class="value">{{partnerIdDetail.address}}</div>
+			</div>
+		</div>
+	</mat-card>
 
-    </div>
-  </mat-card>
+	<!-- Contact Information -->
+	<mat-card class="info-section">
+		<h4 class="section-title">Contact Information</h4>
+		<div class="info-grid">
+			<div class="info-item">
+				<div class="label">Email ID</div>
+				<div class="value">{{partnerIdDetail.emailId}}</div>
+			</div>
+			<div class="info-item">
+				<div class="label">Contact No.</div>
+				<div class="value">{{partnerIdDetail.contactNumber}}</div>
+			</div>
+		</div>
+	</mat-card>
+
+	<!-- Partner Classification -->
+	<mat-card class="info-section">
+		<h4 class="section-title">Partner Classification</h4>
+		<div class="info-grid">
+			<div class="info-item">
+				<div class="label">Partner Type</div>
+				<div class="value">{{partnerIdDetail.partnerType}}</div>
+			</div>
+			<div class="info-item" *ngIf="partnerIdDetail.policyGroup">
+				<div class="label">Policy Group</div>
+				<div class="value">{{partnerIdDetail.policyGroup}}</div>
+			</div>
+			<div class="info-item" *ngIf="isAuthPartner() && partnerIdDetail.partnerAuthType">
+				<div class="label">NIRA Partner Type</div>
+				<div class="value">{{partnerIdDetail.partnerAuthType}}</div>
+			</div>
+			<div class="info-item" *ngIf="isAuthPartner() && partnerIdDetail.partnerGroup">
+				<div class="label">NIRA Partner Group</div>
+				<div class="value">{{partnerIdDetail.partnerGroup}}</div>
+			</div>
+		</div>
+	</mat-card>
+
+	<!-- Certificates -->
+	<mat-card class="info-section">
+		<h4 class="section-title">Certificates</h4>
+		<div class="info-grid">
+			<div class="info-item action-item">
+				<div class="label">View Certificate</div>
+				<div class="value">
+					<button id="viewCertificate" mat-raised-button (click)="viewCertificate()">View</button>
+				</div>
+			</div>
+			<div class="info-item action-item">
+				<div class="label">Upload Certificate</div>
+				<div class="value">
+					<button id="uploadCertificate" mat-raised-button (click)="redirecttoupload()">Upload</button>
+				</div>
+			</div>
+		</div>
+	</mat-card>
+
+	<!-- Account Information -->
+	<mat-card class="info-section">
+		<h4 class="section-title">Account Information</h4>
+		<div class="info-grid">
+			<div class="info-item">
+				<div class="label">Onboarded Date</div>
+				<div class="value">{{partnerIdDetail.onboardedDate | date:'dd-MM-yyyy'}}</div>
+			</div>
+			<div class="info-item">
+				<div class="label">Status</div>
+				<div class="value">{{partnerIdDetail.status}}</div>
+			</div>
+		</div>
+	</mat-card>
 </div>
 
-<div id="home-component"  *ngIf="!partnerIdDetail" style="text-align: center;margin-top: 60px;margin-left: -10em;">
-  <h3 class="mat-h1" *ngIf="labels">
-    {{labels.welcomeMessage | translate }}
-  </h3>
+<div id="home-component-empty" *ngIf="!partnerIdDetail" style="text-align: center;margin-top: 60px;margin-left: -10em;">
+	<h3 class="mat-h1" *ngIf="labels">
+		{{labels.welcomeMessage | translate }}
+	</h3>
 </div>
