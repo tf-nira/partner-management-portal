@@ -49,11 +49,11 @@
 				<div class="label">Policy Group</div>
 				<div class="value">{{partnerIdDetail.policyGroup}}</div>
 			</div>
-			<div class="info-item" *ngIf="isAuthPartner()">
+			<div class="info-item" *ngIf="isAuthPartner() && partnerIdDetail?.partnerAuthType">
 				<div class="label">NIRA Partner Type</div>
 				<div class="value">{{partnerIdDetail.partnerAuthType}}</div>
 			</div>
-			<div class="info-item" *ngIf="isAuthPartner()">
+			<div class="info-item" *ngIf="isAuthPartner() && partnerIdDetail?.partnerGroup">
 				<div class="label">NIRA Partner Group</div>
 				<div class="value">{{partnerIdDetail.partnerGroup}}</div>
 			</div>
