@@ -35,9 +35,17 @@ jobs:
         working-directory: pmp-ui
 
     steps:
+
+      # ----------------------------------------------------------
+      # Checkout
+      # ----------------------------------------------------------
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      # ----------------------------------------------------------
+      # Node.js
+      # Angular 8 project - use Node.js 12
+      # ----------------------------------------------------------
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -45,29 +53,63 @@ jobs:
           cache: npm
           cache-dependency-path: pmp-ui/package-lock.json
 
+      # ----------------------------------------------------------
+      # npm 6
+      # Angular 8 / old package-lock compatibility
+      # ----------------------------------------------------------
+      - name: Set up npm 6
+        run: |
+          npm install -g npm@6.14.18
+
+      # ----------------------------------------------------------
+      # Display versions
+      # ----------------------------------------------------------
       - name: Display Node.js and npm versions
         run: |
           node --version
           npm --version
 
+      # ----------------------------------------------------------
+      # Validate package.json
+      # ----------------------------------------------------------
+      - name: Validate package.json
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json', 'utf8')); console.log('package.json is valid JSON')"
+
+      # ----------------------------------------------------------
+      # Install dependencies
+      #
+      # IMPORTANT:
+      # package.json and package-lock.json MUST be synchronized.
+      # Do NOT delete package-lock.json in CI.
+      # ----------------------------------------------------------
       - name: Install dependencies
         run: npm ci
 
+      # ----------------------------------------------------------
+      # Build
+      # ----------------------------------------------------------
       - name: Build PMP UI
         run: npm run build
 
+      # ----------------------------------------------------------
+      # Upload build artifact
+      # ----------------------------------------------------------
       - name: Upload PMP UI build artifact
         uses: actions/upload-artifact@v4
         with:
           name: pmp-ui-build
-          path: pmp-ui/build/
+          path: pmp-ui/dist/
+          if-no-files-found: error
 
 
   # ============================================================
   # PMP UI - Sonar Analysis
   # ============================================================
   sonar-analysis-pmp-ui:
+    name: Sonar Analysis - PMP UI
     needs: build-maven-pmp-ui
+
     if: ${{ github.event_name != 'pull_request' }}
 
     uses: mosip/kattu/.github/workflows/npm-sonar-analysis.yml@master
@@ -86,6 +128,7 @@ jobs:
   # ============================================================
   build-maven-pmptest:
     name: Build PMP Test
+
     uses: mosip/kattu/.github/workflows/maven-build.yml@master
 
     with:
@@ -105,7 +148,9 @@ jobs:
   # ============================================================
   build-pmptest-local:
     name: Build PMP Test Local
+
     needs: build-maven-pmptest
+
     runs-on: ubuntu-latest
 
     env:
@@ -115,9 +160,16 @@ jobs:
       BUILD_ARTIFACT: pmptest-local
 
     steps:
+
+      # ----------------------------------------------------------
+      # Checkout
+      # ----------------------------------------------------------
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      # ----------------------------------------------------------
+      # Java
+      # ----------------------------------------------------------
       - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
@@ -126,6 +178,9 @@ jobs:
           server-id: ossrh
           settings-path: ${{ github.workspace }}
 
+      # ----------------------------------------------------------
+      # Maven cache
+      # ----------------------------------------------------------
       - name: Cache local Maven repository
         uses: actions/cache@v4
         with:
@@ -134,6 +189,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      # ----------------------------------------------------------
+      # Maven settings.xml
+      # ----------------------------------------------------------
       - name: Setup Maven settings.xml
         shell: bash
         run: |
@@ -148,11 +206,13 @@ jobs:
             </servers>
 
             <profiles>
+
               <profile>
                 <id>ossrh</id>
                 <activation>
                   <activeByDefault>true</activeByDefault>
                 </activation>
+
                 <properties>
                   <gpg.executable>gpg2</gpg.executable>
                   <gpg.passphrase>${{ secrets.GPG_SECRET }}</gpg.passphrase>
@@ -166,12 +226,15 @@ jobs:
                 </activation>
 
                 <repositories>
+
                   <repository>
                     <id>snapshots-repo</id>
                     <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+
                     <releases>
                       <enabled>false</enabled>
                     </releases>
+
                     <snapshots>
                       <enabled>true</enabled>
                     </snapshots>
@@ -180,38 +243,51 @@ jobs:
                   <repository>
                     <id>releases-repo</id>
                     <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+
                     <releases>
                       <enabled>true</enabled>
                     </releases>
+
                     <snapshots>
                       <enabled>false</enabled>
                     </snapshots>
                   </repository>
+
                 </repositories>
               </profile>
 
               <profile>
                 <id>sonar</id>
+
                 <properties>
                   <sonar.sources>.</sonar.sources>
                   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                 </properties>
+
                 <activation>
                   <activeByDefault>false</activeByDefault>
                 </activation>
               </profile>
+
             </profiles>
           </settings>
           EOF
 
+      # ----------------------------------------------------------
+      # Maven build
+      # ----------------------------------------------------------
       - name: Build pmptest with Maven
         run: |
           cd "${{ env.SERVICE_LOCATION }}"
+
           mvn -U -B package \
             -Dmaven.wagon.http.retryHandler.count=2 \
             --file pom.xml \
             -s "$GITHUB_WORKSPACE/settings.xml"
 
+      # ----------------------------------------------------------
+      # Prepare Spring Boot artifacts
+      # ----------------------------------------------------------
       - name: Prepare Spring Boot artifacts
         if: ${{ !contains(github.ref, 'master') && !contains(github.ref, 'main') }}
         run: |
@@ -221,13 +297,20 @@ jobs:
             -type f \
             -exec zip "${{ env.BUILD_ARTIFACT }}.zip" {} +
 
+      # ----------------------------------------------------------
+      # Upload Spring Boot JARs
+      # ----------------------------------------------------------
       - name: Upload Spring Boot JARs
         if: ${{ !contains(github.ref, 'master') && !contains(github.ref, 'main') }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.BUILD_ARTIFACT }}
           path: ${{ env.BUILD_ARTIFACT }}.zip
+          if-no-files-found: error
 
+      # ----------------------------------------------------------
+      # Slack notification
+      # ----------------------------------------------------------
       - name: Slack notification
         if: failure()
         uses: 8398a7/action-slack@v3
@@ -243,10 +326,12 @@ jobs:
   # ============================================================
   build-dockers-pmptest:
     name: Build Docker - pmptest
+
     needs: build-pmptest-local
 
     strategy:
       fail-fast: false
+
       matrix:
         include:
           - SERVICE_LOCATION: pmptest
@@ -272,6 +357,7 @@ jobs:
   # ============================================================
   sonar_analysis:
     name: Sonar Analysis - pmptest
+
     needs: build-pmptest-local
 
     if: ${{ github.event_name != 'pull_request' }}
