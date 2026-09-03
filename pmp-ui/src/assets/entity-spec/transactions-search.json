@@ -45,12 +45,12 @@
             "name": "id",
             "showInListView": "true",
             "label": {
-                "eng": "Auth Transaction ID",
-                "ara": "Auth Transaction ID_ara",
-                "fra": "Auth Transaction ID_fra",
-                "hin": "Auth Transaction ID_hin",
-                "kan": "Auth Transaction ID_kan",
-                "tam": "Auth Transaction ID_tam"
+                "eng": "Transaction ID",
+                "ara": "Transaction ID_ara",
+                "fra": "Transaction ID_fra",
+                "hin": "Transaction ID_hin",
+                "kan": "Transaction ID_kan",
+                "tam": "Transaction ID_tam"
             },
             "sortOrder": "",
             "showAsLink": "false",
