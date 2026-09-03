@@ -18,7 +18,6 @@ on:
       - MOSIP*
       - 1.2.*
       - tf_nira_dev
-      - tf_nira_dev_SR
       - tf_nira_preprod
       - tf_nira_dev_QATEST
 
