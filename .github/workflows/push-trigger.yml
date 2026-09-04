@@ -19,7 +19,7 @@ on:
       - '1.2.*'
       - tf_nira_dev
       - tf_nira_preprod
-      - tf_nira_dev_QATEST
+      - tf_nira_dev1
 
 jobs:
 
