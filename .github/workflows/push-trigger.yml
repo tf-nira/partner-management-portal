@@ -20,10 +20,11 @@ on:
       - tf_nira_dev
       - tf_nira_dev_SR
       - tf_nira_preprod
+      - tf_nira_preprod_SATYAM1
 
 jobs:
   build-maven-pmp-ui:
-    uses: mosip/kattu/.github/workflows/npm-build.yml@develop
+    uses: sjkarthik/kattu/.github/workflows/npm-build.yml@develop_pmpui
     with:
       SERVICE_LOCATION: pmp-ui
       BUILD_ARTIFACT: pmp-ui
