@@ -37,7 +37,7 @@
     }
   },
   "dashboard": {
-    "welcomeMessage":"Welcome to Mosip Partner portal !",
+    "welcomeMessage":"Welcome to Partner Management Portal",
     "Logout":"Logout"
   },
   "payments": {
